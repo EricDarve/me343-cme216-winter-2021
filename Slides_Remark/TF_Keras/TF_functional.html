@@ -1,0 +1,86 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Spring 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+Let us now assume that we now want to code up the following DNN.
+
+---
+class: center, middle
+
+![:width 50vw](2020-04-10-16-17-33.png)
+
+---
+class: middle
+
+Hidden layers 1, 2, and 3 are fully connected with the previous layer.
+
+But then, the output layer is fully connected to hidden layers 1, 2, and 3.
+
+This cannot be expressed using a sequential DNN.
+
+---
+class: middle
+
+We need to use the functional API for that.
+
+It will look very similar to the previous syntax.
+
+---
+class: middle
+
+```Python
+from tensorflow.keras import layers, Model
+input_ = layers.Input(shape=1)
+hidden1 = layers.Dense(4, activation="tanh")(input_)
+hidden2 = layers.Dense(4, activation="tanh")(hidden1)
+hidden3 = layers.Dense(4, activation="tanh")(hidden2)
+concat = layers.Concatenate()([hidden1, hidden2, hidden3])
+output = layers.Dense(1, activation="linear")(concat)
+model = Model(inputs=[input_], outputs=[output])
+```
+
+---
+class: middle
+
+We recognize a new command
+
+`layers.Concatenate()([hidden1, hidden2, hidden3])`
+
+which concatenates together the output of multiple layers.
+
+---
+class: middle
+
+We can plot the model using
+
+```Python
+keras.utils.plot_model(model)
+```
+
+---
+class: center, middle
+
+![:height 50vh](model.png)
+
+---
+class: center, middle
+
+Convergence</br>
+![](fig5.svg)
+
+---
+class: center, middle
+
+Error</br>
+![](fig6.svg)

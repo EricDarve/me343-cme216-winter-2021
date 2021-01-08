@@ -1,0 +1,178 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Spring 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: center, middle
+
+# What is TensorFlow?
+
+![:width 20vw](tf.svg)
+
+---
+class: middle
+
+TF can do many things.
+
+It's free and open source.
+
+Obviously it can be used for deep learning.
+
+---
+class: middle
+
+But at its base, it allows to express computations as a graph.
+
+Then this graph can be differentiated, e.g., we can calculate gradients and solve optimization problems using gradient
+descent methods.
+
+---
+class: middle
+
+For now, we will skip these general features of TF and focus on DNN but we will come back to that when discussing
+physics-informed machine learning or PhysML.
+
+---
+class: middle
+
+TensorFlow was developed by the [Google Brain](https://research.google/teams/brain/) team for internal use at Google.
+
+Then it was made open source in November 2015.
+
+---
+class: center, middle
+
+# What is Keras then?
+
+![:width 20vw](keras.png)
+
+---
+class: middle
+
+Keras is an API (application programming interface) for DNN calculations.
+
+API means that Keras defines a specific interface to write computer programs.
+
+Keras is written in Python.
+
+---
+class: middle
+
+Keras has multiple backends (that is libraries that are responsible for doing the actual calculations).
+
+---
+class: middle
+
+At this time they include:
+
+- TensorFlow
+- [CNTK](https://github.com/Microsoft/cntk) (from Microsoft)
+- [Theano](https://github.com/Theano/Theano) (University of Montr&eacute;al, Canada)
+
+---
+class: middle
+
+Compared to TF, Keras is focused on easy and fast prototyping, through
+
+- user friendliness,
+- modularity, and
+- extensibility
+
+---
+class: middle
+
+Although TF can be used as a backend for Keras, it is recommended to use `tf.keras`, which is the implementation of
+Keras in TF.
+
+This is what we will do in this class.
+
+---
+class: center, middle
+
+# What about [TF 1 and TF 2](https://www.youtube.com/watch?v=t48a_KOh0fQ)?
+
+---
+class: middle
+
+TensorFlow is constantly being modified and improved. But there was a major change when TF transitioned from TF1 to TF2.
+
+---
+class: middle
+
+TF1 was originally developed and made available around 2015.
+
+---
+class: middle
+
+But TF1 was somewhat hard to use and not intuitive for many users.
+
+---
+class: middle
+
+Shortly after, libraries like Keras were developed to make the task of implementing DNNs easier.
+
+---
+class: middle
+
+TF2 was released in 2019 and is closely integrated with Keras.
+
+---
+class: middle
+
+The goal of TF2 was to:
+
+- be higher-level than TF1 (e.g., less confusing code and simpler ways of writing common tasks and structures)
+- simplified API
+- greater versatility
+
+---
+class: middle
+
+One of the big changes from TF1 to TF2 was that TF2 allows the so-called "eager" execution.
+
+This is a technical point so we will not elaborate much.
+
+---
+class: middle
+
+Briefly, in TF1, the user would have to first declare the structure of the DNN.
+
+Then the DNN would be "compiled" and executed.
+
+---
+class: middle
+
+In eager mode, we simply declare the sequence of operations to perform and the operations are evaluated immediately.
+
+For us, this means that it's easier to get started and it eliminates a lot of boiler plate material.
+
+---
+class: center, middle
+
+# What about PyTorch?
+
+![:width 20vw](pytorch.png)
+
+---
+class: middle
+
+We will not cover PyTorch in this class but this is also an excellent library.
+
+It's very easy to use.
+
+Contrary to TF1, PyTorch had "eager" execution from the beginning.
+
+---
+class: middle
+
+For now, it's unclear what the best tool is...
+
+It's still a heated discussion.

@@ -1,0 +1,341 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Spring 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+Finally, we cover custom layers and models. This is done using Python subclassing (more on this later).
+
+This is the most general technique to build DNNs.
+
+---
+class: middle
+
+The Sequential API and the Functional API are declarative.
+
+A declarative programming style is one where the user expresses the _logic_ of a computation without describing its
+_control flow._
+
+Said otherwise, the user describes _what_ the object should do but not directly _how_.
+
+---
+class: middle
+
+The subclassing method is a type of imperative programming.
+
+That is, this is an approach where the user describes _how_ the program operates.
+
+---
+class: middle
+
+# Imperative example.
+
+You enter a restaurant and you say:
+
+"I see that this table in the corner is empty. My wife and I are going to take it."
+
+---
+class: middle
+
+# Declarative example.
+
+You enter a restaurant and you say:
+
+"A table for two, please."
+
+---
+class: middle
+
+The subclassing approach uses the imperative style of programming. 
+
+More information about the [declarative (or symbolic) and
+imperative](https://blog.tensorflow.org/2019/01/what-are-symbolic-and-imperative-apis.html) APIs in TF.
+
+---
+class: middle
+
+Subclassing requires using Python inheritance.
+
+You do not really need to know the details of this.
+
+If you know how to use the proper syntax, it is good enough for most situations.
+
+But let us do a little more and explain what subclassing is and how it works in Python.
+
+---
+class: middle
+
+Inheritance is a mechanism where new classes are derived (or built on) previous classes.
+
+The class from which a class inherits is called the parent class or **superclass.**
+
+A class that inherits from a superclass is called a **subclass,** also called heir class or child class.
+
+---
+class: middle
+
+In Keras, you can subclass `tf.keras.layers.Layer` and `tf.keras.Model`.
+
+For simplicity, we will just look at subclassing `tf.keras.Model`.
+
+---
+class: middle
+
+Here is the basic syntax:
+
+```Python
+class MyModel(keras.Model):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs) # handles standard args (e.g., name)
+        [...]
+
+    def call(self, input_):
+        [...]
+```
+
+---
+class: middle
+
+In `__init__()` we will set up all the data-structures (layers) that are needed by our model.
+
+`call()` defines the sequence of computations the DNN should perform.
+
+---
+class: middle
+
+Python uses the method `__init__` to initialize the state of a new object of that class.
+
+This is a constructor.
+
+It is called when a new object of that class is created.
+
+---
+class: middle
+
+The class `MyModel` derives from the class `keras.Model`.
+
+Derived classes in Python inherit the methods and class attributes from their parent classes.
+
+In our case, `MyModel` inherits from `keras.Model`.
+
+---
+class: middle
+
+Because we are subclassing, all the methods from `keras.Model` are available.
+
+In particular, we can call the methods `compile`, `fit`, `predict`, and `evaluate` from `keras.Model`.
+
+---
+class: middle
+
+```Python
+class MyModel(keras.Model):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs) # handles standard args (e.g., name)
+        [...]
+
+    def call(self, input_):
+        [...]
+```
+
+---
+class: middle
+
+`super().__init__(**kwargs)` allows calling the `__init__` method of the parent class.
+
+This ensures that the constructor of the parent class (and potentially all the relevant ancestor classes) is called.
+
+---
+class: middle
+
+`super()` is somewhat complicated to fully explain in this lecture.
+
+To simplify the discuss, we will say that `super()` is referring to the parent class.
+
+---
+class: middle
+
+`super()` is closely connected to the concept of the [method resolution
+order](https://docs.python.org/3/glossary.html#term-method-resolution-order).
+
+See the [`__mro__`](https://docs.python.org/3.8/library/stdtypes.html?highlight=__mro__#class.__mro__) attribute.
+
+`super()` is great to call a function defined by a parent class.
+
+But it is most useful in cases of multiple inheritance.
+
+---
+class: middle
+
+See this [demo Python code](https://github.com/EricDarve/cme216-spring-2020/blob/master/Code/Inheritance%20demo.ipynb) for details and examples using `super()`.
+
+---
+class: middle
+
+For more information about `super()` see
+the [super() Python doc](https://docs.python.org/3/library/functions.html#super)
+and
+this [blog](https://rhettinger.wordpress.com/2011/05/26/super-considered-super/) by Hettinger.
+
+---
+class: middle
+
+`__init__()`
+
+```Python
+def __init__(self, **kwargs):
+    super().__init__(**kwargs) # handles standard args (e.g., name)
+    self.hidden1 = keras.layers.Dense(4, activation="relu")
+    self.hidden2 = keras.layers.Dense(4, activation="relu")
+    self.hidden3 = keras.layers.Dense(4, activation="relu")
+    self.out = keras.layers.Dense(1, activation="linear")
+```
+
+---
+class: middle
+
+As we explained above, we first call `super().__init__()` so that the parent classes are initialized.
+
+Then we build the three hidden layers and the output `self.out`.
+
+---
+class: middle
+
+Note how, although we are defining 3 hidden layers and 1 output layer, we are not specifying how they are going to be
+used.
+
+This will be done in `call()`.
+
+---
+class: middle
+
+Compared to the previous case, we changed the activation function to `relu`.
+
+---
+class: middle
+
+`call()`
+
+```Python
+def call(self, input_):
+    hidden1 = self.hidden1(input_)
+    hidden2 = self.hidden2(hidden1)
+    hidden3 = self.hidden3(hidden2)
+    concat = layers.Concatenate()([input_, hidden3])
+    return self.out(concat)
+```
+
+---
+class: middle
+
+`call` then defines the actual sequence of calculation to perform.
+
+`self.hidden1(input_)` uses
+
+`keras.layers.Dense(4, activation="relu")`
+
+to calculate numerical values that are stored in `hidden1`.
+
+---
+class: middle
+
+`concat` does not need to be part of the class since it is computed from `input_` and `hidden3`.
+
+---
+class: middle
+
+We note that since we only define the layers and the sequence of operations, we have left a few things undefined.
+
+For example, the size of `input_` is not defined yet.
+
+The shape of the input is defined later when calling `fit`.
+
+---
+class: middle
+
+The rest of the code is the same as what we had before.
+
+```Python
+model.compile(loss='mse', optimizer=sgd, metrics=['mse','mae'])
+history = model.fit(X_train, y_train, epochs=n_epochs,
+                    validation_data=(X_valid, y_valid))
+```
+
+---
+class: center, middle
+
+Convergence</br>
+![](fig7.svg)
+
+---
+class: center, middle
+
+Error</br>
+![](fig8.svg)
+
+---
+class: middle
+
+The `relu` activation is doing a little worse in this case.
+
+---
+class: middle
+
+For more details on the different APIs and subclassing, please see these two videos from the TF team.
+
+[Part 1](https://www.youtube.com/watch?v=UYRBHFAvLSs)
+
+[Part 2](https://www.youtube.com/watch?v=uhzGTijaw8A)
+
+---
+class: middle
+
+Finally, we show a different example where we use a different input.
+
+The first observation is that the function is even.
+
+So we could use as input $x^2$.
+
+---
+class: middle
+
+But we can use more inputs as well.
+
+Let's try
+
+$$(2 x^2 - 1, 8 x^4 - 8 x^2 + 1)$$
+
+These are the first even Chebyshev polynomials of order 2 and 4.
+
+---
+class: middle
+
+Let us compare all these models.
+
+---
+class: center, middle
+
+![](fig11.svg)
+
+---
+class: middle
+
+`relu` has the worst performance.
+
+`multi X` is relatively more efficient as it exhibits an error similar to `seq DNN` but uses half of the training data.
+
+---
+class: middle
+
+Note how difficult it is to train these models to get high accuracy.
+
+The convergence is rather slow.
