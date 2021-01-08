@@ -1,0 +1,26 @@
+baseurl: /me343-cme216-winter-2021
+title: Machine Learning in Computational Engineering
+subtitle: Website for Stanford ME343/CME 216
+author: Eric Darve
+simple_search: http://google.com/search
+description: Website for Stanford ME343/CME 216
+name: me343-cme216-winter-2021
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+timezone: America/Los_Angeles
+excerpt_separator: <!--more-->  # you can specify your own separator, of course.
+exclude:
+   - README.md
+   - .sass-cache/
+   - .jekyll-cache/
+   - gemfiles/
+   - Gemfile
+   - Gemfile.lock
+   - node_modules/
+post:
+  template: _post.txt
+  extension: md
+page:
+  template: _page.txt
+  extension: md
+git:
+  branch: main
