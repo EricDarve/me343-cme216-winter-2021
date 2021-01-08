@@ -3,6 +3,17 @@ layout: page
 title: Syllabus
 ---
 
+This is a 3-unit class. This course is offered online only with mixed synchronous/asynchronous engagement.
+
+Topics to be covered include:
+
+- Linear and kernel support vector machines
+- Deep learning, deep neural networks
+- TensorFlow, optimization algorithms for machine learning
+- Physics-informed machine learning
+- Forward and reverse mode automatic differentiation
+- Generative adversarial networks
+
 ## Challenging times 
 
 Students and instructors are all adjusting to the changes and regulations that have been put in place in response to COVID-19. I hope that we will all work together as a community to adapt to these times and this new situation as best as we can. I have tried to add ﬂexibility to our course structure and assignments to accommodate anyone who may now be lacking resources that are normally available. However, if you have suggestions for how we might support your learning in this course during these trying times, please do not hesitate to let us know.
