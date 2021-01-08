@@ -9,63 +9,86 @@ These is the web site for ME343/CME216 Machine Learning in Computational Enginee
 
 [Syllabus](syllabus)
 
+Policy for late assignments:
+
+- Extensions can be requested in advance for exceptional circumstances (e.g., travel, sickness, injury, COVID related issues) and for OAE-approved accommodations
+- Submissions after the deadline and late by at most 2 days (+48 hours after the deadline) will be accepted with a 10% penalty. No submissions will be accepted 2 days after the deadline.
+
+See [Gradescope](https://www.gradescope.com/courses/222525) for all the current assignments and their due dates. Post on [Slack](https://app.slack.com/client/T01J8R3MQLC) if you cannot access the Gradescope class page. We will send you the 6-letter code.
+
+## Class modules and learning material
+
+### Introduction to ML and SVM
+
+*Module 1*
+
+- 1.1 Brief introduction to ML; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=089ae55c-cdbe-412f-816b-ab92013a5794); [Slides](Slides/ML_introduction/brief_intro.pdf)
+- 1.2 Examples of machine learning; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e64f9a8c-79b0-4e50-aac8-ab93015a260a); [Slides](Slides/ML_introduction/examples_ML.pdf)
+- 1.3 Supervised learning; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=21ddf854-4f08-4293-93d2-ab9301632240); [Slides](Slides/ML_introduction/supervised_learning.pdf)
+- 1.4 Machine learning in engineering; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=54cdfec5-a2a8-4e77-9a07-ab930165b07a); [Slides](Slides/ML_introduction/ml_in_engineering.pdf)
+- 1.5 Introduction to SVM; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=db1ae91e-dedd-4f35-9824-ab9201843632); [Slides](Slides/ML_introduction/SVM_introduction.pdf)
+
+[Reading Assignment 1](Reading Assignments/intro_svm)
+
+## Material from Spring 2020
+
 ## Reading assignments
 
 Module 1
 
-1. [Introduction to ML and SVM](Reading Questions/intro_svm)
-1. [Soft-margins in SVM](Reading Questions/svm_softmargin)
-1. [Kernel trick](Reading Questions/kernel_trick)
+1. [Introduction to ML and SVM](Reading Assignments/intro_svm)
+1. [Soft-margins in SVM](Reading Assignments/svm_softmargin)
+1. [Kernel trick](Reading Assignments/kernel_trick)
 
 - [Module 1 Solutions](RA Solutions/RA1-3_solutions)
 
 Module 2
 
 {:start="4"}
-1. [Perceptron](Reading Questions/perceptron)
-1. [MLP](Reading Questions/MLP) (multi-layer perceptron)
-1. [TensorFlow](Reading Questions/TF)
-1. [Subclassing](Reading Questions/subclassing)
+1. [Perceptron](Reading Assignments/perceptron)
+1. [MLP](Reading Assignments/MLP) (multi-layer perceptron)
+1. [TensorFlow](Reading Assignments/TF)
+1. [Subclassing](Reading Assignments/subclassing)
 
 Module 3
 
 {:start="8"}
-1. [Loss function and cross entropy](Reading Questions/loss)
-1. [Loss functions in TF/Keras](Reading Questions/TF_loss)
-1. [The backpropagation algorithm](Reading Questions/Backpropagation)
-1. [Learning rate and overfitting](Reading Questions/LR_overfitting)
-1. [Initializers and regularizers](Reading Questions/initializers_regularizers)
-1. [SGD and saddle points](Reading Questions/SGD)
-1. [Momentum and ADAGRAD](Reading Questions/Momentum)
-1. [RMSProp and Adam](Reading Questions/Adam)
+1. [Loss function and cross entropy](Reading Assignments/loss)
+1. [Loss functions in TF/Keras](Reading Assignments/TF_loss)
+1. [The backpropagation algorithm](Reading Assignments/Backpropagation)
+1. [Learning rate and overfitting](Reading Assignments/LR_overfitting)
+1. [Initializers and regularizers](Reading Assignments/initializers_regularizers)
+1. [SGD and saddle points](Reading Assignments/SGD)
+1. [Momentum and ADAGRAD](Reading Assignments/Momentum)
+1. [RMSProp and Adam](Reading Assignments/Adam)
 
 - [Module 3 Solutions](RA Solutions/RA_Solution_module3)
 
 Module 4
 
 {:start="16"}
-1. [Automatic differentiation overview](Reading Questions/AD)
-1. [Computational graph](Reading Questions/ComplGraph)
-1. [Forward and reverse modes](Reading Questions/FwdRevMode)
-1. [AD for physical simulation](Reading Questions/ADPhys)
-1. [AD through implicit operators](Reading Questions/ImplicitOps)
+1. [Automatic differentiation overview](Reading Assignments/AD)
+1. [Computational graph](Reading Assignments/ComplGraph)
+1. [Forward and reverse modes](Reading Assignments/FwdRevMode)
+1. [AD for physical simulation](Reading Assignments/ADPhys)
+1. [AD through implicit operators](Reading Assignments/ImplicitOps)
 
 - [Module 4 Solutions](RA Solutions/RA_Solution_module4)
 
 Module 5
 
 {:start="21"}
-1. [Inverse problems](Reading Questions/Inverse)
-1. [Training for inverse problems](Reading Questions/InverseTraining)
-1. [Physics constrained learning](Reading Questions/PCL)
-1. [Physics-informed learning conclusion](Reading Questions/InverseConclusion)
+1. [Inverse problems](Reading Assignments/Inverse)
+1. [Training for inverse problems](Reading Assignments/InverseTraining)
+1. [Physics constrained learning](Reading Assignments/PCL)
+1. [Physics-informed learning conclusion](Reading Assignments/InverseConclusion)
 
 - [Module 5 Solutions](RA Solutions/RA_Solution_module5)
 
 Module 6
 
 {:start="25"}
-1. [Generative Adversarial Networks](Reading Questions/GAN)
+1. [Generative Adversarial Networks](Reading Assignments/GAN)
 
 ## Programming Homework
 
