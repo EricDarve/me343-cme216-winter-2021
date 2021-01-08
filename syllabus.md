@@ -3,9 +3,9 @@ layout: page
 title: Syllabus
 ---
 
-This is a 3-unit class. This course is offered online only with mixed synchronous/asynchronous engagement.
+This is a 3-unit class. This course is offered only online with mixed synchronous/asynchronous engagement.
 
-Topics to be covered include:
+Topics to be be covered include:
 
 - Linear and kernel support vector machines
 - Deep learning, deep neural networks
@@ -33,15 +33,15 @@ Teaching assistants:
 
 ## Lectures and class material
 
-The class will be structured around the following elements. Most of the material for this class will be accessible from the [class web site](https://ericdarve.github.io/me343-cme216-winter-2021/). Meeting information (zoom link) and grades are posted on [Canvas](https://canvas.stanford.edu/courses/131536).
+The class will be structured around the following elements. Most of the material for this class will be accessible from the [class website](https://ericdarve.github.io/me343-cme216-winter-2021/). Meeting information (zoom link) and grades are posted on [Canvas](https://canvas.stanford.edu/courses/131536).
 
-Most of the lectures will be pre-recorded. The material will be listed on the class web site. It is organized in modules, with videos, slides, reading and homework assignments.
+Most of the lectures will be pre-recorded. The material will be listed on the class website. It is organized in modules, with videos, slides, reading and homework assignments.
 
-At this time, I am not planning on many live lectures. There are practical difficulties including network bandwidth, connection reliability, and time difference.
+At this time, we are not planning on many live lectures. There are practical difficulties including network bandwidth, connection reliability, and time difference.
 
 To supplement the lectures, we will have a combination of reading and homework assignments. **Reading assignments** are short questions that can be answered by reading the slides and watching the videos. **Homework assignments** will be based primarily on Python and will require some code development and analysis.
 
-The [class web site](https://ericdarve.github.io/me343-cme216-winter-2021/) contains useful books, articles, web links, recorded lectures, etc, that are relevant to this class.
+The [class website](https://ericdarve.github.io/me343-cme216-winter-2021/) contains useful books, articles, web links, recorded lectures, etc, that are relevant to this class.
 
 ## Forum
 
@@ -134,9 +134,7 @@ All people have the right to be addressed and referred to in accordance with the
 
 The COVID-19 pandemic is a stressful time for us all. In addition, you may experience a range of other challenges that can cause barriers to learning, such as strained relationships, increased anxiety, alcohol/drug problems, feeling down, difficulty concentrating and/or lack of motivation. These mental health concerns or stressful events may lead to diminished academic performance or reduce your ability to participate in daily life. Stanford is committed to advancing the mental health and well-being of its students. If you or someone you know is feeling overwhelmed, depressed, and/or in need of support, services are available. 
 
-To learn more about the broad range of confidential mental health services available on campus, please see:
-
-    https://vaden.stanford.edu/caps-and-wellness/counseling-and-psychological-services-caps
+To learn more about the broad range of confidential mental health services available on campus, please see the [Vaden service site](https://vaden.stanford.edu/caps-and-wellness/counseling-and-psychological-services-caps).
 
 **We hope you will enjoy this class and find it useful!**
 
