@@ -53,7 +53,7 @@ To communicate we will post messages using [canvas announcements](https://canvas
 
 Check the channels in the workspace. 
 
-The URL is: [https://stanford-3kml.stanford.edu](https://stanford-3kml.stanford.edu).
+The URL is: [https://stanford-3kml.slack.com](https://stanford-3kml.slack.com).
 
 Since the class is taught virtually, it is important to maintain contact with the teaching staff and other students. We encourage you to freely share information, questions, feedback, comments, etc, on Slack in the appropriate channel. Slack is meant to be a flexible and open-ended way to communicate.
 
