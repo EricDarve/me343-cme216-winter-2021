@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../cme216_slides.css">
+</head>
+
+<body>
+    <textarea id="source">
+class: center, middle
+
+# CME 216, ME 343 - Spring 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: center, middle
+
+We start our discussion of deep neural networks with the basic unit at the core of the model:
+
+**The Perceptron**
+
+---
+class: middle
+
+The perceptron was invented in 1957 by Frank Rosenblatt.
+
+We will see that it is quite similar to the basic formula used for SVM.
+
+---
+class: middle
+
+A perceptron is a function that takes as input a vector $x$ and outputs a real number.
+
+Its formula is given by
+
+$$ h_{w,b}(x) = \phi(w^T x + b) $$
+
+---
+class: middle
+
+$x$ are the input variables. 
+
+This is the data used to make our prediction.
+
+---
+class: middle
+
+$w$ and $b$ are parameters to optimize.
+
+- $w$ is called the weight vector / matrix.
+- $b$ is called the bias. It shifts $w^T x$ by a constant.
+
+---
+class: middle
+
+There are many different choices for $\phi$ but most choices are associated with the idea of neuron activation and threshold activation.
+
+---
+class: middle
+
+- **Activation:** the neuron is either on or off.
+- **Threshold:** the neuron is off below a certain value and on above.
+
+---
+class: middle
+
+Mathematically, $\phi(z)$ is 
+
+- close to 0 when $z < 0$, and 
+- increases rapidly to 1 when $z > 0$.
+
+---
+class: middle
+
+The simplest example is the heaviside function.
+
+---
+class: center, middle
+
+![](fig1.svg)
+
+---
+class: middle
+
+This function has some limitations that make it unsuitable for our optimization algorithms.
+
+In particular, the slope is always 0.
+
+---
+class: middle
+
+Researchers have tried a variety of activation functions $\phi$ with better properties.
+
+Some common choices are.
+
+---
+class: center, middle
+
+![](fig2.svg)
+
+---
+class: middle
+
+Comments:
+
+- sigmoid and tanh are very similar up to scaling and shifting
+- relu has zero derivative when $x<0$ which can cause some numerical problems for certain optimization algorithms.
+
+---
+class: middle
+
+Mathematical definitions
+
+- heaviside$(x)$: 0 if $x<0$; 1 otherwise.
+- sigmoid$(x) = \sigma(x) = 1/( 1 + \exp(-x))$
+- tanh$(x) = 2 \sigma(2x) - 1$
+- ReLU$(x) = \max(0,x)$
+
+---
+class: middle
+
+# Optimization
+
+How can we optimize $w$ and $b$ given some data?
+
+---
+class: middle
+
+We first need to define a loss function
+
+$$ L(w,b) = \sum_{i=1}^m ( y_i - \phi(w^T x_i + b) )^2 $$
+
+---
+class: middle
+
+We can minimize the error by using a gradient descent method:
+
+$$ \Delta w = - \alpha \; \frac{\partial L}{\partial w}, 
+\hspace{2em} \Delta b = - \alpha \; \frac{\partial L}{\partial b} $$
+
+$\alpha$ = learning rate; $\Delta w$ and $\Delta b$ are increments in $w$ and $b$.
+
+---
+class: middle
+
+ Notation:
+
+- $y_i$: training data
+- $\hat{y}_i = \phi(w^T x_i + b)$: prediction using perceptron
+
+---
+class: middle
+
+$$ L(w,b) = \sum\_{i=1}^m ( y\_i - \phi(w^T x\_i + b) )^2 = \sum\_{i=1}^m ( y\_i - \hat{y}\_i )^2 $$
+
+Derivative with respect to $w$:
+
+$$ \frac{\partial L}{\partial w} = 2 \sum_{i=1}^m ( \hat{y}_i - y_i ) \; \phi'(w^T x_i + b) \; x_i
+$$
+
+---
+class: middle
+
+$$ L(w,b) = \sum_{i=1}^m ( y_i - \phi(w^T x_i + b) )^2 $$
+
+Derivative with respect to $b$:
+
+$$ \frac{\partial L}{\partial b} = 2 \sum_{i=1}^m ( \hat{y}_i - y_i ) \; \phi'(w^T x_i + b) $$
+
+    </textarea>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']]
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script type="text/javascript">
+        remark.macros.width = function (percentage) {
+            var url = this;
+            return '<img src="' + url + '" style="width: ' + percentage + '" />';
+        };
+        remark.macros.height = function (percentage) {
+            var url = this;
+            return '<img src="' + url + '" style="height: ' + percentage + '" />';
+        };
+
+        var slideshow = remark.create({
+            ratio: '16:9',
+            highlightLanguage: 'c++',
+            highlightStyle: 'atom-one-light'
+        });
+    </script>
+</body>
+
+</html>

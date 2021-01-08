@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../cme216_slides.css">
+</head>
+
+<body>
+    <textarea id="source">
+class: center, middle
+
+# CME 216, ME 343 - Spring 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+A perceptron is a function that takes as input a vector $x$ and outputs a real number.
+
+Its formula is given by
+
+$$ h_{w,b}(x) = \phi(w^T x + b) $$
+
+---
+class: middle
+
+If you choose $\phi$ to be a linear function, you can recognize that a perceptron is doing a linear regression of the data.
+
+That is, it tries to fit a hyperplane to the data by minimizing the mean squared error.
+
+---
+class: middle
+
+With a non-linear function $\phi$ we can build more general surfaces that fit the data but this is clearly very limited.
+
+---
+class: middle
+
+Consider for example the XOR function:
+
+Input 1 | Input 2 | Output
+--- | --- | ---
+0 | 0 | 0
+1 | 1 | 0
+0 | 1 | 1
+1 | 0 | 1
+
+---
+class: middle
+
+Can you build a perceptron that reproduces this data?
+
+Unfortunately, this is **not possible.**
+
+---
+class: middle
+
+This has led to the idea of stacking perceptrons together to create multilayered perceptrons or MLP.
+
+---
+class: center, middle
+
+![:width 50vw](2020-04-08-16-11-32.png)
+
+---
+class: middle
+
+## Caption of figure
+
+The $\sum$ symbol corresponds to the linear matrix-vector multiplication $W^{(i+1)} x^{(i)}$.
+
+$x^{(i)}$ are the activation values for layer $i$.
+
+It's a vector. The size of $x^{(i)}$ is the number of nodes in layer $i$.
+
+---
+class: middle
+
+$$W^{(i+1)} x^{(i)}$$
+
+$W^{(i+1)}$ is a matrix.
+
+The number of columns of $W^{(i+1)}$ is the size of $x^{(i)}$.
+
+The number of rows of $W^{(i+1)}$ is the size of the next layer, $x^{(i+1)}$.
+
+---
+class: middle
+
+The 1 corresponds to adding the bias $b^{(i+1)}$:
+
+$$W^{(i+1)} x^{(i)} + b^{(i+1)}$$
+
+$b^{(i+1)}$ is now a vector. Its size is the same as $x^{(i+1)}$.
+
+---
+class: middle
+
+After the linear transformation 
+
+$$W^{(i+1)} x^{(i)} + b^{(i+1)}$$ 
+
+we apply a non-linear activation function $\phi$:
+
+$$z^{(i+1)}\_j = [ W^{(i+1)} x^{(i)} + b^{(i+1)} ]_j $$
+
+$$x^{(i+1)}_j = \phi(z^{(i+1)}_j) $$
+
+---
+class: middle
+
+This type of structure is called an **artificial neural network** or ANN.
+
+---
+class: middle
+
+Generally speaking, an ANN is a general graph, that is directed (information only goes in one direction) and acyclic (no cycles).
+
+Each edge $e$ corresponds to a multiplication by some weight $w_e$.
+
+Multiple incoming edges are summed up together.
+
+Then a non-linear function $\phi$ is applied to the result.
+
+---
+class: middle
+
+# Example of DAG with 5 nodes
+
+---
+class: center, middle
+
+![:height 60vh](2020-04-08-17-30-39.png)
+
+---
+class: middle
+
+But in most cases, ANNs are organized in layers as we have seen previously.
+
+---
+class: center, middle
+
+![:width 50vw](2020-04-08-16-11-32.png)
+
+---
+class: middle
+
+At each layer we perform the sequence of operations:
+
+- Input: $x^{(i)}$
+- Multiply by weights and add bias:
+
+$$z^{(i+1)}\_j = [ W^{(i+1)} x^{(i)} + b^{(i+1)} ]_j $$
+
+- Apply non-linear function: 
+
+$$x^{(i+1)}_j = \phi(z^{(i+1)}_j) $$
+
+---
+class: middle
+
+A deep neural network (DNN) is an artificial neural network that has many such layers (it is "deep").
+
+It was discovered that making ANNs deep was the key to their success.
+
+---
+class: middle
+
+As more layers are added, the ANN is capable of performing more and more complex tasks.
+
+At this point, this is a somewhat empirical observation although there are now several research papers that have investigated this question.
+
+---
+class: middle
+
+DNNs are behind many success stories such as 
+
+- [AlphaGo](https://deepmind.com/research/case-studies/alphago-the-story-so-far), 
+- Apple's [Siri](https://machinelearning.apple.com/2017/08/06/siri-voices.html) voice recognition, and
+- [YouTube recommendations](https://research.google/pubs/pub45530/).
+
+---
+class: middle
+
+We will discuss this point in more details later on.
+
+---
+class: center, middle
+
+# Training and optimization of DNNs
+
+---
+class: middle
+
+As we have seen previously with the perceptron, based on some training data $(x_i,y_i)$, we can optimize the weights $W^{(i)}$ and biases $b^{(i)}$ to minimize the error.
+
+---
+class: middle
+
+Before we discuss how to do this, let's start with a simple implementation in Keras/TensorFlow of a DNN.
+
+    </textarea>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']]
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script type="text/javascript">
+        remark.macros.width = function (percentage) {
+            var url = this;
+            return '<img src="' + url + '" style="width: ' + percentage + '" />';
+        };
+        remark.macros.height = function (percentage) {
+            var url = this;
+            return '<img src="' + url + '" style="height: ' + percentage + '" />';
+        };
+
+        var slideshow = remark.create({
+            ratio: '16:9',
+            highlightLanguage: 'c++',
+            highlightStyle: 'atom-one-light'
+        });
+    </script>
+</body>
+
+</html>
