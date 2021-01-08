@@ -27,9 +27,57 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - 1.3 Supervised learning; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=21ddf854-4f08-4293-93d2-ab9301632240); [Slides](Slides/ML_introduction/supervised_learning.pdf)
 - 1.4 Machine learning in engineering; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=54cdfec5-a2a8-4e77-9a07-ab930165b07a); [Slides](Slides/ML_introduction/ml_in_engineering.pdf)
 - 1.5 Introduction to SVM; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=db1ae91e-dedd-4f35-9824-ab9201843632); [Slides](Slides/ML_introduction/SVM_introduction.pdf)
+- [Reading Assignment 1](Reading Assignments/intro_svm)
 
-[Reading Assignment 1](Reading Assignments/intro_svm)
+## Reading material
 
+###  Books
+
+- [Deep learning](http://www.deeplearningbook.org/) by Ian Goodfellow and Yoshua Bengio and Aaron Courville
+- [Deep learning with Python](https://searchworks.stanford.edu/view/13216992) by Fran&ccedil;ois Chollet
+- [Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow : concepts, tools, and techniques to build intelligent systems](https://searchworks.stanford.edu/view/13489354) by Aur&eacute;lien G&eacute;ron
+- [Fundamentals of deep learning : designing next-generation machine intelligence algorithms](https://searchworks.stanford.edu/view/12112250) by Nikhil Buduma
+- [Elements of statistical learning](https://searchworks.stanford.edu/view/12458005) by Trevor Hastie, Robert Tibshirani, and Jerome Friedman
+- [Deep learning: an introduction for applied mathematicians](https://epubs.siam.org/doi/pdf/10.1137/18M1165748) by Catherine Higham and Desmond Higham
+- [Machine learning: a probabilistic perspective](https://www.cs.ubc.ca/~murphyk/MLbook/) by Kevin Murphy (in [searchworks](https://searchworks.stanford.edu/view/13163347))
+- [Deep learning with Python](https://searchworks.stanford.edu/view/13216992) by Fran&#231;ois Cholet
+- [Deep learning illustrated: a visual, interactive guide to artificial intelligence](https://searchworks.stanford.edu/view/13463749) by Jon Krohn
+- [Neural networks and deep learning](http://neuralnetworksanddeeplearning.com/) by Michael Nielsen
+- [Foundations of machine learning](https://cs.nyu.edu/~mohri/mlbook/) by Mehryar Mohri, Afshin Rostamizadeh, and Ameet Talwalkar
+- [Neural networks and learning machines](https://searchworks.stanford.edu/view/8631715) by Simon Haykin
+- [The matrix cookbook](https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf) by Kaare Petersen and Michael Pedersen
+
+### Video tutorials
+
+- [Introduction to deep learning: concepts and fundamentals](https://searchworks.stanford.edu/view/13216564) by Laura Graesser
+- [Introduction to deep learning models with TensorFlow: learn how to work with TensorFlow to create and run a TensorFlow graph, and build a deep learning model](https://searchworks.stanford.edu/view/13214579) by Lucas Adams
+- [Deep learning with TensorFlow: applications of deep neural networks to machine learning tasks](https://searchworks.stanford.edu/view/13215423) by Jon Krohn
+
+### Review papers
+
+- LeCun, Bengio and Hinton, Deep learning, _Nature,_ 521:436-444, 2015
+- Schmidhuber, Deep learning in neural networks: an overview, _Neural Networks,_ 61:85-117, 2015
+- [Automatic differentiation in machine learning: a survey](https://arxiv.org/pdf/1502.05767.pdf) by At&#305;l&#305;m G&uuml;nes Baydin, Barak Pearlmutter, Alexey Andreyevich Radul, and Jeffrey Mark Siskind
+- [A review of the adjoint-state method for computing the gradient of a functional with geophysical applications](https://academic.oup.com/gji/article/167/2/495/559970) by R.-E. Plessix
+
+### Online classes and tutorials
+
+- [Introduction to Deep Learning](http://introtodeeplearning.com/), MIT
+- [fast.ai](https://course.fast.ai/)
+- [Machine Learning 2014-2015](https://www.cs.ox.ac.uk/people/nando.defreitas/machinelearning/), Oxford, by Nando de Freitas
+
+### Links
+
+- [List of books and tutorials on ML](https://github.com/josephmisiti/awesome-machine-learning/blob/master/books.md)
+- [Online courses](https://github.com/josephmisiti/awesome-machine-learning/blob/master/courses.md)
+- [TensorFlow notebooks](https://github.com/the-deep-learners/TensorFlow-LiveLessons) by Jon Krohn
+- [TF2 notebooks](https://github.com/jonkrohn/tf2) by Jon Krohn
+- [Deep learning illustrated notebooks](https://github.com/the-deep-learners/deep-learning-illustrated) by Jon Krohn
+- [TensorFlow playground](http://playground.tensorflow.org/)
+- [MNIST visualization](https://www.cs.ryerson.ca/~aharley/vis/conv/) by Adam Harley
+- [Distill](https://distill.pub/), a journal for machine learning visualizations
+
+<!--
 ## Material from Spring 2020
 
 ## Reading assignments
@@ -191,8 +239,7 @@ Module 1 (week 1 and 2, 4/6, 4/13)
 
 Module 2 (week 3, 4/20)
 
-- NN and DNN; layers; weights and biases; activation function; loss function
-<!-- - Universal approximation theorems; [Montufar et al. (2014)](http://papers.nips.cc/paper/5422-on-the-number-of-linear-regions-of-deep-neural-networks.pdf) -->
+- NN and DNN; layers; weights and biases; activation function; loss function; skipped: universal approximation theorems; [Montufar et al. (2014)](http://papers.nips.cc/paper/5422-on-the-number-of-linear-regions-of-deep-neural-networks.pdf)
 - [TensorFlow](https://www.tensorflow.org/learn) and [Keras](https://www.tensorflow.org/guide/keras)
 
 Module 3 Part 1 (week 4, 4/27)
@@ -201,14 +248,15 @@ Module 3 Part 1 (week 4, 4/27)
 - Weight initialization
 - Regularization; test and validation sets; hyperparameter optimization
 - Regularization strategies
-<!-- - Batch normalization -->
+- Skipped; batch normalization
 
 - Homework 2 (covid-19 modeling)
 
 Module 3 Part 2 (week 5-6, 5/4, 5/11)
 
 - Stochastic gradient methods; SGD, momentum; adaptive algorithms
-<!-- - If time allows: convolution nets; pooling; fully-connected nets; DNN and convnet architectures -->
+
+If time allows: convolution nets; pooling; fully-connected nets; DNN and convnet architectures
 
 **Physics-informed learning**
 
@@ -226,10 +274,10 @@ Module 4 and 5 (week 6-8, 5/11--5/25)
 
 Module 6 (week 9-10, 6/1)
 
-<!-- - Autoencoders and variational autoencoders -->
 - PhysGAN and ADCME
 - GANs to generate samples from a given probability distribution
 - Generator and discriminator networks; WGANs
+- Skipped: autoencoders and variational autoencoders
 - TensorFlow example
 
 - Homework 4 (5/31; physics informed learning)
@@ -244,52 +292,4 @@ We won't have enough time to cover this topic unfortunately.
 - Temporal difference learning; deep Q-learning networks
 - Policy gradients and actor-critic algorithms
 
-<!-- - Short homework 5 on RL (June 10) -->
-
-## Reading material
-
-###  Books
-
-- [Deep learning](http://www.deeplearningbook.org/) by Ian Goodfellow and Yoshua Bengio and Aaron Courville
-- [Deep learning with Python](https://searchworks.stanford.edu/view/13216992) by Fran&ccedil;ois Chollet
-- [Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow : concepts, tools, and techniques to build intelligent systems](https://searchworks.stanford.edu/view/13489354) by Aur&eacute;lien G&eacute;ron
-- [Fundamentals of deep learning : designing next-generation machine intelligence algorithms](https://searchworks.stanford.edu/view/12112250) by Nikhil Buduma
-- [Elements of statistical learning](https://searchworks.stanford.edu/view/12458005) by Trevor Hastie, Robert Tibshirani, and Jerome Friedman
-- [Deep learning: an introduction for applied mathematicians](https://epubs.siam.org/doi/pdf/10.1137/18M1165748) by Catherine Higham and Desmond Higham
-- [Machine learning: a probabilistic perspective](https://www.cs.ubc.ca/~murphyk/MLbook/) by Kevin Murphy (in [searchworks](https://searchworks.stanford.edu/view/13163347))
-- [Deep learning with Python](https://searchworks.stanford.edu/view/13216992) by Fran&#231;ois Cholet
-- [Deep learning illustrated: a visual, interactive guide to artificial intelligence](https://searchworks.stanford.edu/view/13463749) by Jon Krohn
-- [Neural networks and deep learning](http://neuralnetworksanddeeplearning.com/) by Michael Nielsen
-- [Foundations of machine learning](https://cs.nyu.edu/~mohri/mlbook/) by Mehryar Mohri, Afshin Rostamizadeh, and Ameet Talwalkar
-- [Neural networks and learning machines](https://searchworks.stanford.edu/view/8631715) by Simon Haykin
-- [The matrix cookbook](https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf) by Kaare Petersen and Michael Pedersen
-
-### Video tutorials
-
-- [Introduction to deep learning: concepts and fundamentals](https://searchworks.stanford.edu/view/13216564) by Laura Graesser
-- [Introduction to deep learning models with TensorFlow: learn how to work with TensorFlow to create and run a TensorFlow graph, and build a deep learning model](https://searchworks.stanford.edu/view/13214579) by Lucas Adams
-- [Deep learning with TensorFlow: applications of deep neural networks to machine learning tasks](https://searchworks.stanford.edu/view/13215423) by Jon Krohn
-
-### Review papers
-
-- LeCun, Bengio and Hinton, Deep learning, _Nature,_ 521:436-444, 2015
-- Schmidhuber, Deep learning in neural networks: an overview, _Neural Networks,_ 61:85-117, 2015
-- [Automatic differentiation in machine learning: a survey](https://arxiv.org/pdf/1502.05767.pdf) by At&#305;l&#305;m G&uuml;nes Baydin, Barak Pearlmutter, Alexey Andreyevich Radul, and Jeffrey Mark Siskind
-- [A review of the adjoint-state method for computing the gradient of a functional with geophysical applications](https://academic.oup.com/gji/article/167/2/495/559970) by R.-E. Plessix
-
-### Online classes and tutorials
-
-- [Introduction to Deep Learning](http://introtodeeplearning.com/), MIT
-- [fast.ai](https://course.fast.ai/)
-- [Machine Learning 2014-2015](https://www.cs.ox.ac.uk/people/nando.defreitas/machinelearning/), Oxford, by Nando de Freitas
-
-### Links
-
-- [List of books and tutorials on ML](https://github.com/josephmisiti/awesome-machine-learning/blob/master/books.md)
-- [Online courses](https://github.com/josephmisiti/awesome-machine-learning/blob/master/courses.md)
-- [TensorFlow notebooks](https://github.com/the-deep-learners/TensorFlow-LiveLessons) by Jon Krohn
-- [TF2 notebooks](https://github.com/jonkrohn/tf2) by Jon Krohn
-- [Deep learning illustrated notebooks](https://github.com/the-deep-learners/deep-learning-illustrated) by Jon Krohn
-- [TensorFlow playground](http://playground.tensorflow.org/)
-- [MNIST visualization](https://www.cs.ryerson.ca/~aharley/vis/conv/) by Adam Harley
-- [Distill](https://distill.pub/), a journal for machine learning visualizations
+-->
