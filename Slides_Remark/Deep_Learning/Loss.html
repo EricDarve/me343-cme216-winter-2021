@@ -1,0 +1,159 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Spring 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+As we have seen previously, supervised machine learning is often concerned with two different tasks:
+
+- classification: the output is a category or integer value
+- regression: the output is a real number or a real-valued vector.
+
+---
+class: middle
+
+For DNN, there are common architectures that are used for each case.
+
+---
+class: middle
+
+Regression will be mostly our focus.
+
+---
+class: middle
+
+Generally the last layer does not have a non-linear function applied to it.
+
+That is $\phi(x) = x$.
+
+---
+class: middle
+
+Depending on the situation, various "tricks" can be used to enforce certain conditions.
+
+---
+class: middle
+
+For example if you want the output to be positive it is common to apply a `softplus` activation for the last layer:
+
+$$ \text{softplus}(z) = \log(1 + \exp(z)) $$
+
+---
+class: center, middle
+
+![](fig1.svg)
+
+---
+class: middle
+
+$$ \text{softplus}(z) = \log(1 + \exp(z)) $$
+
+You can see that when $z$ is negative, softplus is close to 0.
+
+When $z$ is positive and large, softplus is close to $z$.
+
+---
+class: middle
+
+The sigmoid and tanh functions can be used if you know that the output is bounded.
+
+In that case, you can shift and rescale your data so that it falls in the [0,1] interval (sigmoid), or [-1,1] interval
+for tanh.
+
+---
+class: middle
+
+The typical loss function for regression is the mean squared error.
+
+---
+class: middle
+
+Another option is the mean absolute error, but this loss function is more difficult to train with since it is not
+differentiable at 0.
+
+The mean squared error tends to emphasize training points where the error is large.
+
+Mean absolute error gives about weight to all training points.
+
+---
+class: middle
+
+A compromise is the Huber loss defined as
+
+$ x^2 / 2 $, if $|x| \le \delta$
+
+$ \delta ( |x| - \delta/2) $ otherwise
+
+---
+class: center, middle
+
+![](fig2.svg)
+
+---
+class: middle
+
+The second task is classification.
+
+---
+class: middle
+
+Let us assume that for example we are trying to classify images and label them with the object depicted.
+
+Categories may be: car, horse, boat, truck, person.
+
+---
+class: middle
+
+We have 5 categories that are going to be represented by an integer between 0 and 4.
+
+---
+class: middle
+
+The way to represent this is to apply the softmax function to the output.
+
+Given a vector of output $z_i$, the softmax function is
+
+$$ \frac{\exp(z\_i)}{\sum\_{j=1}^{n\_\text{categories}} \exp(z\_j)} $$
+
+$n_\text{categories}$ is the number of categories or labels.
+
+---
+class: middle
+
+The vector softmax sums up to 1 and all its entries are positive.
+
+So this can be interpreted as a probability vector.
+
+---
+class: center, middle
+
+$$ a_i = \frac{\exp(z_i)}{\sum_j \exp(z_j)} $$
+
+$ \sum_i a_i = 1 $ and $ a_i \ge 0 $
+
+---
+class: middle
+
+$$ a_i = \frac{\exp(z_i)}{\sum_j \exp(z_j)} $$
+
+The index $i$ for which $a_i$ is the largest is interpreted as the category guessed by the DNN.
+
+---
+class: middle
+
+In the tensorflow jargon, $z_i$ are called logits while $a_i$ are the probabilities for the categories.
+
+---
+class: middle
+
+To calculate the loss function, we need to define cross-entropy, which can be used to measure the distance between two
+probability distributions.

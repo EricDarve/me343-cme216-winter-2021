@@ -1,0 +1,103 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Spring 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+We have seen in the previous lecture how the optimal learning rate could be computed using the Hessian.
+
+In practice, the quadratic approximate we used is not exact and the Hessian is very difficult to estimate.
+
+---
+class: middle
+
+Instead, we are going to find a good learning rate empirically.
+
+---
+class: middle
+
+For this, we need to be able to vary the learning rate in a specific manner.
+
+We use a formula where the rate is in increased geometrically at every epoch:
+
+`rate = initial_rate * growth_rate^(epoch / growth_step)`
+
+---
+class: middle
+
+This is implemented in TF using a callback .
+
+We first implement our formula for the learning rate.
+
+---
+class: middle
+
+```Python
+def lr_exponential_decay(epoch, lr):
+  growth_rate = final_learning_rate / initial_learning_rate
+  lr_ = initial_learning_rate * growth_rate**(epoch / (n_epochs-1.))
+  metric_lr[epoch] = lr_  
+  return lr_
+```
+
+---
+class: middle
+
+`metric_lr[epoch]` is used to store the value of the learning rate for analysis later on.
+
+---
+class: middle
+
+Then we create a learning rate callback in Keras:
+
+```Python
+lr_callback = keras.callbacks.LearningRateScheduler(lr_exponential_decay)
+```
+
+---
+class: middle
+
+Finally, we register the callback function:
+
+```Python
+history = dnn.fit(x_t, y_t,           
+        validation_data=(x_v,y_v),         
+        epochs=n_epochs,
+        batch_size=int(x_t.size),
+        callbacks = [lr_callback])
+```
+
+---
+class: middle
+
+We plot the decay of the loss and the learning rate
+
+![:width 40%](fig3.png) ![:width 40%](fig4.png)
+
+---
+class: middle
+
+We see that the loss decays rapidly around epoch 6 which corresponds to a learning rate of 0.1.
+
+---
+class: middle
+
+We can restart this analysis with a smaller range for the learning rate interval.
+
+![:width 40%](fig5.png) ![:width 40%](fig6.png)
+
+---
+class: middle
+
+Again the loss decays rapidly around epoch 4, which corresponds to a learning rate of 0.3.
+
+So the final learning rate we choose is around 0.3.

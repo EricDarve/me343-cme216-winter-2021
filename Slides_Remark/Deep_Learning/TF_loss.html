@@ -1,0 +1,129 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Spring 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+Let us review the loss functions that are available in TensorFlow.
+
+---
+class: middle
+
+See [Keras loss documentation](https://www.tensorflow.org/api_docs/python/tf/keras/losses) for the complete list.
+
+---
+class: middle
+
+`BinaryCrossentropy`
+
+Cross entropy when only two labels (0 and 1) are possible.
+
+---
+class: middle
+
+`CategoricalCrossentropy`
+
+Cross entropy with more than 2 labels.
+
+This is the case we explained.
+
+---
+class: middle
+
+`Hinge`
+
+This is a variant which applies when the labels are either -1 or 1.
+
+The formula is
+
+loss = $\max(1 - y\_\text{true} \; y\_\text{pred}, 0)$
+
+where $y\_\text{true}$ and $y\_\text{pred}$ are the labels.
+
+---
+class: middle
+
+`CategoricalHinge`
+
+This is the hinge loss for the case where more than 2 labels are possible.
+
+---
+class: middle
+
+The formula is
+
+loss = $\max(1 - \text{pos} + \text{neg}, 0)$
+
+where:</br>
+pos = $\sum\_i [y\_\text{true}]\_i \; [y\_\text{pred}]\_i$</br>
+neg = $\max\_i ((1-[y\_\text{true}]\_i) [y\_\text{pred}]\_i)$
+
+---
+class: middle
+
+This applies when $y$ is a probability.
+
+---
+class: middle
+
+Let's assume that $y\_\text{true}$ is a one-hot vector.
+
+---
+class: middle
+
+Then
+
+pos = $\sum\_i [y\_\text{true}]\_i \; [y\_\text{pred}]\_i = [y\_\text{pred}]\_t$
+
+is the value of $y\_\text{pred}$ for the true label $t$.
+
+---
+class: middle
+
+neg = $\max\_{i \neq t} [y\_\text{pred}]\_i$
+
+is the maximum of $y\_\text{pred}$ for all labels different from the true one $t$.
+
+---
+class: middle
+
+So, using compact notations
+
+loss = $\max ( 1 - [y\_\text{pred}]\_t + \max\_i [y\_\text{pred}]\_{i \neq t}, 0 )$
+
+---
+class: middle
+
+For a good model:
+
+$[y\_\text{pred}]\_t \approx 1$
+
+$\max\_i [y\_\text{pred}]\_{i \neq t} \ll 1$
+
+So the loss will be small.
+
+---
+class: middle
+
+Note that the [documentation](https://www.tensorflow.org/api_docs/python/tf/keras/losses/CategoricalHinge) for
+CategoricalHinge has a rather mistifying error.
+
+Can you find it?
+
+---
+class: middle
+
+The formula for `neg` and `pos` is not correct for some reason.
+
+Fortunately, the
+[code](https://github.com/tensorflow/tensorflow/blob/b3c65cd1820d598e8b5f399b4f542f6d24712023/tensorflow/python/keras/losses.py#L856)
+is correct.

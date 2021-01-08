@@ -1,0 +1,287 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Spring 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+Adagrad is a method that attempts to adaptively change the learning rate.
+
+It does so by using a different learning rate per parameter $w_i$.
+
+---
+class: middle
+
+Adagrad is a heuristic.
+
+It will not yield an acceleration on all problems.
+
+---
+class: middle
+
+But let us see an example where Adagrad will work.
+
+---
+class: middle
+
+Let's consider a quadratic approximation of the loss function:
+
+$$ L(X) = \frac{1}{2} X^T H X $$
+
+The gradient is $ H X $.
+
+---
+class: middle
+
+There are some situations where the matrix $H$ may not be properly balanced.
+
+Remember that $H$ is the Hessian of a general loss function $L$ so we have no control over its properties.
+
+---
+class: middle
+
+One way to think of a matrix that is not balanced is to define some $0 < \beta < 1$ and
+
+$$ [D\_\beta]\_{ii} = \beta^{i-1}, \quad i=1,\dots,n $$
+
+---
+class: middle
+
+Then assume that our Hessian is $H\_\beta$ with:
+
+$$ H\_\beta = D\_\beta H D\_\beta $$
+
+$H$ is a symmetric positive definite matrix with a condition number close to 1.
+
+---
+class: middle
+
+$$ H\_\beta = D\_\beta H D\_\beta $$
+
+As $\beta$ goes to 0, the matrix becomes increasingly imbalanced. 
+
+Some of the rows/columns become very small.
+
+---
+class: middle
+
+Gradient methods will typically converge fast with $H.$
+
+However, they will struggle with $H\_\beta$ because it is ill-conditioned due to the scaling matrix $D\_\beta$.
+
+Adagrad is able to overcome some of the difficulties with $H\_\beta$.
+
+---
+class: middle
+
+$$ \Delta X = - \alpha H_\beta X $$
+
+$ \Delta x_n $ becomes very small as $\beta \to 0$.
+
+---
+class: middle
+
+We have seen previously how we could use an eigendecomposition of $H_\beta$ and look at the convergence of individual modes
+
+$$ Z = U^T X $$
+
+$$ \Delta Z = - \alpha \Lambda Z $$
+
+---
+class: middle
+
+Remember how we said that ideally $\alpha = \lambda_i^{-1}$.
+
+In this case, we can do something close.
+
+We will use the adaptive learning rates of Adagrad.
+
+---
+class: middle
+
+$$ H_\beta = U \Lambda U^T $$
+
+We are not going to prove this, but because of the scaling matrix $D$ we have that:
+
+- $U$ is close to identity
+- $\lambda_i \propto \beta^{2(i-1)}$
+
+---
+class: middle
+
+As predicted, some of the modes are going to converge very slowly with a conventional learning rate.
+
+Pick $\alpha = \lambda_1^{-1}$. Mode $n$ is updated using
+
+$$ \Delta z_n = - \frac{\lambda_n}{\lambda_1} z_n = - \beta^{2(n-1)} z_n $$
+
+This is very slow.
+
+---
+class: middle
+
+Let's consider again the update equation for $X$:
+
+$$ \Delta X = - \alpha U \Lambda U^T X $$
+
+---
+class: middle
+
+What can we do without computing $H$ and its eigendecomposition $(U,\Lambda)$?
+
+---
+class: middle
+
+There is an approximate but simple strategy:
+
+$$ \Big| \frac{\partial L}{\partial x\_i} \Big| = |[HX]\_i| \approx \beta^{i-1} \; \lVert X\rVert_2 $$
+
+We could choose as a learning rate for component $i$:
+
+$$ \alpha \leftarrow \frac{\alpha}{\Big| \frac{\partial L}{\partial x\_i} \Big|} $$
+
+---
+class: middle
+
+That would not really work because $\nabla_W L \to 0$. 
+
+Adagrad uses the following formula instead:
+
+$$ s_i = \sum_k \Big( \frac{\partial L_k}{\partial x\_i} \Big)^2 $$
+
+where $k$ is the batch index.
+
+---
+class: middle
+
+The update rule is then
+
+$$ \Delta x\_i = - \frac{\alpha}{\sqrt{s_i + \epsilon}} \frac{\partial L_k}{\partial x\_i} $$
+
+---
+class: middle
+
+The $\epsilon$ is a regularizing factor that accounts for cases where $s_i$ may become too small, which can happen at the beginning, in some rare cases.
+
+---
+class: middle
+
+Although the strategy is simple, it provides a substantial acceleration in our case.
+
+The formula is
+
+$$ \Delta x\_i = - \frac{\alpha}{\sqrt{s_i + \epsilon}} \frac{\partial L}{\partial x\_i}
+= - \frac{\alpha}{\sqrt{s_i + \epsilon}} [H X]\_i
+$$
+
+---
+class: middle
+
+Using matrix notation, 
+
+$$ X^{(k+1)} - X^{(k)} = - \alpha D H X^{(k)} $$
+
+$$ X^{(k+1)} = (I - \alpha D H) X^{(k)} $$
+
+---
+class: middle
+
+We can solve for step $k$ in terms of the initial value:
+
+$$ X^{(k)} = (I - \alpha D H)^k X^{(0)} $$
+
+where $D$ is a diagonal matrix with 
+
+$$ d\_{ii} = \frac{1}{\sqrt{s_i + \epsilon}} $$
+
+---
+class: middle
+
+In Adagrad, $s_i$ can increase quite a bit.
+
+---
+class: middle
+
+Recall that:
+
+$$ s_i = \sum_k \Big( \frac{\partial L_k}{\partial x\_i} \Big)^2 $$
+
+If convergence is slow, $s_i$ grows.
+
+We will fix this problem with RMSProp.
+
+---
+class: middle
+
+If convergence is reasonably fast (or we use RMSProp), we can approximate $s_i$ by 
+
+$$ s_i \propto \beta^{2i} $$
+
+---
+class: middle
+
+In that case, we can prove the following result.
+
+The largest eigenvalue of $I - \alpha H$ is
+
+$$\approx 1 - \beta^{2(n-1)}$$
+
+while for **Adagrad** with $I - \alpha D H$, it is 
+
+$$\approx 1 - \beta^{n-1}$$
+
+---
+class: middle
+
+This implies that the number of iterations has been reduced by
+
+$$\Big( \frac{1}{\beta} \Big)^{n-1}$$
+
+If $\beta = 0.9$ and $n = 100$, that number is close to 30k.
+
+---
+class: middle
+
+We ran a small benchmark in the notebook. 
+
+We picked: $\beta = 0.1$ and $n=4$.
+
+The speedup is theoretically about 1,000 in this case.
+
+---
+class: center, middle
+
+![:width 80%](fig6.svg)
+
+---
+class: middle
+
+Of course in practice things are not as simple. 
+
+We can get slow convergence even if $H$ is perfectly balanced and all components of the gradients are of similar magnitudes.
+
+---
+class: middle
+
+But there are many applications where some components of the gradient are **systematically** smaller than over components.
+
+Adagrad will improve convergence in these cases.
+
+---
+class: middle
+
+```Python
+def adagrad(W, s, lr, batch_size):
+    eps_stable = 1e-7
+    g = W.grad / batch_size
+    s += square(g) # element-wise square
+    W -= lr * g / sqrt(s + eps_stable) # element-wise division
+```

@@ -1,0 +1,248 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Spring 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+Adagrad can yield nice acceleration in some cases but its formula to scale the learning rate has some issues:
+
+$$ s_i = \sum_k \Big( \frac{\partial L_k}{\partial x\_i} \Big)^2 $$
+
+$$ \Delta x\_i = - \frac{\alpha}{\sqrt{s_i + \epsilon}} \frac{\partial L_k}{\partial x\_i} $$
+
+---
+class: middle
+
+If the convergence is slow, the gradient decays slowly.
+
+As a result, $s_i$ grows, which results in small steps and further slow down in convergence.
+
+---
+class: middle
+
+To address this issue, RMSProp uses the idea of momentum so that the scaling factor has a more controlled growth:
+
+$$ s_i \leftarrow \beta s_i + (1-\beta) \Big( \frac{\partial L_k}{\partial x\_i} \Big)^2 $$
+
+$$ \Delta x\_i = - \frac{\alpha}{\sqrt{s_i} + \epsilon} \frac{\partial L_k}{\partial x\_i} $$
+
+---
+class: middle
+
+When $\beta$ is small, only recent values of the gradient will contribute.
+
+When $\beta$ is close to 1, $s_i$ is close to
+
+$$ \approx \frac{1}{k\_0} \sum\_{s=0}^{k\_0} \Big( \frac{\partial L\_{k-s}}{\partial x\_i} \Big)^2$$
+
+---
+class: middle
+
+Another important element of RMSProp is that it helps around saddle points.
+
+Near saddle points, the gradient $\nabla_x L$ becomes very small.
+
+By scaling with $1/(\sqrt{s_i} + \epsilon)$, we can get a nice boost.
+
+---
+class: middle
+
+```Python
+def RMSProp(W, s, lr, beta, batch_size):
+    eps_stable = 1e-7
+    g = W.grad / batch_size
+    s = beta * s + (1-beta) * square(g) # element-wise square
+    W -= lr * g / (sqrt(s) + eps_stable) # element-wise division
+```
+
+---
+class: middle
+
+The last method we will cover is Adam. It addresses two limitations of RMSProp.
+
+---
+class: middle
+
+The first one is that it adds momentum to the gradient calculation as well. 
+
+So momentum is applied to two places: to advance the gradient squared and the gradient itself.
+
+---
+class: middle
+
+$$ m_i \leftarrow \beta_1 m_i + (1-\beta_1) \frac{\partial L_k}{\partial x\_i} $$
+
+$$ s_i \leftarrow \beta_2 s_i + (1-\beta_2) \Big( \frac{\partial L_k}{\partial x\_i} \Big)^2 $$
+
+---
+class: middle
+
+The second modification has to do with initialization.
+
+The problem with momentum is that before batch 0, all variables are initialized to 0.
+
+---
+class: middle
+
+As a result, we tend to get small values initially.
+
+Basically initially we only see
+
+$$ m_i \approx (1-\beta_1) \frac{\partial L_k}{\partial x\_i} $$
+
+instead of
+
+$$ m_i \approx \frac{\partial L_k}{\partial x\_i} $$
+
+---
+class: middle
+
+This can be made more precise with the following derivation.
+
+We will find how to rescale $m_i$ to avoid this problem in the simple case where we assume that the gradient is constant.
+
+It's not perfect but it will improve the initialization bias quite a bit.
+
+---
+class: middle
+
+Let's assume that the gradient is constant.
+
+In that case we just want
+
+$$ m_i = \frac{\partial L_k}{\partial x\_i} $$
+
+at all steps.
+
+---
+class: middle
+
+Let's compare with what we are actually getting.
+
+Denote $G_i$ the gradient and assume it is constant.
+
+$$ m_i \leftarrow \beta_1 m_i + (1-\beta_1) G_i $$
+
+---
+class: middle
+
+If we solve this equation we get, at step $k$:
+
+$$ m\_i^{(k)} = \beta\_1^k m\_i^{(0)} + (1-\beta\_1) G\_i \sum\_{l=0}^{k-1} \beta\_1^l $$
+
+---
+class: middle
+
+We chose $m_i^{(0)} = 0$. So, we get:
+
+$$ \sum\_{l=0}^{k-1} \beta\_1^l = \frac{1-\beta\_1^k}{1 - \beta\_1} $$
+
+$$ m\_i^{(k)} = (1-\beta\_1^k) G\_i $$
+
+---
+class: middle
+
+The scaling factor we pick is therefore:
+
+$$ \frac{1}{1-\beta_1^k} $$
+
+when processing batch $k$.
+
+---
+class: middle
+
+The final formulas are.
+
+---
+class: middle
+
+Gradient and gradient-squared:
+
+$$ m_i \leftarrow \beta_1 m_i + (1-\beta_1) \frac{\partial L_k}{\partial x\_i} $$
+
+$$ s_i \leftarrow \beta_2 s_i + (1-\beta_2) \Big( \frac{\partial L_k}{\partial x\_i} \Big)^2 $$
+
+---
+class: middle
+
+Initialization bias:
+
+$$ \hat{m}_i \leftarrow \frac{m_i}{1-\beta_1^k} $$
+
+$$ \hat{s}_i \leftarrow \frac{s_i}{1-\beta_2^k} $$
+
+---
+class: middle
+
+Gradient step:
+
+$$ \Delta x\_i = - \frac{\alpha}{\sqrt{\hat{s}_i} + \epsilon} \hat{m}_i $$
+
+---
+class: middle
+
+$\beta_1$ is for the gradient momentum. It is typically chosen equal to 0.9.
+
+$\beta_2$ is for the gradient squared momentum. This one is chosen very close to 1, 0.999. This means that $s_i$ changes only very slowly. 
+
+The number of steps required for changes in $s_i$ to be visible is on the order of 1,000 steps.
+
+---
+class: middle
+
+```Python
+def adam(W, m, s, lr, batch_size, k):
+    beta1 = 0.9
+    beta2 = 0.999
+    eps_stable = 1e-8
+
+    g = W.grad / batch_size
+
+    m = beta1 * m + (1. - beta1) * g
+    s = beta2 * s + (1. - beta2) * square(g)
+
+    m_hat = m / (1. - beta1 ** k)
+    s_hat = s / (1. - beta2 ** k)
+
+    W -= lr * m_hat / (sqrt(s_hat) + eps_stable)
+```
+
+---
+class: center, middle
+
+You can check these animations on the [CS231n](https://cs231n.github.io/neural-networks-3/#ada) class page.
+
+![:width 40%](https://cs231n.github.io/assets/nn3/opt2.gif)
+![:width 40%](https://cs231n.github.io/assets/nn3/opt1.gif)
+
+---
+class: middle
+
+Momentum has a $\beta$ close to 1, and tends to overshoot too much.
+
+Adagrad and RMSProp scale the gradient near the saddle point which provides a nice boost.
+
+---
+class: middle
+
+## Additional reading
+
+- [Adaptive Subgradient Methods for Online Learning and Stochastic Optimization](Duchi_2011.pdf) by Duchi et al., 2011
+- [Adaptive Subgradient Methods for Online Learning and Stochastic Optimization](Duchi_slides_ISMP_2012.pdf), International Symposium on Mathematical Programming 2012, by Duchi et al.
+
+---
+class: middle
+
+- [Qualitatively characterizing neural network optimization problems](Goodfellow_2015.pdf) by Goodfellow et al., ICLR, 2015
+- [Practical Recommendations for Gradient-Based Training of Deep Architectures](Bengio_Gradient_Based_Training.pdf) by Bengio, 2013
+- [Efficient Backprop](Efficient_Backprop_LeCun_2012.pdf) by LeCun et al., 2012
+- [ADADELTA: an adaptive learning rate method](Adadelta_Zeiler_2012.pdf) by Zeiler, 2012

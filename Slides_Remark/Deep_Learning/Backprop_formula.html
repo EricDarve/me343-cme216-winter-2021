@@ -1,0 +1,195 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Spring 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+In the previous lecture, we explain the first step in the back-propagation algorithm.
+
+We will derive the general formula for all layers.
+
+---
+class: middle
+
+Let us find the derivative with respect to $W^{(n-1)}$ to get started.
+
+We have:
+
+$$y = W^{(n)} \phi \odot W^{(n-1)} a^{(n-2)}$$
+
+---
+class: middle
+
+Let's differentiate with respect to the $(i,j)$ component of $W^{(n-1)}$.
+
+Let's denote $E_{ij}$ a matrix full of zeros with a 1 at index $(i,j)$.
+
+---
+class: middle
+
+Then
+
+$$\frac{\partial y}{\partial [W^{(n-1)}]\_{ij}} = W^{(n)} \, \psi^{(n-1)} \, E_{ij} \, a^{(n-2)}$$
+
+$\psi^{(n-1)}$ is a diagonal matrix with entries
+
+$$[\psi^{(n-1)}]\_{ii} = [ \phi' \odot W^{(n-1)} a^{(n-2)} ]\_i$$
+
+---
+class: middle
+
+The scalar $W^{(n)} \, \psi^{(n-1)} \, E_{ij} \, a^{(n-2)}$ can be re-written using vectors:
+
+$$ \frac{\partial y}{\partial [W^{(n-1)}]\_{ij}} = [W^{(n)} \psi^{(n-1)}]_i \; [a^{(n-2)}]_j$$
+
+$W^{(n)} \psi^{(n-1)}$ is a row vector
+
+$a^{(n-2)}$ is a column vector
+
+---
+class: middle
+
+Let's denote
+
+$$\delta^{(n)} = \psi^{(n-1)} [W^{(n)}]^T$$
+
+---
+class: middle
+
+Using matrix notations we get
+
+$$\frac{\partial y}{\partial W^{(n-1)}} = \delta^{(n)} \, [a^{(n-2)}]^T$$
+
+$\delta^{(n)}$ is a column vector
+
+$[a^{(n-2)}]^T$ is a row vector.
+
+$\frac{\partial y}{\partial W^{(n-1)}}$ is a matrix
+
+---
+class: middle
+
+Let us briefly repeat this for $W^{(n-2)}$ to see how this works.
+
+We now have:
+
+$$y = W^{(n)} \phi \odot W^{(n-1)} \phi \odot W^{(n-2)} a^{(n-3)}$$
+
+---
+class: middle
+
+Differentiate:
+
+$ \frac{\partial y}{\partial [W^{(n-2)}]\_{ij}} = $
+
+$ = [ W^{(n)} \psi^{(n-1)} W^{(n-1)} \psi^{(n-2)} ]_i \, [a^{(n-3)}]_j $
+
+---
+class: middle
+
+In matrix form:
+
+$$ \frac{\partial y}{\partial [W^{(n-2)}]} = \delta^{(n-1)} \, [a^{(n-3)}]^T $$
+
+$$\delta^{(n-1)} = \psi^{(n-2)} [W^{(n-1)}]^T \psi^{(n-1)} [W^{(n)}]^T$$
+
+---
+class: middle
+
+We can now define the general formula.
+
+There is a recurrence relation for $\delta^{(k)}$.
+
+$$ \delta^{(k)} = \psi^{(k-1)} \, [W^{(k)}]^T \, \delta^{(k+1)}, \qquad \delta^{(n+1)} = 1 $$
+
+$$[\psi^{(k-1)}]\_{ii} = [ \phi' \odot W^{(k-1)} a^{(k-2)} ]\_i$$
+
+---
+class: middle
+
+Equation for gradient with respect to matrix $W^{(k)}$
+
+$$ \frac{\partial y}{\partial W^{(k)}} = \delta^{(k+1)} \, [a^{(k-1)}]^T $$
+
+---
+class: middle
+
+## Explicit expression for the bias
+
+We previously said that the bias can be represented in this framework by adding a 1 at the end of the activation
+$a^{(k)}$.
+
+With this trick, we can immediately find an explicit expression for the gradient with respect to the bias.
+
+---
+class: middle
+
+## Gradient with respect to the bias
+
+$$ \frac{\partial y}{\partial b^{(k)}} = \delta^{(k+1)} $$
+
+---
+class: middle
+
+The implementation can be done in two passes called the forward and backward passes.
+
+---
+class: middle
+
+In the following, for completeness we will reintroduce the biases.
+
+---
+class: center, middle
+
+## Forward pass
+
+We compute all the activations.
+
+---
+class: middle
+
+$k$ goes from 1 to $n-1$.
+
+$$a^{(k)} = \phi \odot ( W^{(k)} a^{(k-1)} + b^{(k)} )$$
+
+$$a^{(0)} = x$$
+
+$\phi \; \odot$ means that $\phi$ is applied element-wise to $W^{(k)} a^{(k-1)} + b^{(k)}$.
+
+---
+class: middle
+
+We also need to save the values of the derivative:
+
+$$[\psi^{(k)}]\_{ii} = [ \phi' \odot ( W^{(k)} a^{(k-1)} + b^{(k)} ) ]\_i$$
+
+$\psi^{(k)}$ is a diagonal matrix.
+
+---
+class: middle
+
+## Backward pass
+
+For $k$ going from $n$ to $2$:
+
+$$ \delta^{(k)} = \psi^{(k-1)} \, [W^{(k)}]^T \, \delta^{(k+1)} $$
+
+$$ \delta^{(n+1)} = 1 $$
+
+---
+class: middle
+
+ Derivatives: from $k=n$ to $k=1$
+
+$$ \frac{\partial y}{\partial W^{(k)}} = \delta^{(k+1)} \, [a^{(k-1)}]^T $$
+
+$$ \frac{\partial y}{\partial b^{(k)}} = \delta^{(k+1)} $$

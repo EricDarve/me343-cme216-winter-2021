@@ -1,0 +1,153 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Spring 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+There are several schemes that were designed to improve convergence.
+
+One of the simplest trick is to use the so-called momentum.
+
+---
+class: middle
+
+One way to explain momentum is to go back to ordinary differential equations.
+
+---
+class: middle
+
+Assume we consider the following ODE:
+
+$$ \frac{dx}{dt} = - a x + f(t) $$
+
+$a > 0$
+
+---
+class: middle
+
+To solve this ODE, introduce $y(t)$ with
+
+$$ x(t) = y(t) e^{-at} $$
+
+$$ x'(t) = (y'(t) - ay(t)) e^{-at} $$
+
+---
+class: middle
+
+Differential calculus:
+
+$$ x' + ax = (y' - ay) e^{-at} + a y e^{-at} = y' e^{-at} $$
+
+From the ODE:
+
+$$ y' e^{-at} = f(t) $$
+
+---
+class: middle
+
+$$ y(t) = \int e^{as} f(s) ds $$
+
+$$ x(t) = x\_0 e^{-at} + \int\_{s=0}^t e^{-a(t-s)} f(s) ds $$
+
+---
+class: middle
+
+For long times $t$:
+
+$$ x(t) \approx \int^t e^{-a(t-s)} f(s) ds $$
+
+- when $a$ large: only values of $f(s)$ with $s \approx t$ have a significant weight
+- when $a$ is small: $x$ is close to $\approx \int^t_{t-\tau} f(s) ds$; $x(t)$ varies slowly.
+
+---
+class: middle
+
+Discretize in time:
+
+$$ \frac{dx}{dt} = - a x + f(t) $$ &rArr;
+
+$$ \frac{dx}{dt} \approx \frac{x_{n+1} - x_n}{\Delta t} $$
+
+---
+class: middle
+
+Update equation:
+
+$$ x_{n+1} = (1 - a \Delta t) x_n + \Delta t \; f_n $$
+
+General form:
+
+$$ x_{n+1} = \beta x_n + f_n, \quad -1 < \beta < 1 $$
+
+---
+class: middle
+
+$$ x_{n+1} = \beta x_n + f_n $$
+
+Using the same strategy we used to solve the ODE we can find the general solution:
+
+$$ x\_n = x\_0 \beta^n + \sum\_{k=0}^{n-1} \beta^k f\_{n-1-k} $$
+
+---
+class: middle
+
+As before:
+
+- when $\beta \approx 1$: $x_n$ varies slowly and we sum $f_k$ over a large interval
+- when $|\beta|$ small: only the value of $f_{n-1}$ has a large weight and $x_n$ varies more rapidly.
+
+---
+class: middle
+
+This strategy can be applied to integrate the gradient.
+
+In the momentum method we use the following equation
+
+$$ m \leftarrow \beta m - \alpha \nabla_W L $$
+
+$$ \Delta W = m $$
+
+---
+class: middle
+
+For a large number of steps $n$:
+
+$$ m \approx - \alpha \sum\_{k=0}^{n-1} \beta^{n-1-k} \nabla_W L_k $$
+
+Take $\beta = 0.9$. We can get a huge boost. 
+
+---
+class: middle
+
+Towards the end of the convergence when the gradient is nearly constant:
+
+$$ m \approx - \alpha \sum\_{k=0}^{n-1} \beta^{n-1-k} \nabla_W L_k = - \alpha \frac{\nabla_W L_n}{1-\beta} $$
+
+$$ m \approx - 10 \alpha \nabla_W L_n $$
+
+---
+class: middle
+
+$$ m \approx - 10 \alpha \nabla_W L_n $$
+
+$$ \Delta W = m $$
+
+It's like converging 10 times faster to the solution!
+
+---
+class: middle
+
+```Python
+def sgd_momentum(W, m, lr, beta, batch_size):
+    m = beta * m + lr * W.grad / batch_size
+    W -= m
+```

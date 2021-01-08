@@ -1,0 +1,150 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Spring 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+As we have mentioned before, training a neural network is a difficult and in general the solution may depend on the
+initial guess.
+
+In some cases, we may get a DNN that fits the training set very well but still have very poor accuracy on the validation
+set.
+
+---
+class: middle
+
+This problem is also known as generalization error. That is we do well on the data we are given but fail on unseen data (the
+"generalization").
+
+---
+class: middle
+
+This behavior is typically caused when the neural network tends to oscillate wildly as we move away from the training
+point.
+
+This problem is called "overfitting".
+
+---
+class: middle
+
+This is similar to the problem of fitting a polynomial of order $n$ to points $(x_i,y_i)$, $1 \le i \le n$, where $x_i$
+are uniformly distributed.
+
+The polynomial will go through each $(x_i,y_i)$ but will have wild oscillations in between.
+
+---
+class: middle
+
+DNNs suffer from similar problems. There are different techniques that can mitigate overfitting:
+
+- Early training termination using the validation error
+- Controlling the size of the DNN
+- Regularization
+
+---
+class: middle
+
+Let us consider the following example:
+
+![:width 60%](fig8.png)
+
+---
+class: middle
+
+For reference, the DNN we use is
+
+- fully connected
+- `tanh` activation
+- 1 hidden layer with 8 nodes
+
+---
+class: middle
+
+The exact solution is just the line $y=x$ but we added 10% of noise to the points near $x=0$.
+
+As a result, the DNN is going to make the wrong prediction if we train it until convergence.
+
+---
+class: middle
+
+Initially the convergence is as follows:
+
+![:width 40%](fig7.png) ![:width 40%](fig7a.png)
+
+---
+class: middle
+
+The validation error is small initially.
+
+But as we keep iterating, the training error decreases (the DNN gets closer to the data) but the validation error keeps
+increasing.
+
+---
+class: middle
+
+This is because our initial guess for our DNN is quite good in this case.
+
+So our initial choice gives us good accuracy.
+
+---
+class: middle
+
+But as we train and get closer to the data, our model becomes less accurate.
+
+This is because of the noise we added to the data.
+
+---
+class: middle
+
+Eventually, we fit the data perfectly:
+
+![](fig9.png)
+
+---
+class: middle
+
+But our error on the validation set is very high.
+
+This is because the true solution is $y=x$.
+
+---
+class: center, middle
+
+![](fig10.png)
+
+---
+class: middle
+
+The data cannot be fully trusted in this example.
+
+We are overfitting.
+
+---
+class: middle
+
+But if we look at the validation error, there is a minimum.
+
+The solution is quite accurate at that point.
+
+---
+class: middle
+
+In this run, the minimum is around 290.
+
+![:width 40%](fig11.png)![:width 40%](fig12.png)
+
+---
+class: middle
+
+So a simple learning strategy is to train until the validation error starts increasing.
+
+Then we stop the iteration, and use the solution we have obtained at that point.

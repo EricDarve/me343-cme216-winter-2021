@@ -1,0 +1,166 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Spring 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+The way we initialize the DNN weights is important.
+
+---
+class: middle
+
+There is a big danger in DNN.
+
+When we stack several layers one after the other, we need to make sure that the outputs at each layer do not keep
+increasing.
+
+---
+class: middle
+
+Consider the linear transformation:
+
+$$ z\_i = \sum\_{j=1}^n w\_{ij} a\_j $$
+
+$a\_j$: activation at previous layer; $w\_{ij}$: weights of current layer.
+
+---
+class: middle
+
+Assume that the activations are initially somewhat random.
+
+For our simple analysis we assume that $a_j$ are independent and identically distributed.
+
+Their mean is 0 and their variance is assumed to be $\sigma$.
+
+---
+class: middle
+
+Assume that $w_{ij} = 1$ for simplicity. We have:
+
+$$ z\_i = \sum\_{j=1}^n w\_{ij} a\_j = \sum\_{j=1}^n a\_j $$
+
+---
+class: middle
+
+The variance of $z_i$ is $n \sigma^2$.
+
+---
+class: middle
+
+If we consider the function `tanh` we see that it becomes very flat when the argument is large.
+
+---
+class: middle
+
+If all weights are of order 1, the output $z_i$ will tend to be large as $n$ increases.
+
+This will push the argument `tanh` to large values, and saturate `tanh`.
+
+---
+class: center, middle
+
+![](fig13.png)
+
+---
+class: middle
+
+The consequence of this is that training becomes very difficult. The gradient becomes very small.
+
+This is known as the **vanishing gradient problem.**
+
+In addition, instabilities may creep in the model.
+
+---
+class: middle
+
+So it is important that we make sure that the outputs stay nicely bounded.
+
+This can be done by making sure that the variance of $z_j$ is 1 in our example.
+
+---
+class: middle
+
+This idea has led to different techniques to initialize the weights of DNNs.
+
+A well-known one is the Glorot-Bengio initialization which considers the number of incoming and outgoing edges in the
+model (in our case it was $n$) and defines
+
+$$\text{fan}\_\text{avg} = \frac{\text{fan}\_\text{in} + \text{fan}\_\text{out}}{2}$$
+
+---
+class: middle
+
+Then the weights are initialized with variance
+
+$$\sigma^2 = \frac{1}{\text{fan}\_\text{avg}}$$
+
+In our analysis this makes sure that the output of each layer stays of order 1.
+
+---
+class: middle
+
+Many variants have been proposed for this idea.
+
+See the [TF documentation](https://www.tensorflow.org/api_docs/python/tf/keras/initializers) on initializers.
+
+---
+class: middle
+
+Some of the common choices are for different activation functions:
+
+Initialization | Choice of activation function | Variance
+--- | --- | ---
+Glorot | default, tanh, logistic, softmax | 1/$\text{fan}_\text{avg}$
+He | ReLU | 2/$\text{fan}_\text{in}$
+LeCun | SELU | 1/$\text{fan}_\text{in}$
+
+---
+class: middle
+
+We can test this in our simple example.
+
+Since the solution is $y=x$, we expect the weights to be order 1 (slope 1).
+
+---
+class: middle
+
+Let's initialize with large weights using a random uniform initialization:
+
+```Python
+dnn_val = keras.models.Sequential()
+dnn_val.add(keras.layers.InputLayer(input_shape=1))
+dnn_val.add(keras.layers.Dense(8, activation='tanh',
+                kernel_initializer=
+                tf.random_uniform_initializer(minval=-10, maxval=10)
+            ))
+dnn_val.add(keras.layers.Dense(1, activation="linear",
+                kernel_initializer=
+                tf.random_uniform_initializer(minval=-10, maxval=10)
+            ))
+```
+
+---
+class: middle
+
+The results are absolutely awful.
+
+---
+class: center, middle
+
+![:width 40%](fig14.png) ![:width 40%](fig15.png)
+
+---
+class: middle
+
+This is because we start from a very oscillatory initial guess (large weights).
+
+The training brings it closer to the data but because our model is under-constrained (DNN is too complex for this simple task) we fail to converge to anything reasonable.
