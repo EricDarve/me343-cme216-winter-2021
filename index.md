@@ -3,18 +3,19 @@ layout: page
 title: Stanford ME 343 / CME 216 class material
 ---
 
-These is the web site for ME343/CME216 Machine Learning in Computational Engineering. This material was created by [Eric Darve](https://me.stanford.edu/people/eric-darve), with the [help](https://github.com/EricDarve/me343-cme216-winter-2021/commits/main) of course staff and students.
+These is the web site for ME 343/CME 216 Machine Learning in Computational Engineering. This material was created by [Eric Darve](https://me.stanford.edu/people/eric-darve), with the [help](https://github.com/EricDarve/me343-cme216-winter-2021/commits/main) of course staff and students.
 
 ## Syllabus
 
 [Syllabus](syllabus)
 
-Policy for late assignments:
+## Policy for late assignments
 
-- Extensions can be requested in advance for exceptional circumstances (e.g., travel, sickness, injury, COVID related issues) and for OAE-approved accommodations
-- Submissions after the deadline and late by at most 2 days (+48 hours after the deadline) will be accepted with a 10% penalty. No submissions will be accepted 2 days after the deadline.
+Extensions can be requested in advance for exceptional circumstances (e.g., travel, sickness, injury, COVID related issues) and for OAE-approved accommodations
 
-See [Gradescope](https://www.gradescope.com/courses/222525) for all the current assignments and their due dates. Post on [Slack](https://app.slack.com/client/T01J8R3MQLC) if you cannot access the Gradescope class page. We will send you the 6-letter code.
+Submissions after the deadline and late by at most 2 days (+48 hours after the deadline) will be accepted with a 10% penalty. No submissions will be accepted 2 days after the deadline.
+
+See [Gradescope](https://www.gradescope.com/courses/222525) for all the current assignments and their due dates. Post on [Slack](https://stanford-3kml.slack.com) if you cannot access the Gradescope class page. We will send you the 6-letter code.
 
 ## Class modules and learning material
 
