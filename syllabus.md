@@ -47,13 +47,11 @@ The [class website](https://ericdarve.github.io/me343-cme216-winter-2021/) conta
 
 To communicate we will post messages using [canvas announcements](https://canvas.stanford.edu/courses/131536/announcements). There is also a **Slack** workspace. You will need to join the workspace for this class.
 
-1. Go to [stanford.enterprise.slack.com](https://stanford.enterprise.slack.com/)
+1. Go to [https://stanford.enterprise.slack.com/](https://stanford.enterprise.slack.com/)
 2. Search for `me343-cme216-winter-2021`.
 3. Sign in. You should be able to join immediately.
 
-Check the channels in the workspace. 
-
-The URL is: [https://stanford-3kml.slack.com](https://stanford-3kml.slack.com).
+Check the channels in the workspace. The Slack URL is: [https://stanford-3kml.slack.com](https://stanford-3kml.slack.com).
 
 Since the class is taught virtually, it is important to maintain contact with the teaching staff and other students. We encourage you to freely share information, questions, feedback, comments, etc, on Slack in the appropriate channel. Slack is meant to be a flexible and open-ended way to communicate.
 
