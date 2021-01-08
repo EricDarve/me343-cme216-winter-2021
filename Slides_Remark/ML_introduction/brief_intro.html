@@ -1,0 +1,106 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Spring 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: center, middle
+
+# Brief introduction to machine learning for engineers
+
+---
+class: middle
+
+In computational engineering, we are used to solving problems by using physical laws.
+
+---
+class: middle
+
+For example, we may consider a falling body.
+
+We apply Newton's second law to obtain
+
+$$\vec{F} = m \vec{a}$$
+
+The force $\vec{F}$ may then be set equal to $m \vec{g}$ where $\vec{g}$ is gravity.
+
+---
+class: middle
+
+By specifying initial conditions $\vec{r}(0)$ and $\vec{r}'(0)$ and integrating in time, we can find the trajectory
+$\vec{r}(t)$ for all times $t$.
+
+---
+class: middle
+
+Our prediction is based on physical laws and a solution is found after we specify some initial conditions.
+
+---
+class: middle
+
+There are many other examples such as computing the motion of a spring-mass system based on Hooke's law,
+
+$$F = k x$$
+
+A more complex example is the motion of a fluid flow satisfying the Navier-Stokes equations.
+
+---
+class: center, middle
+
+![[:width "1000px"]](2020-04-02-13-06-16.png)
+
+---
+class: middle
+
+$$ \rho \frac{\partial \vec{u}}{\partial t} + \rho \vec{u} \cdot \nabla \vec{u} = - \nabla p + \nabla \cdot \tau + \rho
+\vec{g} $$
+
+where $\vec{u}$ is the flow velocity, $\rho$ is the density, $p$ the pressure, $\tau$ is the deviatoric stress tensor,
+and $\vec{g}$ represents body forces like gravity.
+
+---
+class: middle
+
+Machine learning takes a different approach to make predictions.
+
+Generally speaking, it does not make use of physical laws, such as the conservation of momentum or energy (although
+there are exceptions as we will see), but rather it is based on sampled data, typically called "training data."
+
+---
+class: middle
+
+A well-known example is the problem of linear regression.
+
+We are given some samples $(x_i,y_i)$, $i = 1, \dots, m$, and we are interested in building a model of the type $y = w^T
+x + b$ that relates $y$ to $x$ with a linear relationship.
+
+---
+class: middle
+
+Typically, the vector $w$ and scalar $b$ do not exist.
+
+That is, there is no $w$ and $b$ such that
+
+$$y_i = w^T x_i + b$$
+
+exactly for all points $(x_i,y_i)$ in our training set.
+
+---
+class: middle
+
+Instead, for example, we are going to look for $w$ and $b$ such that they minimize the mean square
+error
+
+$$ \sum_{i=1}^m \| y_i - w^T x_i - b \|_2^2 $$
+
+---
+class: middle
+
+More details on linear regression are given in section 5.1.4 of [Deep Learning](https://www.deeplearningbook.org/).

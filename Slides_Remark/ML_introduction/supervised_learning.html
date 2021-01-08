@@ -1,0 +1,101 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Spring 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+## Supervised learning
+
+There are broadly speaking two main tasks in machine learning that we will be concerned about:
+
+1. classification and
+2. regression.
+
+For more information, please read section 5.1 in [Deep Learning](https://www.deeplearningbook.org/).
+
+---
+class: middle
+
+The first one is **classification.**
+
+In this problem, we assume that for each point $$x = (x_1, \dots, x_d)$$ we need to assign or predict a label or
+category, which is typically represented by an integer.
+
+---
+class: middle
+
+It may represent for example the type of object represented in an image, a cat, a dog, or a car.
+
+In engineering, $x$ may represent the result of some experimental measurements for a bridge for example.
+
+The label may represent whether we believe there is a fracture or damage to the structure: $+1$ if true and $-1$ if
+false.
+
+---
+class: middle
+
+Or similarly, $x = (x_1, \dots, x_T)$ may be a time-resolved signal, for example the vibrations of a mechanical part.
+
+The label may represent a mechanical failure: $+1$ if a failure is detected, $-1$ otherwise.
+
+---
+class: middle
+
+The second one is **regression.**
+
+In that case, we may be interested in some function $$u(x) \in \mathbb R$$ which is real-valued.
+
+It may be a **scalar** quantity like the pressure, a **vector,** like the velocity, or a **tensor,** like the stress,
+or strain in a solid.
+
+---
+class: middle
+
+Regression is more common than classification in engineering.
+
+We previously gave the example of linear regression.
+
+---
+class: middle
+
+We are going to start with the problem of classification for simplicity.
+
+---
+class: center, middle
+
+![](svm1.svg)
+
+---
+class: center, middle
+
+In the previous figure, the points on the top left in red have a label $+1$ and the ones in the bottom right in blue
+have a label $-1$.
+
+In this case, $x = (x_1,x_2)$ is a vector in $\mathbb R^2$.
+
+---
+class: middle
+
+This is an example of a **supervised** learning task.
+
+That is we are given some data points $x_i$ in 2D along with their labels, $+1$ or $-1$.
+
+---
+class: middle
+
+**Unsupervised** learning is concerned with a different set of tasks.
+
+For example, given a set of points $x_i$ (without any label), unsupervised learning may attempt to cluster these points
+into sets or clusters that are "well-separated" from each other.
+
+See Section 5.1.3 in [Deep Learning](https://www.deeplearningbook.org/) for more details about supervised vs
+unsupervised learning.
