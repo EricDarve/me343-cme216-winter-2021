@@ -1,0 +1,156 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Winter 2020
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+# Overfitting and underfitting
+
+The value of `C` can be optimized in different ways.
+
+This is a broad topic and we will only cover the main ideas.
+
+---
+class: middle
+
+`C` must be tuned based on how we trust the data.
+
+Generally speaking, if the data is very accurate (and a separating hyperplane exists) then `C` must be chosen very
+large.
+
+But if the data is noisy (we do not trust it) then `C` must be small.
+
+---
+class: middle
+
+Let' s start by illustrating the effect of varying `C` in our method.
+
+We consider the following problem.
+
+---
+class: center, middle
+
+![](svm5.svg)
+
+---
+class: middle
+
+We created two well-separated clusters with labels $-1$ and $+1$.
+
+Then we added a blue point on the left and a red point on the right.
+
+---
+class: middle
+
+The real line of separation is $y=x$ as before.
+
+So the outlier points can be considered as incorrect data here.
+
+Either this data was entered incorrectly in our database, or there was some large error in the measurements.
+
+---
+class: middle
+
+Let's pick a large value of `C`
+
+```python
+# fit the model
+clf=svm.SVC(kernel="linear" , C=10^4)
+clf.fit(X, y)
+```
+
+---
+class: middle
+
+The SVM decision line has a negative slope as shown below.
+
+---
+class: center, middle
+
+![](svm6.svg)
+
+---
+class: middle
+
+The red point on the right is classified with a label $-1$ (red-orange
+region).
+
+And similarly for the blue point.
+
+---
+class: middle
+
+However, we know that these points are erroneous, and therefore the
+classification is wrong here.
+
+This is a problem of _overfitting_.
+
+We trust too much the data which leads to a
+large error.
+
+---
+class: middle
+
+We can try again using a small `C`.
+
+However, now the model believes that there is a large error in all the data.
+
+As a result, the prediction is quite bad.
+
+---
+class: middle
+
+```python
+clf=svm.SVC(kernel="linear" , C=0.2)
+clf.fit(X, y)```
+
+---
+class: center, middle
+
+![](svm7.svg)
+
+---
+class: middle
+
+This case corresponds to a situation of _underfitting_.
+
+That is we apply too much regularization by reducing `C` and do not trust enough the data.
+
+If we pick `C=0.3`, we get a better fit in this case.
+
+---
+class: middle
+
+```python
+clf=svm.SVC(kernel="linear" , C=0.3)
+clf.fit(X, y)
+```
+
+---
+class: center, middle
+
+![](svm8.svg)
+
+---
+class: middle
+
+This plot is intermediate between the previous plots.
+
+We trust the outlier points but only to a moderate extent.
+
+---
+class: middle
+
+The solid orange line is the line $y=x$ but because of the outlier points, it is not possible in this case to recover
+that answer.
+
+The SVC model is always biased by the outliers to some extent.
