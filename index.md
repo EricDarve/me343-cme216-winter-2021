@@ -1,13 +1,19 @@
 ---
 layout: page
-title: Stanford ME 343 / CME 216 class material
+title: Stanford ME 343 / CME 216 homepage
 ---
+
+**Machine Learning for Computational Engineering**
 
 These is the web site for ME 343/CME 216 Machine Learning in Computational Engineering. This material was created by [Eric Darve](https://me.stanford.edu/people/eric-darve), with the [help](https://github.com/EricDarve/me343-cme216-winter-2021/commits/main) of course staff and students.
 
 ## Syllabus
 
 [Syllabus](syllabus)
+
+## Survey 
+
+Please fill this online [survey](https://docs.google.com/forms/d/e/1FAIpQLSdxd1rdTGfqHA7eGehUoLmVjeXHruqoR4IjYOeOE8cTdSa2wA/viewform?usp=sf_link).
 
 ## Policy for late assignments
 
