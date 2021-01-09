@@ -69,6 +69,8 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 
 ### Links
 
+- [ADCME](https://github.com/kailaix/ADCME.jl) ([wiki page](https://kailaix.github.io/ADCME.jl/dev/)) developed by Kailai Xu and Prof. Darve
+- [DeepXDE](https://github.com/lululxvi/deepxde) developed by Lu Lu and Prof. Karniadakis
 - [List of books and tutorials on ML](https://github.com/josephmisiti/awesome-machine-learning/blob/master/books.md)
 - [Online courses](https://github.com/josephmisiti/awesome-machine-learning/blob/master/courses.md)
 - [TensorFlow notebooks](https://github.com/the-deep-learners/TensorFlow-LiveLessons) by Jon Krohn
