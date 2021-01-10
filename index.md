@@ -11,10 +11,6 @@ These is the web site for ME 343/CME 216 Machine Learning in Computational Engin
 
 [Syllabus](syllabus)
 
-## Survey 
-
-Please fill this online [survey](https://docs.google.com/forms/d/e/1FAIpQLSdxd1rdTGfqHA7eGehUoLmVjeXHruqoR4IjYOeOE8cTdSa2wA/viewform?usp=sf_link).
-
 ## Policy for late assignments
 
 Extensions can be requested in advance for exceptional circumstances (e.g., travel, sickness, injury, COVID related issues) and for OAE-approved accommodations.
