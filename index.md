@@ -17,7 +17,7 @@ Please fill this online [survey](https://docs.google.com/forms/d/e/1FAIpQLSdxd1r
 
 ## Policy for late assignments
 
-Extensions can be requested in advance for exceptional circumstances (e.g., travel, sickness, injury, COVID related issues) and for OAE-approved accommodations
+Extensions can be requested in advance for exceptional circumstances (e.g., travel, sickness, injury, COVID related issues) and for OAE-approved accommodations.
 
 Submissions after the deadline and late by at most 2 days (+48 hours after the deadline) will be accepted with a 10% penalty. No submissions will be accepted 2 days after the deadline.
 
