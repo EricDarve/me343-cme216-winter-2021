@@ -3,7 +3,7 @@ layout: page
 title: Python Setup Guide
 ---
 
-We use python 3 for programming assignments in this course. We don't expect the specific version of python 3 to make a difference - anything 3.6 or later should work. This guide is intended to help you set up python on your local mahcine, if you haven't already. You don't have to follow this guide if you have other preferred ways to use python and manage dependencies. However, we will only provide support for using Anaconda.
+We use python 3 for programming assignments in this course. We don't expect the specific version of python 3 to make a difference - anything 3.6 or later should work. This guide is intended to help you set up python on your local machine, if you haven't already. You don't have to follow this guide if you have other preferred ways to use python and manage dependencies. However, we will only provide support for using Anaconda.
 
 ## Installation
 ### Windows
