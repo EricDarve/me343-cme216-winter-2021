@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Programming Homework 1 - SVM
+title: Homework 1 - SVM
 ---
 
-If you need help setting up python on your local machine, please follow the [python setup guide](Python Setup Guide) posted separately. We recommend that you set up a virtual environment for this class. The python dependencies required for this homework are listed in **requirements.txt**. If you are using Anaconda, you can install them by running `conda install --file=requirements.txt`.
+If you need help setting up python on your local machine, please follow the [python setup guide](../../Python Setup Guide) posted separately. We recommend that you set up a virtual environment for this class. The python dependencies required for this homework are listed in **requirements.txt**. If you are using Anaconda, you can install them by running `conda install --file=requirements.txt`.
 
-You will find the starter code for this homework in the folder [hw1-starter-code](Homework/HW1/hw1-starter-code/).
+You will find the starter code for this homework in the folder [hw1-starter-code](https://github.com/EricDarve/me343-cme216-winter-2021/tree/main/Homework/HW1/hw1-starter-code).
 
 In this homework, we will practice SVM using scikit-learn and build some intuition. The file you will modify is **svm.ipynb**, you can launch the notebook by running `jupyter notebook svm.ipynb`. The parts you need to implement are marked with TODO. You will submit the implemented **svm.ipynb** file and a pdf file with answers to non-coding questions to gradescope.
 
