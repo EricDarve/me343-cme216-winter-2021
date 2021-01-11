@@ -15,34 +15,30 @@ class: middle
 
 # scikit-learn
 
-To demonstrate how SVM works we are going to use [scikit-learn](https://scikit-learn.org/). 
+To demonstrate how SVM works we are going to use [scikit-learn](https://scikit-learn.org/).
 
-The results in this section can be reproduced using this shared
-[notebook](https://colab.research.google.com/drive/1dSo81DdqIkzVyssauB7wYi12kZ0XzuVy). 
-
----
-class: middle
-
-The scikit-learn library can perform many important computations in machine learning including supervised and unsupervised learning.
-
-See [scikit supervised learning](https://scikit-learn.org/stable/supervised_learning.html) for more details about the functionalities that are supported.
+The results in this section can be reproduced using this
+[Python notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/svm.ipynb).
 
 ---
 class: middle
 
-We are going to demonstrate our concept through a simple example. 
+The scikit-learn library can perform many important computations in machine learning including supervised and
+unsupervised learning.
+
+See [scikit supervised learning](https://scikit-learn.org/stable/supervised_learning.html) for more details about the
+functionalities that are supported.
+
+---
+class: middle
+
+We are going to demonstrate our concept through a simple example.
 
 Let's generate 8 random points in the 2D plane.
 
-Points in the top left are assigned the label $-1$ $(y > x)$ and points in the bottom right are assigned a label $-1$ $(y < x).$
-
----
-class: middle
-
-In Python, we set up two arrays X (coordinates) and y (labels) with the data: 
-
-```python 
-print('Shape of X: ', X.shape)
+Points in the top left are assigned the label $-1$ $(y > x)$ and points in the bottom right are assigned a label $-1$
+$(y < x).$ --- class: middle In Python, we set up two arrays X (coordinates) and y (labels) with the data: ```python
+    print('Shape of X: ', X.shape)
 print(X)
 print(' Shape of y: ', y.shape)
 print(y)

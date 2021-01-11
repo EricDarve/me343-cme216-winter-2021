@@ -32,6 +32,10 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - 1.5 Introduction to SVM; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=db1ae91e-dedd-4f35-9824-ab9201843632); [Slides](Slides/ML_introduction/SVM_introduction.pdf)
 - [Reading Assignment 1](Reading Assignments/intro_svm)
 
+*Module 2*
+
+- [Python setup guide](Python Setup Guide)
+- [SVM Python notebook](Code/svm.ipynb)
 - 1.6 scikit-learn [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=79e12251-3c02-4909-af9d-ab9300073284); [Slides](Slides/ML_introduction/scikit-learn.pdf)
 - 1.7 Soft-margin [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=fc2de4ae-5cd7-4e44-83f6-ab93000d4526); [Slides](Slides/ML_introduction/softmargin.pdf)
 - 1.8 Over-fitting [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=822d5262-4b24-4773-ba4f-ab9301207cce); [Slides](Slides/ML_introduction/overfitting.pdf)
