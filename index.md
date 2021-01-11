@@ -36,11 +36,11 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 
 - [Python setup guide](Python Setup Guide)
 - [SVM Python notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/svm.ipynb)
-- 1.6 scikit-learn [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=79e12251-3c02-4909-af9d-ab9300073284); [Slides](Slides/ML_introduction/scikit-learn.pdf)
-- 1.7 Soft-margin [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=fc2de4ae-5cd7-4e44-83f6-ab93000d4526); [Slides](Slides/ML_introduction/softmargin.pdf)
-- 1.8 Over-fitting [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=822d5262-4b24-4773-ba4f-ab9301207cce); [Slides](Slides/ML_introduction/overfitting.pdf)
-- 1.9 Training and validation sets [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=de353d83-76ba-4b30-b509-ab930127f783); [Slides](Slides/ML_introduction/training_validation.pdf)
-- 1.10 Kernel trick [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=fc753602-132a-46fe-bdba-ab95000e417b); [Slides](Slides/ML_introduction/kernel_trick.pdf)
+- 1.6 scikit-learn; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=79e12251-3c02-4909-af9d-ab9300073284); [Slides](Slides/ML_introduction/scikit-learn.pdf)
+- 1.7 Soft-margin; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=fc2de4ae-5cd7-4e44-83f6-ab93000d4526); [Slides](Slides/ML_introduction/softmargin.pdf)
+- 1.8 Over-fitting; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=822d5262-4b24-4773-ba4f-ab9301207cce); [Slides](Slides/ML_introduction/overfitting.pdf)
+- 1.9 Training and validation sets; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=de353d83-76ba-4b30-b509-ab930127f783); [Slides](Slides/ML_introduction/training_validation.pdf)
+- 1.10 Kernel trick; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=fc753602-132a-46fe-bdba-ab95000e417b); [Slides](Slides/ML_introduction/kernel_trick.pdf)
 - [Homework 1](Homework/HW1/HW1 Questions)
 
 ## Reading material
