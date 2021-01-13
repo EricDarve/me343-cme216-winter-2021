@@ -1,7 +1,9 @@
 ---
 layout: page
-title: Introduction to ML and SVM
+title: Reading Assignment 1
 ---
+
+# Introduction to ML and SVM
 
 Write your answers in a PDF and upload the document on [Gradescope](https://www.gradescope.com/courses/222525) for submission. The due date is given on [Gradescope](https://www.gradescope.com/courses/222525).
 
