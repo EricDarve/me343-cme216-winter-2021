@@ -23,7 +23,7 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 
 ### Introduction to ML and SVM
 
-*Module 1*
+*Module 1-Part 1*
 
 - 1.1 Brief introduction to ML; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=089ae55c-cdbe-412f-816b-ab92013a5794); [Slides](Slides/ML_introduction/brief_intro.pdf)
 - 1.2 Examples of machine learning; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e64f9a8c-79b0-4e50-aac8-ab93015a260a); [Slides](Slides/ML_introduction/examples_ML.pdf)
@@ -32,7 +32,7 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - 1.5 Introduction to SVM; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=db1ae91e-dedd-4f35-9824-ab9201843632); [Slides](Slides/ML_introduction/SVM_introduction.pdf)
 - [Reading Assignment 1](Reading Assignments/intro_svm)
 
-*Module 2*
+*Module 1-Part 2*
 
 - [Python setup guide](Python Setup Guide)
 - [SVM Python notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/svm.ipynb)
@@ -43,6 +43,15 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - 1.10 Kernel trick; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=fc753602-132a-46fe-bdba-ab95000e417b); [Slides](Slides/ML_introduction/kernel_trick.pdf)
 - [Reading Assignment 2](Reading Assignments/svm_kernel)
 - [Homework 1](Homework/HW1/HW1 Questions)
+
+*Module 2*
+
+- 2.1 Perceptron; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b9bd406a-ee67-4b42-8f32-ab9c0002fc79); [Slides](Slides/TensorFlow/perceptron.pdf)
+- 2.2 MLP; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b42e0a97-2134-430c-930f-ab9c000c2e90); [Slides](Slides/TensorFlow/MLP.pdf)
+- 2.3 TensorFlow/Keras; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=88d50df4-652b-45b4-9dd6-ab9d000a3d6a); [Slides](Slides/TensorFlow/TensorFlow_Keras.pdf)
+- 2.4 Sequential API; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4e156180-3c8a-41d0-aaa1-ab9d0014328d); [Slides](Slides/TensorFlow/TF_sequential_API.pdf)
+- 2.5 Functional API; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=adaafcf8-8a66-442a-af1e-ab9d00105e88); [Slides](Slides/TensorFlow/TF_functional_API.pdf)
+- 2.6 Subclassing; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=dd3c47e3-9d52-4bf0-864d-ab9d012ec854); [Slides](Slides/TensorFlow/TF_subclassing.pdf)
 
 ## Reading material
 
