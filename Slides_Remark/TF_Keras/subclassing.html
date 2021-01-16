@@ -55,7 +55,7 @@ You enter a restaurant and you say:
 ---
 class: middle
 
-The subclassing approach uses the imperative style of programming. 
+The subclassing approach uses the imperative style of programming.
 
 More information about the [declarative (or symbolic) and
 imperative](https://blog.tensorflow.org/2019/01/what-are-symbolic-and-imperative-apis.html) APIs in TF.
@@ -94,12 +94,12 @@ Here is the basic syntax:
 
 ```Python
 class MyModel(keras.Model):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs) # handles standard args (e.g., name)
-        [...]
+def __init__(self, **kwargs):
+super().__init__(**kwargs) # handles standard args (e.g., name)
+[...]
 
-    def call(self, input_):
-        [...]
+def call(self, input_):
+[...]
 ```
 
 ---
@@ -139,12 +139,12 @@ class: middle
 
 ```Python
 class MyModel(keras.Model):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs) # handles standard args (e.g., name)
-        [...]
+def __init__(self, **kwargs):
+super().__init__(**kwargs) # handles standard args (e.g., name)
+[...]
 
-    def call(self, input_):
-        [...]
+def call(self, input_):
+[...]
 ```
 
 ---
@@ -176,7 +176,9 @@ But it is most useful in cases of multiple inheritance.
 ---
 class: middle
 
-See this [demo Python code](https://github.com/EricDarve/cme216-spring-2020/blob/master/Code/Inheritance%20demo.ipynb) for details and examples using `super()`.
+See this [demo Python
+code](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/Inheritance%20demo.ipynb) for details and
+examples using `super()`.
 
 ---
 class: middle
@@ -193,11 +195,11 @@ class: middle
 
 ```Python
 def __init__(self, **kwargs):
-    super().__init__(**kwargs) # handles standard args (e.g., name)
-    self.hidden1 = keras.layers.Dense(4, activation="relu")
-    self.hidden2 = keras.layers.Dense(4, activation="relu")
-    self.hidden3 = keras.layers.Dense(4, activation="relu")
-    self.out = keras.layers.Dense(1, activation="linear")
+super().__init__(**kwargs) # handles standard args (e.g., name)
+self.hidden1 = keras.layers.Dense(4, activation="relu")
+self.hidden2 = keras.layers.Dense(4, activation="relu")
+self.hidden3 = keras.layers.Dense(4, activation="relu")
+self.out = keras.layers.Dense(1, activation="linear")
 ```
 
 ---
@@ -227,11 +229,11 @@ class: middle
 
 ```Python
 def call(self, input_):
-    hidden1 = self.hidden1(input_)
-    hidden2 = self.hidden2(hidden1)
-    hidden3 = self.hidden3(hidden2)
-    concat = layers.Concatenate()([input_, hidden3])
-    return self.out(concat)
+hidden1 = self.hidden1(input_)
+hidden2 = self.hidden2(hidden1)
+hidden3 = self.hidden3(hidden2)
+concat = layers.Concatenate()([input_, hidden3])
+return self.out(concat)
 ```
 
 ---
@@ -267,7 +269,7 @@ The rest of the code is the same as what we had before.
 ```Python
 model.compile(loss='mse', optimizer=sgd, metrics=['mse','mae'])
 history = model.fit(X_train, y_train, epochs=n_epochs,
-                    validation_data=(X_valid, y_valid))
+validation_data=(X_valid, y_valid))
 ```
 
 ---
