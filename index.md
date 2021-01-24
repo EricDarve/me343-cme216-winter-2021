@@ -56,7 +56,19 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - 2.6 Subclassing; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=dd3c47e3-9d52-4bf0-864d-ab9d012ec854); [Slides](Slides/TensorFlow/TF_subclassing.pdf)
 - [Reading Assignment 3](Reading Assignments/TensorFlow)
 
+*Module 3-Part 1*
+
+- [Python notebook DNN regularization demo](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/DNN_regularization.ipynb)
+- 3.1 Loss function; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=12b616b7-cd88-4a82-9e17-abaa018b54bf); [Slides](Slides/Deep_Learning/Loss_function.pdf)
+- 3.2 Cross-entropy; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=dd267b8b-074f-498f-97ac-abab00064d2c); [Slides](Slides/Deep_Learning/Cross_entropy.pdf) 
+- 3.3 TensorFlow loss functions; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9efdcf32-d4c0-47b1-a6dd-abab011f9ac6); [Slides](Slides/Deep_Learning/Tensorflow_loss_functions.pdf)
+- 3.4 Backpropagation; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1d4539ca-dda9-4b0f-96fa-abab012469a4); [Slides](Slides/Deep_Learning/Backpropagation.pdf)
+- 3.5 Backpropagation formula; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=19daa234-19fd-4e3b-8d38-abab0155f6db); [Slides](Slides/Deep_Learning/Backpropagation_formula.pdf)
+- 3.6 Learning rate for training; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e2081efc-3573-4ec5-8b73-abae000720cd); [Slides](Slides/Deep_Learning/Learning_rate_for_training.pdf)
+- 3.7 Empirical method for learning rate; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=136043d7-4023-44f7-9068-abae000f3249); [Slides](Slides/Deep_Learning/Empirical_method_for_learning_rate.pdf)
+- 3.8 Overfitting; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e43f30a2-4e28-4005-8bd1-acba0005c6e8); [Slides](Slides/Deep_Learning/Empirical_method_for_learning_rate.pdf)
 - [Homework 2](Homework/HW2/HW2 Questions)
+
 
 ## Reading material
 
