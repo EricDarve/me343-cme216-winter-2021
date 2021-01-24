@@ -66,9 +66,10 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - 3.5 Backpropagation formula; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=19daa234-19fd-4e3b-8d38-abab0155f6db); [Slides](Slides/Deep_Learning/Backpropagation_formula.pdf)
 - 3.6 Learning rate for training; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e2081efc-3573-4ec5-8b73-abae000720cd); [Slides](Slides/Deep_Learning/Learning_rate_for_training.pdf)
 - 3.7 Empirical method for learning rate; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=136043d7-4023-44f7-9068-abae000f3249); [Slides](Slides/Deep_Learning/Empirical_method_for_learning_rate.pdf)
-- 3.8 Overfitting; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e43f30a2-4e28-4005-8bd1-acba0005c6e8); [Slides](Slides/Deep_Learning/Empirical_method_for_learning_rate.pdf)
+- 3.8 Overfitting; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e43f30a2-4e28-4005-8bd1-acba0005c6e8); [Slides](Slides/Deep_Learning/Overfitting.pdf)
+- 3.9 DNN initializers; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=42c5036a-ef10-4a65-8563-acba000d9424); [Slides](Slides/Deep_Learning/DNN_initializers.pdf)
+- 3.10 Regularization; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=04b1cf19-aa64-457e-a1fe-acba00186069); [Slides](Slides/Deep_Learning/Regularization.pdf)
 - [Homework 2](Homework/HW2/HW2 Questions)
-
 
 ## Reading material
 
