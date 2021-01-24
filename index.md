@@ -21,6 +21,13 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 
 ## Class modules and learning material
 
+# Python tutorials
+
+- [Introduction to Python notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/Python/Python%20basics.ipynb)
+- [Numpy demo notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/Python/Numpy%20tutorial.ipynb)
+- [Python inheritance demo notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/Python/Inheritance%20demo.ipynb)
+- [All the files including required text input files](https://github.com/EricDarve/me343-cme216-winter-2021/tree/main/Code/Python)
+
 ### Introduction to ML and SVM
 
 *Module 1-Part 1*
