@@ -14,8 +14,8 @@ Please watch the videos and slides before answering these questions.
 1. 2.1 Perceptron. To train a perceptron or multi-layer perceptron we need to differentiate the loss function with respect to the model parameters. Explain why this makes the Heaviside function unsuitable for training.
 1. 2.1 Perceptron. Find and prove the relation between sigmoid and tanh.
 1. 2.1 Perceptron. What happens when you choose a learning rate that is too small? Describe what happens when the learning rate is too large.
-1. 2.2 MLP. Consider a perceptron where $$\phi$$ is a linear function, e.g., $$\phi(x) = x$$; show that for the XOR problem, there is no linear perceptron that can reproduce this data.
-1. 2.2 MLP. Consider the figure below. This is a directed acyclic graph or DAG. Assume that node 1 is set equal to the input $$x$$. We build an ANN based on this graph. The output $$y$$ is at node 5. Explain qualitatively the sequence of operations the ANN performs to transform the input $$x$$ to the output $$y$$ following this DAG. Assume that the activation function is some given function $$\phi(x)$$.
+1. 2.2 MLP. Consider a perceptron where $\phi$ is a linear function, e.g., $\phi(x) = x$; show that for the XOR problem, there is no linear perceptron that can reproduce this data.
+1. 2.2 MLP. Consider the figure below. This is a directed acyclic graph or DAG. Assume that node 1 is set equal to the input $x$. We build an ANN based on this graph. The output $y$ is at node 5. Explain qualitatively the sequence of operations the ANN performs to transform the input $x$ to the output $y$ following this DAG. Assume that the activation function is some given function $\phi(x)$.
 
 ![](TensorFlow_fig1.png){:width="25%"}
 

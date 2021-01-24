@@ -76,6 +76,7 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - 3.8 Overfitting; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e43f30a2-4e28-4005-8bd1-acba0005c6e8); [Slides](Slides/Deep_Learning/Overfitting.pdf)
 - 3.9 DNN initializers; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=42c5036a-ef10-4a65-8563-acba000d9424); [Slides](Slides/Deep_Learning/DNN_initializers.pdf)
 - 3.10 Regularization; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=04b1cf19-aa64-457e-a1fe-acba00186069); [Slides](Slides/Deep_Learning/Regularization.pdf)
+- [Reading Assignment 4](Reading Assignments/deep_learning)
 - [Homework 2](Homework/HW2/HW2 Questions)
 
 ## Reading material
