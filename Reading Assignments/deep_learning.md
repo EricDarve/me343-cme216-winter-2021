@@ -7,6 +7,8 @@ title: Reading Assignment 4
 
 Write your answers in a PDF and upload the document on [Gradescope](https://www.gradescope.com/courses/222525) for submission. The due date is given on [Gradescope](https://www.gradescope.com/courses/222525).
 
+Each question is worth 10 points. Please watch the videos and slides before answering these questions.
+
 Each question starts with a reference to the corresponding video and slide deck in square brackets.
 
 The next questions refer to slide deck "3.1 Loss function."
