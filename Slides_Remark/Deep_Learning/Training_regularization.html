@@ -4,7 +4,7 @@ layout: slides
 
 class: center, middle
 
-# CME 216, ME 343 - Spring 2020
+# CME 216, ME 343 - Winter 2021
 
 ## Eric Darve, ICME
 
@@ -27,19 +27,21 @@ class: middle
 
 Then we get:
 
-![:width 40%](fig16.png) ![:width 40%](fig17.png)
+![:width 40%](dnn_small_loss.png) ![:width 40%](dnn_small.png)
 
 ---
 class: middle
 
-Simplifying the model may reduce the issue of overfitting but this does not imply that we will necessarily get the right solutions.
+Simplifying the model may reduce the issue of overfitting but this does not imply that we will necessarily get the right
+solutions.
 
-By restricting the structure of the DNN we are optimizing, we may oversimplify and end up with a DNN that cannot accurately reproduce the solution.
+By restricting the structure of the DNN we are optimizing, we may oversimplify and end up with a DNN that cannot
+accurately reproduce the solution.
 
 ---
 class: middle
 
-Another approach consists in keeping the same DNN but using regularization. 
+Another approach consists in keeping the same DNN but using regularization.
 
 This means adding a new term to the loss function that penalizes large weights and biases.
 
@@ -80,6 +82,16 @@ In TensorFlow/Keras the [syntax](https://www.tensorflow.org/api_docs/python/tf/k
 ---
 class: middle
 
+L2
+
+```Python
+kernel_regularizer=tf.keras.regularizers.L2(l=1e-3)
+bias_regularizer=tf.keras.regularizers.L2(l=1e-3)
+```
+
+---
+class: middle
+
 With regularization we ensure that weights are kept small and cannot diverge.
 
 The accuracy is then much improved.
@@ -87,14 +99,17 @@ The accuracy is then much improved.
 ---
 class: middle
 
-After 10,000 iterations, we get
+2 layers of size 128
 
-![:width 40%](fig18.png) ![:width 40%](fig19.png)
+`tf.keras.regularizers.L2(l=1e-3)`
+
+![:width 40%](dnn_regd_loss.png) ![:width 40%](dnn_regd.png)
 
 ---
 class: middle
 
-Physically we can interpret the l2 regularization as adding a spring to the weights and biases so that they are always pulled back towards 0.
+Physically we can interpret the l2 regularization as adding a spring to the weights and biases so that they are always
+pulled back towards 0.
 
 Indeed consider
 
@@ -123,8 +138,28 @@ $\hspace{5em} + \lambda\_2 \sum\_{il} |b\_i^{(l)}|$
 ---
 class: middle
 
-The l1 regularization has a different effect. 
+The l1 regularization has a different effect.
 
-It makes the solution (weights and biases) sparser. 
+It makes the solution (weights and biases) sparser.
 
 That is, it tries to reproduce the training data with as few non-zero weights and biases as possible.
+
+---
+class: middle
+
+L1
+
+```Python
+kernel_regularizer=tf.keras.regularizers.L1(l=1e-3)
+bias_regularizer=tf.keras.regularizers.L1(l=1e-3)
+```
+
+---
+class: middle
+
+L1 + L2
+
+```Python
+kernel_regularizer=tf.keras.regularizers.L1L2(l1=0.01,l2=0.01)
+bias_regularizer=tf.keras.regularizers.L1L2(l1=0.01,l2=0.01)
+```

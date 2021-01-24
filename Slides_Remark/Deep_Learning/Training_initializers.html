@@ -4,7 +4,7 @@ layout: slides
 
 class: center, middle
 
-# CME 216, ME 343 - Spring 2020
+# CME 216, ME 343 - Winter 2021
 
 ## Eric Darve, ICME
 
@@ -68,7 +68,7 @@ This will push the argument `tanh` to large values, and saturate `tanh`.
 ---
 class: center, middle
 
-![](fig13.png)
+![:width 80%](tanh.png)
 
 ---
 class: middle
@@ -133,20 +133,27 @@ Since the solution is $y=x$, we expect the weights to be order 1 (slope 1).
 ---
 class: middle
 
+We will use a large network with many coefficients in this example.
+
+We have 4 hidden layers of size 128.
+
 Let's initialize with large weights using a random uniform initialization:
 
+---
+class: middle
+
+To initialize each layer we use
+
 ```Python
-dnn_val = keras.models.Sequential()
-dnn_val.add(keras.layers.InputLayer(input_shape=1))
-dnn_val.add(keras.layers.Dense(8, activation='tanh',
-                kernel_initializer=
-                tf.random_uniform_initializer(minval=-10, maxval=10)
-            ))
-dnn_val.add(keras.layers.Dense(1, activation="linear",
-                kernel_initializer=
-                tf.random_uniform_initializer(minval=-10, maxval=10)
-            ))
+m_val = 10
+kernel_initializer=tf.random_uniform_initializer(minval=-m_val, maxval=m_val)
+bias_initializer=tf.random_uniform_initializer(minval=-m_val, maxval=m_val)
 ```
+
+---
+class: middle
+
+This corresponds to a random uniform initialization using the interval $ [-10,10] $.
 
 ---
 class: middle
@@ -156,11 +163,49 @@ The results are absolutely awful.
 ---
 class: center, middle
 
-![:width 40%](fig14.png) ![:width 40%](fig15.png)
+![:width 40%](dnn_large_m10_loss.png) ![:width 40%](dnn_large_m10.png)
 
 ---
 class: middle
 
 This is because we start from a very oscillatory initial guess (large weights).
 
-The training brings it closer to the data but because our model is under-constrained (DNN is too complex for this simple task) we fail to converge to anything reasonable.
+The training brings it closer to the data but because our model is under-constrained (DNN is too complex for this simple
+task) we fail to converge to anything reasonable.
+
+---
+class: middle
+
+Let's reduce the interval to $ [-1,1] $.
+
+![:width 40%](dnn_large_m1_loss.png) ![:width 40%](dnn_large_m1.png)
+
+---
+class: center, middle
+
+And then to $ [-0.1,0.1] $.
+
+![:width 40%](dnn_large_m0p1_loss.png) ![:width 40%](dnn_large_m0p1.png)
+
+---
+class: center, middle
+
+The scheme to initialize the DNN can have a strong regularizing effect.
+
+---
+class: center, middle
+
+This is because for overparameterized networks, we may have many local minima.
+
+The initialization scheme will lead the network to different local minima.
+
+---
+class: center, middle
+
+If we start with small weights, we will tend to end up with a solution with small weights, which means it will be
+smoother.
+
+---
+class: center, middle
+
+If we start with large weights, then all bets are off. We may get a very oscillatory solution.

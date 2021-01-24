@@ -4,7 +4,7 @@ layout: slides
 
 class: center, middle
 
-# CME 216, ME 343 - Spring 2020
+# CME 216, ME 343 - Winter 2021
 
 ## Eric Darve, ICME
 
@@ -13,8 +13,7 @@ class: center, middle
 ---
 class: middle
 
-As we have mentioned before, training a neural network is a difficult and in general the solution may depend on the
-initial guess.
+As we have mentioned before, training a neural network is a difficult.
 
 In some cases, we may get a DNN that fits the training set very well but still have very poor accuracy on the validation
 set.
@@ -22,14 +21,15 @@ set.
 ---
 class: middle
 
-This problem is also known as generalization error. That is we do well on the data we are given but fail on unseen data (the
+This problem is also known as generalization error. That is we do well on the data we are given but fail on unseen data
+(the
 "generalization").
 
 ---
 class: middle
 
 This behavior is typically caused when the neural network tends to oscillate wildly as we move away from the training
-point.
+points.
 
 This problem is called "overfitting".
 
@@ -55,7 +55,7 @@ class: middle
 
 Let us consider the following example:
 
-![:width 60%](fig8.png)
+![:width 60%](dnn_8_no_noise.png)
 
 ---
 class: middle
@@ -69,16 +69,30 @@ For reference, the DNN we use is
 ---
 class: middle
 
-The exact solution is just the line $y=x$ but we added 10% of noise to the points near $x=0$.
+The exact solution is just the line $y=x$.
 
-As a result, the DNN is going to make the wrong prediction if we train it until convergence.
+Our answer is very accurate.
 
 ---
 class: middle
 
-Initially the convergence is as follows:
+Let's add 10% of noise to the training data.
 
-![:width 40%](fig7.png) ![:width 40%](fig7a.png)
+What do we get?
+
+![:width 60%](dnn_8_noise.png)
+
+---
+class: middle
+
+The DNN is now making a seriously wrong prediction.
+
+---
+class: middle
+
+Let's stop the convergence early after 20 steps.
+
+![:width 40%](dnn_8_max20_loss.png) ![:width 40%](dnn_8_max20.png)
 
 ---
 class: middle
@@ -87,6 +101,11 @@ The validation error is small initially.
 
 But as we keep iterating, the training error decreases (the DNN gets closer to the data) but the validation error keeps
 increasing.
+
+---
+class: middle
+
+![:width 80%](dnn_8_noise_loss.png)
 
 ---
 class: middle
@@ -107,7 +126,7 @@ class: middle
 
 Eventually, we fit the data perfectly:
 
-![](fig9.png)
+![:width 60%](dnn_8_noise.png)
 
 ---
 class: middle
@@ -119,7 +138,7 @@ This is because the true solution is $y=x$.
 ---
 class: center, middle
 
-![](fig10.png)
+![:width 80%](dnn_8_noise_loss.png)
 
 ---
 class: middle
@@ -138,9 +157,9 @@ The solution is quite accurate at that point.
 ---
 class: middle
 
-In this run, the minimum is around 290.
+In this run, the minimum is around 30.
 
-![:width 40%](fig11.png)![:width 40%](fig12.png)
+![:width 40%](dnn_8_max100_loss.png)![:width 40%](dnn_8_max100.png)
 
 ---
 class: middle
@@ -148,3 +167,10 @@ class: middle
 So a simple learning strategy is to train until the validation error starts increasing.
 
 Then we stop the iteration, and use the solution we have obtained at that point.
+
+---
+class: middle
+
+Solution after 20 steps:
+
+![:width 60%](dnn_8_max20.png)
