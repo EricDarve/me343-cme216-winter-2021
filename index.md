@@ -56,6 +56,8 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - 2.6 Subclassing; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=dd3c47e3-9d52-4bf0-864d-ab9d012ec854); [Slides](Slides/TensorFlow/TF_subclassing.pdf)
 - [Reading Assignment 3](Reading Assignments/TensorFlow)
 
+- [Homework 2](Homework/HW2/HW2 Questions)
+
 ## Reading material
 
 ###  Books
