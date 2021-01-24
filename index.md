@@ -51,6 +51,8 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - [Reading Assignment 2](Reading Assignments/svm_kernel)
 - [Homework 1](Homework/HW1/HW1 Questions)
 
+### Deep Learning
+
 *Module 2*
 
 - [TensorFlow Python notebook DNN regression demo](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/DNN_regression.ipynb)
