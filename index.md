@@ -21,7 +21,7 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 
 ## Class modules and learning material
 
-# Python tutorials
+### Python tutorials
 
 - [Introduction to Python notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/Python/Python%20basics.ipynb)
 - [Numpy demo notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/Python/Numpy%20tutorial.ipynb)
