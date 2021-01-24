@@ -29,9 +29,9 @@ The code for preprocessing dataset has been given to you and is at the beginning
 
 Submission instructions: turn in the code in your notebook to perform the following:
 
-- build the model
-- compile the model
-- run `summary()` and print the output
+- Build the model
+- Compile the model
+- Run `summary()` and print the output
 
 Answer the following question: how many trainable parameters does the model have?
 
@@ -70,8 +70,8 @@ https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.hist.html
 
 Submission instructions:
 
-- turn in the code to compute the histogram
-- turn in your plot of the histogram
+- Turn in the code to compute the histogram
+- Turn in your plot of the histogram
 
 In addition, comment on the two distributions.
 
@@ -107,15 +107,15 @@ In addition, turn in the following written comments:
 
 One of the key signs of an overfitted model is that the model is very sensitive to noise in the input or to the specific choice of training points. Generally speaking if one considers a function $f(x)$, the sensitivity can be estimated by computing
 
-$ \int \left( \frac{df}{dx} \right)^2 p(x) \, dx = E((f')^2) $
+$$ \int \left( \frac{df}{dx} \right)^2 p(x) \, dx = E((f')^2) $$
 
 where $p(x)$ is the probability density function of $x$ and $E$ denotes the expectation. To estimate this quantity, we can add some noise $r$ to the input $x$. Let us assume that we add a small amount of noise such that
 
-$ f(x + r) \approx f(x) + \frac{df}{dx} r $
+$$ f(x + r) \approx f(x) + \frac{df}{dx} r $$
 
 to first-order. The noise $r$ is a normal random variable, with mean 0 and variance $\sigma^2(r)$, which is uncorrelated with $x$. The variance of $f(x+r)$ is equal to
 
-$ \sigma^2(f(x+r)) = \sigma^2(f(x) + f'(x) r) = \sigma^2(f) + \sigma^2(r) E((f')^2) $
+$$ \sigma^2(f(x+r)) = \sigma^2(f(x) + f'(x) r) = \sigma^2(f) + \sigma^2(r) E((f')^2) $$
 
 We see that when the noise has variance 0 (i.e., $\sigma^2(r)=0$), we get $\sigma^2(f)$ as expected. As the variance of $r$ increases, the variance of $f(x+r)$ increases linearly with slope $E((f')^2)$. This slope represents how sensitive the function $f$ is to changes in the input $x$.
 
@@ -126,10 +126,10 @@ Below we will compare two different models that have comparable accuracies, but 
 {:start="10"}
 10. Let's compare our overfitted and regularized models by investigating how sensitive they are to input noise. You can generate Gaussian noise using [np.random.normal](https://docs.scipy.org/doc/numpy-1.15.0/reference/generated/numpy.random.normal.html). We will generate noise with 0 mean and standard deviations of [0.1, 0.2, 0.3, 0.4, 0.5]. For each standard deviation value, repeat 10 times the following:
 
-    1. generate noise; add the noise to x_val to generate a perturbed input (don't modify x_val itself).
-    2. compute the predictions for the perturbed input using both models.
-    3. compute the [standard deviation](https://docs.scipy.org/doc/numpy/reference/generated/numpy.std.html) for the two predictions.
-    4. compute the error (see below for details on how to do that) for the two predictions using y_val as true value.
+    1. Generate noise; add the noise to x_val to generate a perturbed input (don't modify x_val itself).
+    2. Compute the predictions for the perturbed input using both models.
+    3. Compute the [standard deviation](https://docs.scipy.org/doc/numpy/reference/generated/numpy.std.html) for the two predictions.
+    4. Compute the error (see below for details on how to do that) for the two predictions using y_val as true value.
 
 Average these results over your 10 runs. Repeat for all noise levels.
 
@@ -155,8 +155,8 @@ This is always a positive number, between 0 and 1.
 
 Code submission instruction:
 
-- turn in the code used to compute the standard deviation vs noise
-- turn in the code used to compute the classification error in your model vs noise
+- Turn in the code used to compute the standard deviation vs noise
+- Turn in the code used to compute the classification error in your model vs noise
 
 In addition, turn in the following:
 
