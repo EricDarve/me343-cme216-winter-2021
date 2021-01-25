@@ -3,7 +3,21 @@ layout: page
 title: Programming Homework 2
 ---
 
-**Submission**: The submission instruction will be updated soon.
+**Submission instructions**: Following the poll, the option that was upvoted was the markdown one. So, please use your Python notebook for your programming and written answers. This is done by including so-called “text cells” or “markdown cells” in your Python notebook. You can just type in your answers in these cells as text. So you have one document (the notebook) with all your answers. 
+
+To submit, save the notebook as PDF and submit this PDF as your answer. We will also accept other formats for your submission if this does not work for you. At the end however, you need to have a single PDF file for submission. That's the only option available in gradescope.
+
+Example of markdown cell:
+
+![](markdown_cell.png){:width="800px"}
+
+Editing a markdown cell to enter your answer:
+
+![](editing_cell.png){:width="800px"}
+
+Converting a cell to a markdown cell:
+
+![](cell_type.png){:width="350px"}
 
 In this homework, you will practice implementing and training simple neural networks using tensorflow and keras. We will first use the Higgs Dataset, a Physics Science dataset published by [UC Irvine](http://mlphysics.ics.uci.edu/data/higgs/readme.txt).
 
