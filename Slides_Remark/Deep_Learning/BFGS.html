@@ -1,0 +1,534 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Winter 2021
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+The optimizers we have seen until now belong to the class of first-order optimizers.
+
+This is because to a large extent they only rely on the gradient of the loss function.
+
+---
+class: middle
+
+For physics-informed learning, we are often interested in converging the loss function to very small values.
+
+This is because high-accuracy is required for the solution and the loss function is often ill-conditioned.
+
+---
+class: middle
+
+For this reason, optimizers that have improved convergence properties are desirable.
+
+Second order optimizers make use of information about the Hessian to improve convergence.
+
+---
+class: middle
+
+We will cover three methods:
+
+- Trust Region
+- BFGS; Broyden-Fletcher-Goldfarb-Shanno
+- L-BFGS or limited-memory BFGS
+
+---
+class: middle
+
+This is a large and complex topic.
+
+We will only cover the main ideas to give you a general sense of how these methods work.
+
+---
+class: middle
+
+Trust-region methods start from a quadratic approximation of the loss function.
+
+To follow the standard notations in the field, we uses
+
+$$g_k = \nabla l(x_k)$$
+
+$$B_k = \nabla^2 l(x_k)$$
+
+---
+class: middle
+
+$$ l(x_k + p) = l(x_k) + g_k^T p + \frac{1}{2} p^T B_k p $$
+
+---
+class: middle
+
+The minimum of that approximation is given by Newton's point:
+
+$$ p = - B_k^{-1} g_k $$
+
+However, $p$ in some cases may be too large.
+
+---
+class: middle
+
+If $p$ is too large, the quadratic approximation may no longer be a good approximation of $l$.
+
+So we need to limit the size of the step $p$ we take.
+
+---
+class: middle
+
+![:width 80%](trust_region.png)
+
+---
+class: middle
+
+Mathematically the problem we want to solve is:
+
+$$ p^* = \text{argmin}_p \; g_k^T p + \frac{1}{2} p^T B_k p $$
+
+subject to
+
+$$ \Vert p^* \Vert \le \Delta $$
+
+---
+class: middle
+
+The simplest method to fund an approximate solution is the Cauchy point.
+
+This is simply a point in the direction of the gradient that minimizes
+
+$$ p^* = \text{argmin}_p \; g_k^T p + \frac{1}{2} p^T B_k p $$
+
+---
+class: middle
+
+![:width 80%](cauchy_point.png)
+
+---
+class: middle
+
+Although we did use the 2nd order approximation to estimate the Cauchy point, we are still following the gradient
+vector.
+
+---
+class: middle
+
+Is it possible to find a better approximation of
+
+$$ p^* = \text{argmin}_p \; g_k^T p + \frac{1}{2} p^T B_k p $$
+
+subject to
+
+$$ \Vert p^* \Vert \le \Delta $$
+
+---
+class: middle
+
+If $ \Vert p^* \Vert < \Delta $, then: $ p_k = - B_k^{-1} g_k $
+
+Assume now that $ \Vert p^* \Vert = \Delta $.
+
+---
+class: middle
+
+Using the method of Lagrange multipliers, we find that at the optimum, the gradient of the approximate loss function:
+
+$$ g_k^T + B_k p^* $$
+
+is parallel to the gradient of the constraint:
+
+$$ p^* $$
+
+---
+class: middle
+
+![:width 80%](optimal_step.png)
+
+---
+class: middle
+
+So there is a $\lambda$ such that:
+
+$$g\_k + B\_k p^\* = \lambda p^\*$$
+
+$$p^* = - (B\_k - \lambda I)^{-1} g\_k$$
+
+---
+class: middle
+
+Use the eigendecomposition of $B$: $B = Q \Lambda Q^T$.
+
+$$p^* = - (B\_k - \lambda I)^{-1} g\_k$$
+
+$$ p^* = - \sum_j \frac{q_j^T g_k}{\lambda_j - \lambda} q_j $$
+
+---
+class: middle
+
+We look for $\lambda$ such that $\Vert p^* \Vert_2 = \Delta$. 
+
+We get:
+
+$$ \sum_j \Big( \frac{q_j^T g_k}{\lambda_j - \lambda} \Big)^2 = \Delta^2 $$
+
+---
+class: middle
+
+Although complicated, this equation can be solved.
+
+The solution process is facilitated by the fact that $\lambda$ is simply a real number.
+
+---
+class: middle
+
+[scipy options](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html)
+
+- dogleg
+- trust-exact
+- trust-ncg
+- trust-krylov
+
+---
+class: middle
+
+[dogleg](https://docs.scipy.org/doc/scipy/reference/optimize.minimize-dogleg.html)
+
+Dog-leg method.
+
+Interpolation between Cauchy-point and Newton's point
+
+---
+class: middle
+
+[trust-exact](https://docs.scipy.org/doc/scipy/reference/optimize.minimize-trustexact.html)
+
+Exact solution of the trust region subproblem
+
+---
+class: middle
+
+[trust-ncg](https://docs.scipy.org/doc/scipy/reference/optimize.minimize-trustncg.html)
+
+Conjugate Gradient iterative solution
+
+It does not require the eigendecomposition of the Hessian.
+
+Only matrix-vector products with $B_k$ are required.
+
+---
+class: middle
+
+[trust-krylov](https://docs.scipy.org/doc/scipy/reference/optimize.minimize-trustkrylov.html)
+
+Similar to `trust-ncg`. Only matrix-vector products with $B_k$ are required.
+
+The Lanczos method is used instead of the Conjugate Gradient.
+
+The method is slightly more expensive but is more accurate and may converge faster.
+
+---
+class: middle
+
+BFGS
+
+This is one of the most efficient optimizers.
+
+It belongs to the class of quasi-Newton methods.
+
+Instead of computing the Hessian exactly (expensive), we use an approximation.
+
+---
+class: middle
+
+The method is ingenious.
+
+Assume we have multiple evaluations of the gradient (e.g., one evaluation per step).
+
+We know that: $\nabla^2 l \cdot p \approx \nabla l(x+p) - \nabla l(x)$
+
+---
+class: middle
+
+This can be used to progressively approximate $\nabla^2 l$.
+
+---
+class: middle
+
+ Example: pick $p = e_i$. Then:
+
+$$\nabla^2 l \cdot e_i = \nabla^2 l[:,i] \approx \nabla l(x+e_i) - \nabla l(x)$$
+
+We get column $i$ of the Hessian matrix.
+
+---
+class: middle
+
+We can gain information about $\nabla^2 l$ from differences like
+
+$$\nabla l(x+p) - \nabla l(x)$$
+
+Let's use this insight to build an algorithm to approximate $\nabla^2 l$.
+
+---
+class: middle
+
+$$x_{k+1} = x_k + \alpha_k p_k$$
+
+$$\nabla f_{k+1} \approx \nabla f_k + \nabla^2 l \cdot (\alpha_k p_k)$$
+
+---
+class: middle
+
+Define:
+
+$$s\_k = x_{k+1} - x_k = \alpha_k p_k$$
+
+$$y\_k = \nabla f_{k+1} - \nabla f_k$$
+
+---
+class: middle
+
+$$\nabla f_{k+1} \approx \nabla f_k + \nabla^2 l \cdot s_k$$
+
+$B\_{k+1} \approx \nabla^2 l_{k+1}$
+
+Secant equation: 
+
+$$B_{k+1} s_k = y_k$$
+
+---
+class: middle
+
+But recall that Newton's step is approximately:
+
+$$ - B_k^{-1} g_k $$
+
+So instead of working with the Hessian $B_k$, it's more efficient to work directly with its inverse $H_k = B_k^{-1}$.
+
+---
+class: middle
+
+The secant equation becomes:
+
+$B_{k+1} s_k = y_k$ &rarr;
+
+$$H_{k+1} y_k = s_k$$
+
+---
+class: middle
+
+How can we use this secant equation to approximate $[\nabla^2 f]^{-1}$ ?
+
+---
+class: middle
+
+Assume we have some approximation at step $k$, $H_k$.
+
+We want to use 
+
+$$H_{k+1} y_k = s_k$$
+
+to find a better approximation $H_{k+1}$.
+
+---
+class: middle
+
+There are many $H_{k+1}$ that will solve the secant equation.
+
+In BFGS we solve for
+
+$$\min_H \Vert H - H_k \Vert \text{ (with some suitable norm)} $$
+
+subject to $H=H^T$ and $H_{k+1} y_k = s_k$.
+
+---
+class: middle
+
+BFGS solution is:
+
+$$H_{k+1} = (I-\rho_k s_k y_k^T) H_k (I-\rho_k y_k s_k^T) + \rho_k s_k s_k^T$$
+
+$$\rho_k = \frac{1}{y_k^T s_k}$$
+
+---
+class: middle
+
+Let's check that it is correct. 
+
+---
+class: middle
+
+$$H_{k+1} = (I-\rho_k s_k y_k^T) H_k (I-\rho_k y_k s_k^T) + \rho_k s_k s_k^T$$
+
+$H_{k+1} y_k = s_k$. Multiply to the right by $y_k$:
+
+$$\rho_k s_k s_k^T y_k = \frac{s_k^T y_k}{y_k^T s_k} s_k = s_k$$
+
+$$(I-\rho_k y_k s_k^T) y_k = y_k - \frac{s_k^T y_k}{y_k^T s_k} y_k = 0$$
+
+---
+class: middle
+
+$I-\rho_k y_k s_k^T$ is a projection onto $\\{s_k\\}^\perp$ along $y_k$.
+
+$$P = I-\rho_k y_k s_k^T$$
+
+$$P^2 = P$$
+
+---
+class: middle
+
+![:width 40%](bfgs_proj.png)
+
+---
+class: middle
+
+~~~Python
+while &Vert;f&Vert; > eps:
+    pk = -Hk*g[k]
+    x[k+1] = x[k] + ak*pk # ak is obtained using a line search
+    sk = x[k+1] - x[k]
+    yk = g[k+1] - g[k]
+    Update Hk using BFGS equation
+    k &larr; k+1
+~~~
+
+---
+class: middle
+
+[scipy optimize BFGS](https://docs.scipy.org/doc/scipy/reference/optimize.minimize-bfgs.html) implementation
+
+---
+class: middle
+
+L-BFGS
+
+BFGS can be expensive if the space is high-dimensional.
+
+This cost can be reduced (with an approximation) using L-BFGS.
+
+---
+class: middle
+
+$$H_{k+1} y_k = s_k$$
+
+$$H_{k+1} = (I-\rho_k s_k y_k^T) H_k (I-\rho_k y_k s_k^T) + \rho_k s_k s_k^T$$
+
+---
+class: middle
+
+Denote $V_k = I-\rho_k y_k s_k^T$.
+
+$$H_{k+1} = V_k^T H_k V_k + \rho_k s_k s_k^T$$
+
+---
+class: middle
+
+Compute $H_{k+1} q$:
+
+~~~Python
+a[k] = rho[k]*s[k].T*q
+q = q - a[k]*y[k] # Product with Vk
+r = H[k]*q
+b = rho[k]*y[k].T*r # Part of product with Vk^T
+r = r - s[k]*b + s[k]*a[k]
+~~~
+
+---
+class: middle
+
+Then repeat the same process to compute $H_k q$.
+
+Unroll the recurrence $m$ times.
+
+$H\_{k+1}$ &rarr; $H\_k$ &rarr; &hellip; &rarr; $H\_{k-m+1}$
+
+---
+class: middle
+
+~~~Python
+for i = range(k, k-m, -1):
+    a[i] = rho[i]*s[i].T*q
+    q = q - a[i]*y[i]
+r = H[k-m+1]*q
+for i = range(k-m+1, k+1, 1):
+    b = rho[i]*y[i].T*r
+    r = r - s[i]*b + s[i]*a[i]
+~~~
+
+---
+class: middle
+
+The catch is that we don't have `H[k-m+1]`.
+
+In L-BFGS, we approximate this term by:
+
+$$H_{k-m+1} \approx \gamma_k I$$
+
+$$\gamma\_k = \frac{s\_{k-1}^T y\_{k-1}}{y\_{k-1}^T y\_{k-1}}$$
+
+---
+class: middle
+
+$$\gamma\_k = \frac{s\_{k-1}^T y\_{k-1}}{y\_{k-1}^T y\_{k-1}}$$
+
+$\gamma\_k$ tries to approximate the norm of $H\_k$. 
+
+It's a crude approximation but since it is used to approximate a term far in the past, $H\_{k-m+1}$, it often works well.
+
+---
+class: middle
+
+The cost of L-BFGS is O($nm$) if the Hessian has size $n.$
+
+BFGS has cost O($n^2$).
+
+The cost of L-BFGS is much less than BFGS if $m \ll n.$
+
+---
+class: middle
+
+[L-BFGS](https://docs.scipy.org/doc/scipy/reference/optimize.minimize-lbfgsb.html) in scipy optimize.
+
+---
+class: middle
+
+Let's see how this works in practice.
+
+---
+class: middle
+
+Physics-informed training task.
+
+Laplace equation:
+
+$$ \nabla \cdot (\kappa_\theta(u) \nabla u) = f(x) $$
+
+Learn $\kappa_\theta(u)$ using a DNN.
+
+---
+class: middle
+
+![:width 70%](bfgs_b1.png)
+
+---
+class: middle
+
+![:width 70%](bfgs_b2.png)
+
+---
+class: middle
+
+![:width 70%](bfgs_b3.png)
+
+---
+class: middle
+
+But BFGS and L-BFGS require less flops.
+
+Best method will depend on the application and many factors: accuracy, stiffness, cost of computing the Hessian, ...
