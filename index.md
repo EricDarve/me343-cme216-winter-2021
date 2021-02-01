@@ -81,6 +81,24 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - [Reading Assignment 4](Reading Assignments/deep_learning)
 - [Homework 2](Homework/HW2/HW2 Questions)
 
+*Module 3-Part 2*
+
+- [Saddle point demo notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/Saddle%20points.ipynb)
+- [ADAGRAD notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/Adagrad.ipynb)
+- 3.11 Stochastic Gradient Descent; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3f76c7ec-a601-4d4a-8860-abb30137998c); [Slides](Slides/Deep_Learning/Stochastic_Gradient_Descent.pdf)
+- 3.12 Saddle points; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c1fda57c-2c84-454b-b5c6-abb3014bb0d3); [Slides](Slides/Deep_Learning/Saddle_points.pdf)
+- 3.13 Momentum; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ae3feaf2-5884-42c5-aa01-abb3016db5f9); [Slides](Slides/Deep_Learning/Momentum.pdf)
+- 3.14 Adagrad; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9c74557c-832b-41d7-8cfd-abb30189fc85); [Slides](Slides/Deep_Learning/Adagrad.pdf)
+- 3.15 RMSProp and Adam; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8986cd22-6e69-4733-976c-abb4000dc637); [Slides](Slides/Deep_Learning/RMSProp_and_Adam.pdf)
+- [Reading Assignment 5](Reading Assignments/optimization)
+
+*Module 3-Part 3*
+
+- 3.16 Trust region; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b1e21c0a-e691-4c37-b7d0-acc00185514a); [Slides](Slides/Deep_Learning/Trust_region.pdf)
+- 3.17 BFGS; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=36ab1ffb-32cb-4b2e-8ffb-acc1000e6e66); [Slides](Slides/Deep_Learning/BFGS.pdf)
+- 3.18 L-BFGS; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ff39ec4f-ad00-452e-ba18-acc1001b6554); [Slides](Slides/Deep_Learning/LBFGS.pdf)
+- [Reading Assignment 6](Reading Assignments/second_order_optimization)
+
 ## Reading material
 
 ###  Books
@@ -88,6 +106,7 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - [Deep learning](http://www.deeplearningbook.org/) by Ian Goodfellow and Yoshua Bengio and Aaron Courville
 - [Deep learning with Python](https://searchworks.stanford.edu/view/13216992) by Fran&ccedil;ois Chollet
 - [Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow : concepts, tools, and techniques to build intelligent systems](https://searchworks.stanford.edu/view/13489354) by Aur&eacute;lien G&eacute;ron
+- [Numerical optimization](https://searchworks.stanford.edu/view/6630751) by Jorge Nocedal and Stephen Wright
 - [Fundamentals of deep learning : designing next-generation machine intelligence algorithms](https://searchworks.stanford.edu/view/12112250) by Nikhil Buduma
 - [Elements of statistical learning](https://searchworks.stanford.edu/view/12458005) by Trevor Hastie, Robert Tibshirani, and Jerome Friedman
 - [Deep learning: an introduction for applied mathematicians](https://epubs.siam.org/doi/pdf/10.1137/18M1165748) by Catherine Higham and Desmond Higham

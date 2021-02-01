@@ -5,7 +5,7 @@ title: Syllabus
 
 This is a 3-unit class. This course is offered only online with mixed synchronous/asynchronous engagement.
 
-Topics to be be covered include:
+Topics to be covered include:
 
 - Linear and kernel support vector machines
 - Deep learning, deep neural networks
