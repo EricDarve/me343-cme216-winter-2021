@@ -1,0 +1,231 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Winter 2021
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+The optimizers we have seen until now belong to the class of first-order optimizers.
+
+This is because to a large extent they only rely on the gradient of the loss function.
+
+---
+class: middle
+
+For physics-informed learning, we are often interested in converging the loss function to very small values.
+
+This is because high-accuracy is required for the solution and the loss function is often ill-conditioned.
+
+---
+class: middle
+
+For this reason, optimizers that have improved convergence properties are desirable.
+
+Second order optimizers make use of information about the Hessian to improve convergence.
+
+---
+class: middle
+
+We will cover three methods:
+
+- Trust Region
+- BFGS; Broyden-Fletcher-Goldfarb-Shanno
+- L-BFGS or limited-memory BFGS
+
+---
+class: middle
+
+This is a large and complex topic.
+
+We will only cover the main ideas to give you a general sense of how these methods work.
+
+---
+class: middle
+
+Trust-region methods start from a quadratic approximation of the loss function.
+
+To follow the standard notations in the field, we use
+
+$$g_k = \nabla l(x_k)$$
+
+$$B_k = \nabla^2 l(x_k)$$
+
+---
+class: middle
+
+$$ l(x_k + p) \approx l(x_k) + g_k^T p + \frac{1}{2} p^T B_k p $$
+
+---
+class: middle
+
+The minimum of that approximation is given by Newton's point:
+
+$$ p = - B_k^{-1} g_k $$
+
+However, $p$ in some cases may be too large.
+
+---
+class: middle
+
+If $p$ is too large, the quadratic approximation may no longer be a good approximation of $l$.
+
+So we need to limit the size of the step $p$ we take.
+
+---
+class: middle
+
+![:width 70%](trust_region.png)
+
+---
+class: middle
+
+Mathematically the problem we want to solve is:
+
+$$ p^* = \text{argmin}_p \; g_k^T p + \frac{1}{2} p^T B_k p $$
+
+subject to
+
+$$ \Vert p^* \Vert \le \Delta $$
+
+---
+class: middle
+
+The simplest method to find an approximate solution is the Cauchy point.
+
+This is simply a point in the direction of the gradient that minimizes
+
+$$ p^* = \text{argmin}_p \; g_k^T p + \frac{1}{2} p^T B_k p $$
+
+---
+class: middle
+
+![:width 70%](cauchy_point.png)
+
+---
+class: middle
+
+Although we did use the 2nd order approximation to estimate the Cauchy point, we are still following the gradient
+vector.
+
+---
+class: middle
+
+Is it possible to find a better approximation of
+
+$$ p^* = \text{argmin}_p \; g_k^T p + \frac{1}{2} p^T B_k p $$
+
+subject to
+
+$$ \Vert p^* \Vert \le \Delta $$
+
+---
+class: middle
+
+If $ \Vert p^\* \Vert < \Delta $, then: $ p\_k=- B\_k^{-1} g\_k $ 
+
+Assume now that $ \Vert p^\* \Vert = \Delta $.
+
+---
+class: middle
+
+Using the method of Lagrange multipliers, we find that at the optimum, the gradient of the approximate loss function: $$ g\_k + B\_k p^\* $$ is parallel to the gradient of the constraint: $$ p^\* $$ 
+
+---
+class: middle 
+
+![:width 70%](optimal_step.png) 
+
+---
+class: middle 
+
+So there is a $\lambda$ such that: 
+
+$$g\_k + B\_k p^\*=\lambda p^\*$$
+
+$$p^*=- (B\_k - \lambda I)^{-1} g\_k$$ 
+
+---
+class: middle
+
+Use the eigendecomposition of $B_k$: $B_k=Q \Lambda Q^T$.
+
+$$p^\* = - (B\_k - \lambda I)^{-1} g\_k$$ 
+
+$$ p^\*=- \sum_j \frac{q_j^T g_k}{\lambda_j - \lambda} q_j $$
+
+---
+class: middle 
+
+We look for $\lambda$ such that $\Vert p^* \Vert_2^2 = \Delta^2$. 
+
+We get: 
+
+$$ \sum_j \Big( \frac{q_j^T g_k}{\lambda_j - \lambda} \Big)^2=\Delta^2 $$ 
+
+---
+class: middle 
+
+Although complicated, this equation can be solved.
+
+The solution process is facilitated by the fact that $\lambda$ is simply a real number. 
+
+---
+class: middle 
+
+[scipy implementations](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html) 
+
+- dogleg 
+- trust-exact 
+- trust-ncg 
+- trust-krylov 
+
+---
+class: middle
+
+[dogleg](https://docs.scipy.org/doc/scipy/reference/optimize.minimize-dogleg.html) 
+
+Dog-leg method. 
+
+Interpolation between Cauchy-point and Newton's point 
+
+---
+class: middle
+
+[trust-exact](https://docs.scipy.org/doc/scipy/reference/optimize.minimize-trustexact.html) 
+
+Exact solution of the trust region subproblem 
+
+---
+class: middle
+
+[trust-ncg](https://docs.scipy.org/doc/scipy/reference/optimize.minimize-trustncg.html) 
+
+Conjugate Gradient iterative solution 
+
+It does not require the eigendecomposition of the Hessian. 
+
+Only matrix-vector products with $B_k$ are required. 
+
+---
+class: middle
+
+[trust-krylov](https://docs.scipy.org/doc/scipy/reference/optimize.minimize-trustkrylov.html) 
+
+Similar to `trust-ncg`. Only matrix-vector products with $B_k$ are required. 
+
+The Lanczos method is used instead of the Conjugate Gradient. 
+
+The method is slightly more expensive but is more accurate and may converge faster.
+
+---
+class: middle
+
+For more information see [Numerical Optimization](https://www.amazon.com/Numerical-Optimization-Operations-Financial-Engineering/dp/0387303030/ref=sr_1_1?crid=36S4G2AJP8JV7&dchild=1&keywords=nocedal+wright&qid=1612048642&sprefix=nocedal%2Caps%2C234&sr=8-1), by Nocedal and Wright, Springer, 2nd edition

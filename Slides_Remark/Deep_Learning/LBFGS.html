@@ -1,0 +1,150 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Winter 2021
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+# L-BFGS
+
+BFGS can be expensive if the space is high-dimensional.
+
+This cost can be reduced (with an approximation) using L-BFGS.
+
+---
+class: middle
+
+$$H_{k+1} y_k = s_k$$
+
+$$H_{k+1} = (I-\rho_k s_k y_k^T) H_k (I-\rho_k y_k s_k^T) + \rho_k s_k s_k^T$$
+
+---
+class: middle
+
+Denote $V_k = I-\rho_k y_k s_k^T$.
+
+$$H_{k+1} = V_k^T H_k V_k + \rho_k s_k s_k^T$$
+
+---
+class: middle
+
+Compute $H_{k+1} q$:
+
+~~~Python
+a[k] = rho[k]*s[k].T*q
+q = q - a[k]*y[k] # Product with Vk
+r = H[k]*q
+b = rho[k]*y[k].T*r # Part of product with Vk^T
+r = r - s[k]*b + s[k]*a[k]
+~~~
+
+$$H_{k+1} = (I-\rho_k s_k y_k^T) H_k (I-\rho_k y_k s_k^T) + \rho_k s_k s_k^T$$
+
+---
+class: middle
+
+Then repeat the same process to compute $H_k q$.
+
+Unroll the recurrence $m$ times.
+
+$H\_{k+1}$ &rarr; $H\_k$ &rarr; &hellip; &rarr; $H\_{k-m+1}$
+
+---
+class: middle
+
+~~~Python
+for i = range(k, k-m, -1):
+    a[i] = rho[i]*s[i].T*q
+    q = q - a[i]*y[i]
+r = H[k-m+1]*q
+for i = range(k-m+1, k+1, 1):
+    b = rho[i]*y[i].T*r
+    r = r - s[i]*b + s[i]*a[i]
+~~~
+
+---
+class: middle
+
+The catch is that we don't have `H[k-m+1]`.
+
+In L-BFGS, we approximate this term by:
+
+$$H\_{k-m+1} \approx \gamma\_{k+1} I$$
+
+$$\gamma\_{k+1} = \frac{s\_k^T y\_k}{y\_k^T y\_k}$$
+
+---
+class: middle
+
+$$\gamma\_{k+1} = \frac{s\_k^T y\_k}{y\_k^T y\_k}$$
+
+$\gamma\_{k+1}$ tries to approximate the norm of $H\_{k+1}$.
+
+It's a crude approximation but since it is used to approximate a term far in the past, $H\_{k-m+1}$, it often works well.
+
+---
+class: middle
+
+The cost of L-BFGS is O($nm$) if the Hessian has size $n.$
+
+BFGS has cost O($n^2$). 
+
+(Exact Trust Region has cost O($n^3$).)
+
+The cost of L-BFGS is much less than BFGS if $m \ll n.$
+
+---
+class: middle
+
+[L-BFGS](https://docs.scipy.org/doc/scipy/reference/optimize.minimize-lbfgsb.html) in scipy optimize.
+
+---
+class: middle
+
+Let's see how this works in practice.
+
+---
+class: middle
+
+Physics-informed training task.
+
+Poisson equation:
+
+$$ \nabla \cdot (\kappa_\theta(u) \nabla u) = f(x) $$
+
+Learn $\kappa_\theta(u)$ using a DNN.
+
+---
+class: middle
+
+![:width 70%](bfgs_b1.png)
+
+---
+class: middle
+
+![:width 70%](bfgs_b2.png)
+
+---
+class: middle
+
+![:width 70%](bfgs_b3.png)
+
+---
+class: middle
+
+But BFGS and L-BFGS require less flops.
+
+Best method will depend on the application and many factors: accuracy, stiffness, cost of computing the Hessian, ...
+
+---
+class: middle
+
+For more information see [Numerical Optimization](https://www.amazon.com/Numerical-Optimization-Operations-Financial-Engineering/dp/0387303030/ref=sr_1_1?crid=36S4G2AJP8JV7&dchild=1&keywords=nocedal+wright&qid=1612048642&sprefix=nocedal%2Caps%2C234&sr=8-1), by Nocedal and Wright, Springer, 2nd edition
