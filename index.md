@@ -69,7 +69,7 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 
 - [Python notebook DNN regularization demo](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/DNN_regularization.ipynb)
 - 3.1 Loss function; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=12b616b7-cd88-4a82-9e17-abaa018b54bf); [Slides](Slides/Deep_Learning/Loss_function.pdf)
-- 3.2 Cross-entropy; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=dd267b8b-074f-498f-97ac-abab00064d2c); [Slides](Slides/Deep_Learning/Cross_entropy.pdf) 
+- 3.2 Cross-entropy; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=dd267b8b-074f-498f-97ac-abab00064d2c); [Slides](Slides/Deep_Learning/Cross_entropy.pdf)
 - 3.3 TensorFlow loss functions; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9efdcf32-d4c0-47b1-a6dd-abab011f9ac6); [Slides](Slides/Deep_Learning/Tensorflow_loss_functions.pdf)
 - 3.4 Backpropagation; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1d4539ca-dda9-4b0f-96fa-abab012469a4); [Slides](Slides/Deep_Learning/Backpropagation.pdf)
 - 3.5 Backpropagation formula; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=19daa234-19fd-4e3b-8d38-abab0155f6db); [Slides](Slides/Deep_Learning/Backpropagation_formula.pdf)
@@ -98,6 +98,7 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - 3.17 BFGS; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=36ab1ffb-32cb-4b2e-8ffb-acc1000e6e66); [Slides](Slides/Deep_Learning/BFGS.pdf)
 - 3.18 L-BFGS; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ff39ec4f-ad00-452e-ba18-acc1001b6554); [Slides](Slides/Deep_Learning/LBFGS.pdf)
 - [Reading Assignment 6](Reading Assignments/second_order_optimization)
+- [Homework 3](Homework/HW3/HW3 Questions)
 
 ## Reading material
 
