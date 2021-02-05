@@ -99,6 +99,7 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - 3.17 BFGS; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=36ab1ffb-32cb-4b2e-8ffb-acc1000e6e66); [Slides](Slides/Deep_Learning/BFGS.pdf)
 - 3.18 L-BFGS; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ff39ec4f-ad00-452e-ba18-acc1001b6554); [Slides](Slides/Deep_Learning/LBFGS.pdf)
 - [Reading Assignment 6](Reading Assignments/second_order_optimization)
+- [Homework 4](Homework/HW4/HW4 Questions)
 
 ### Final project
 
