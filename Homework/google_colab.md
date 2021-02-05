@@ -13,7 +13,7 @@ To get setup, go to
 
 There you will be able to upload your Python starter code and the data files required to run the homework assignment. Then open your notebook using Google Colab. 
 
-There is a short online tutorial:
+There is a short tutorial online:
 
 [https://colab.research.google.com/notebooks/intro.ipynb](https://colab.research.google.com/notebooks/intro.ipynb)
 
