@@ -17,6 +17,8 @@ There is a short online tutorial:
 
 [https://colab.research.google.com/notebooks/intro.ipynb](https://colab.research.google.com/notebooks/intro.ipynb)
 
+[Introduction to Colab](https://www.youtube.com/watch?v=inN8seMm7UI) video
+
 Once your file are in the Google Colab directory (which is the same as `"My Drive/Colab Notebooks"` in Google Drive), you need to run a few commands to be able to access these files from within the notebook.
 
 To do so, add the following near the top of your notebook:
