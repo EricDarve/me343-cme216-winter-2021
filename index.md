@@ -23,6 +23,8 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 
 ### Python tutorials
 
+- [Python setup guide](Python Setup Guide)
+- [Google colab guide](Homework/google_colab)
 - [Introduction to Python notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/Python/Python%20basics.ipynb)
 - [Numpy demo notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/Python/Numpy%20tutorial.ipynb)
 - [Python inheritance demo notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/Python/Inheritance%20demo.ipynb)
