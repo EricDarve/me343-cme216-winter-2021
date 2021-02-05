@@ -67,11 +67,7 @@ We will inspect how your trained model performs for some special inputs. Points 
 
 $$x_{i,j} = b_i u + a_j u^o_i$$ 
 
-$b_i$ and $a_j$ are scalars, $u^o_i$ are vectors orthogonal to $u$. We vary $a_j$ to produce different samples along the line of direction $u^o_i$. In the starter code 
-
-```x_val_otg[i,j,:]``` 
-
-represents sample $j$ ($j=$ 1,...,128) along line $i$ ($i=$ 1,...,4). 
+$b_i$ and $a_j$ are scalars, $u^o_i$ are vectors orthogonal to $u$.
 
 {:start="2"}
 2. For the values of $x_{i,j}$ given above, discuss the value of the ground-truth output
@@ -79,6 +75,12 @@ represents sample $j$ ($j=$ 1,...,128) along line $i$ ($i=$ 1,...,4).
 $$y=\exp \Big(-\frac{(u^T x_{i,j})^2}{d} \Big)$$ 
 
 as you vary $b_i$ and $a_j$.
+
+We vary $a_j$ to produce different samples along the line of direction $u^o_i$. In the starter code 
+
+```x_val_otg[i,j,:]``` 
+
+represents sample $j$ ($j=$ 1,...,128) along line $i$ ($i=$ 1,...,4). 
 
 {:start="3"}
 3. For each line (varying `j`), plot both the ground-truth and predicted (by your trained model) output value $y$ vs the $j$ index. You will get 4 lines, one line per index $i$. In the figure, clearly mark which lines are predictions/ground-truths using a matplotlib legend. Include plots of all lines in one figure. Example code for plotting is provided in the starter code.
