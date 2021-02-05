@@ -98,7 +98,9 @@ The setup is similar to the previous question. These values are stored in
 
 Submission instructions: turn in the code in your notebook for plotting, and the plot with the ground-truth and predicted output values $y$ of all 4 lines. In addition, comment on your observations.
 
-The training set that was provided corresponds to random points that are normally distributed with standard deviation 1 and mean 0 (see code to initialize `x_train` and `x_val`). As a result we cannot expect the DNN to be accurate when $x$ is far from the origin. You can tune this by adjusting the last argument in
+The training set that was provided corresponds to random points that are normally distributed with standard deviation 1 and mean 0 (see code to initialize `x_train`). As a result we cannot expect the DNN to be accurate when $x$ is far from the origin. 
+
+You can tune the points `x_val_prl[i,j,:]` by adjusting the last argument in
 
 ```uniform_distribution(j,n_sample_plot,5)```
 
