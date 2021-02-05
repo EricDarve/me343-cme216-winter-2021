@@ -91,6 +91,7 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - 3.14 Adagrad; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9c74557c-832b-41d7-8cfd-abb30189fc85); [Slides](Slides/Deep_Learning/Adagrad.pdf)
 - 3.15 RMSProp and Adam; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8986cd22-6e69-4733-976c-abb4000dc637); [Slides](Slides/Deep_Learning/RMSProp_and_Adam.pdf)
 - [Reading Assignment 5](Reading Assignments/optimization)
+- [Homework 3](Homework/HW3/HW3 Questions)
 
 *Module 3-Part 3*
 
@@ -98,7 +99,6 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - 3.17 BFGS; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=36ab1ffb-32cb-4b2e-8ffb-acc1000e6e66); [Slides](Slides/Deep_Learning/BFGS.pdf)
 - 3.18 L-BFGS; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ff39ec4f-ad00-452e-ba18-acc1001b6554); [Slides](Slides/Deep_Learning/LBFGS.pdf)
 - [Reading Assignment 6](Reading Assignments/second_order_optimization)
-- [Homework 3](Homework/HW3/HW3 Questions)
 
 ## Reading material
 
