@@ -81,11 +81,24 @@ Output: dy/dx =  tf.Tensor(7.0, shape=(), dtype=float32)
 ---
 class: middle
 
+```Python
+x1 = tf.Variable(1.0)
+x2 = tf.Variable(2.0)
+
+with tf.GradientTape() as g:
+    y = x1 + x2**2
+    
+dy_dx1, dy_dx2 = g.gradient(y, [x1,x2])
+```
+
+---
+class: middle
+
 We can differentiate with respect to multiple variables.
 
 Take
 
-$y = x_1 + x_2^2$, $x_1 = 1$, $x_2 = 2$
+$y = x_1 + x_2^2$, &ensp; $x_1 = 1$, &ensp; $x_2 = 2$
 
 ---
 class: middle
@@ -126,11 +139,11 @@ It's important to distinguish between `tf.Variable` and constant values which ar
 class: middle
 
 ```Python
-# Standard trainable variable
+# Independent variable
 x0 = tf.Variable(2.0, name='x0')
 # A tf.constant is not a variable
 c1 = tf.constant(-2.0, name='c1')
-# Not trainable because we specify trainable=False
+# Constant because we specify trainable=False
 c2 = tf.Variable(-1.0, name='c2', trainable=False)
 # variable + tensor returns a tensor. So c3 is not a tf.Variable.
 c3 = tf.Variable(1.0, name='c3') + 1.0
@@ -160,7 +173,7 @@ class: middle
 Output
 
 ```Python
-tf.Tensor(8.0, shape=(), dtype=float32)
+tf.Tensor(0.0, shape=(), dtype=float32)
 None
 None
 None
@@ -181,7 +194,7 @@ Consider
 x = tf.constant(-3.)
 
 with tf.GradientTape() as g:
-    y = tf.math.reduce_sum(x**4)
+    y = x**4
 
 print(g.gradient(y, x))
 ```
@@ -207,7 +220,7 @@ x = tf.constant(-3.)
 
 with tf.GradientTape() as g:
     g.watch(x)
-    y = tf.math.reduce_sum(x**4)
+    y = x**4
 
 print(g.gradient(y, x))  # 4x^3 = 4 27 = 108
 
@@ -260,7 +273,7 @@ x = tf.Variable(-1.)
 with tf.GradientTape() as g:
     y = [2*x,x**4]
 
-print([y[i].numpy() for i in range(2)]) # [2,1]
+print([y[i].numpy() for i in range(2)]) # [-2,1]
 print(g.gradient(y, x))  # 2 + 4x^3 = 2 - 4 = -2
 Out:
 [-2.0, 1.0]
@@ -272,7 +285,7 @@ class: middle
 
 Let's consider a more complicated example where we want to differentiate two different functions.
 
-Moreover the input will be a vector of `tf.Variable`.
+Moreover, the input will be a vector of `tf.Variable`.
 
 ---
 class: middle
