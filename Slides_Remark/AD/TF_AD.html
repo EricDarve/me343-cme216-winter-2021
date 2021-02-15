@@ -82,14 +82,19 @@ Output: dy/dx =  tf.Tensor(7.0, shape=(), dtype=float32)
 class: middle
 
 ```Python
-x1 = tf.Variable(1.0)
-x2 = tf.Variable(2.0)
-
+x = tf.Variable(1.0)
 with tf.GradientTape() as g:
-    y = x1 + x2**2
-    
-dy_dx1, dy_dx2 = g.gradient(y, [x1,x2])
+    y = 4*x + x**3
+
+dy_dx = g.gradient(y, x)
 ```
+
+---
+class: middle
+
+All the Python code in these slides can be found on the github repository:
+
+[TensorFlow AD.ipynb](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/TensorFlow%20AD.ipynb)
 
 ---
 class: middle
@@ -222,7 +227,7 @@ with tf.GradientTape() as g:
     g.watch(x)
     y = x**4
 
-print(g.gradient(y, x))  # 4x^3 = 4 27 = 108
+print(g.gradient(y, x))  # 4x^3 = 4 (-27) = -108
 
 Out: tf.Tensor(-108.0, shape=(), dtype=float32)
 ```
@@ -368,10 +373,10 @@ class: middle
 --
 
 `z[0]=4*x[0]**2; z[1]=4*x[1]**2` &ensp; with <br/>
-`x = tf.Variable([1, -3.0])`
+`x = tf.Variable([1., -3.])`
 
 `g.gradient(z, x)`: `[8*x[0] + 0., 0. + 8*x[1]]`<br/>
-which is `[8., -24]`
+which is `[8., -24.]`
 
 ```Python
 Out: tf.Tensor([  8. -24.], shape=(2,), dtype=float32)
