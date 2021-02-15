@@ -194,6 +194,151 @@ def get_derivatives(self, x):
 ---
 class: middle
 
+ Example: solving
+
+$$ \triangle u = 2 - 5 \cos(2+y) $$
+
+Solution is:
+
+$$u(x,y) = x^2 + \cos(x + 2y) + x y$$
+
+---
+class: middle
+
+![:width 30%](piml_1.png)
+![:width 30%](piml_2.png)
+![:width 30%](piml_3.png)
+
+---
+class: middle
+
+Solving for $u(x,y)$ and $k(x,y)$.
+
+ PDE: $ \nabla \cdot ( k \nabla u ) = f $
+
+Exact value for $u$: $u(x,y) = x^2 + y^2$
+
+Exact value of $k$: $k = 1 + x^2$
+
+Exact value for $f = \nabla \cdot ( k \nabla u )$
+
+$$f = 8x^2 + 4$$
+
+---
+class: middle
+
+[Python notebook for 2D examples](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/PIML_advanced.ipynb)
+
+---
+class: middle
+
+```Python
+def __init__(self):
+    super(PI_u_k, self).__init__()
+    # Define all layers
+    self.dense_1 = tf.keras.layers.Dense(16,\
+                        activation=tf.keras.activations.tanh)
+    self.dense_2 = tf.keras.layers.Dense(16,\
+                        activation=tf.keras.activations.tanh)        
+    self.dense_3 = tf.keras.layers.Dense(2,\
+                        activation=tf.keras.activations.linear)
+```
+
+---
+class: middle
+
+```Python
+with tf.GradientTape(persistent=True) as g:
+    g.watch(x1)
+    g.watch(x2)            
+    with tf.GradientTape() as gg:
+        gg.watch(x1)
+        gg.watch(x2)
+        x = tf.stack([x1, x2], 1)                
+        z = self(x)
+        u, k = tf.split(z, num_or_size_splits=2, axis=1)
+    [u_x, u_y] = gg.gradient(u, [x1,x2])
+    u_x = tf.reshape( u_x, (x1.shape[0], 1) )
+    u_y = tf.reshape( u_y, (x2.shape[0], 1) )
+    k_ux = k * u_x
+    k_uy = k * u_y
+pde = g.gradient(k_ux,x1) + g.gradient(k_uy,x2)
+del g
+return u, k, u_x, u_y, pde
+```
+
+---
+class: middle
+
+See [notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/PIML_advanced.ipynb) for the complete code.
+
+---
+class: middle
+
+Loss contains 3 terms:
+
+1. $n\_\text{u}$ &emsp; &emsp; $(u(x\_i; \theta) - u\_i)^2$ 
+1. $n\_\text{k}$ &emsp; &emsp; $(k(x\_i; \theta) - k\_i)^2$ 
+1. $n\_\text{phys}$ &emsp; $(f - \nabla \cdot ( k \nabla u ))^2$ 
+
+---
+class: middle
+
+```Python
+def loss(self, X, Y):
+    # u data observation loss
+    u = self(X[0])[:,0]
+    # k data observation loss    
+    k = self(X[1])[:,1]
+    # PDE loss
+    _, _, _, _, pde = self.get_derivatives(X[2])
+    loss = self.loss_fun(Y[0], u)\
+            + self.loss_fun(Y[1], k)\
+            + 0.1 * self.loss_fun(Y[2], pde)
+    return loss
+```
+
+---
+class: middle
+
+$$f = \nabla \cdot ( k \nabla u )$$
+
+If $n\_\text{k} \gg n\_\text{u}$: solving for $u$ (forward problem).
+
+If $n\_\text{u} \gg n\_\text{k}$: solving for $k$ (inverse problem).
+
+If $n\_\text{u} \approx n\_\text{k}$: hybrid problem.
+
+---
+class: middle
+
+$n\_\text{k} \gg n\_\text{u}$: solving for $u$
+
+![:width 30%](piml_4_0.png)
+![:width 30%](piml_5_0.png)
+![:width 30%](piml_6_0.png)
+
+---
+class: middle
+
+$n\_\text{u} \gg n\_\text{k}$: solving for $k$
+
+![:width 30%](piml_7_1.png)
+![:width 30%](piml_8_1.png)
+![:width 30%](piml_9_1.png)
+
+---
+class: middle
+
+Physics error: $(f - \nabla \cdot ( k \nabla u ))^2$
+
+![:width 30%](piml_10_0.png)
+![:width 30%](piml_11_0.png)
+![:width 30%](piml_12_0.png)
+
+---
+class: middle
+
 # Final note
 
 PIML can be very useful to solve PDEs in high-dimension.
