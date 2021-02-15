@@ -1,0 +1,275 @@
+---
+layout: slides
+---
+
+class: center, middle
+
+# CME 216, ME 343 - Winter 2021
+
+## Eric Darve, ICME
+
+![:width 40%](../Stanford.jpg)
+
+---
+class: middle
+
+Let's apply the method of **automatic differentiation** to differentiate DNNs with respect to their input variable $x$.
+
+It's very simple now.
+
+---
+class: middle
+
+Build a model
+
+```Python
+class AD_Model(tf.keras.models.Model):
+    def __init__(self):
+        super(AD_Model, self).__init__()
+        self.dense_1 = layer_1(2)
+        self.dense_2 = layer_2(1)        
+
+    # Forward pass
+    def call(self, inputs):
+        x = self.dense_1(inputs)        
+        y = self.dense_2(x)
+        return y
+
+model = AD_Model()
+model.build((1,1))        
+```
+
+---
+class: middle
+
+Differentiate
+
+```Python
+x = reshape_2d( tf.linspace(-2.0, 2.0, 129) )
+
+with tf.GradientTape() as g:
+    g.watch(x)    
+    y = model(x)
+    
+dy_dx = g.gradient(y, x)
+```
+
+---
+class: middle
+
+
+.center[![:width 60%](pi_model.png)]
+
+---
+class: middle
+
+Let's build a simple ODE solver using DNNs
+
+$$ y'' = -4 \cos 2x, \quad y(0) = 1, \quad y'(0) = 0 $$
+
+Exact solution: $\cos 2x$
+
+---
+class: middle
+
+Build a model like before and add two functions:
+
+`get_derivatives`
+
+`loss`
+
+---
+class: middle
+
+```Python
+def get_derivatives(self, x_input):
+    x = tf.constant(x_input)
+    with tf.GradientTape() as g:
+        g.watch(x)
+        with tf.GradientTape() as gg:
+            gg.watch(x)
+            y = self(x)
+        y_x = gg.gradient(y,x)
+    y_xx = g.gradient(y_x,x)
+    return y, y_x, y_xx
+```
+
+---
+class: middle
+
+Second order derivatives are obtained by calling `gradient` twice. 
+
+Gradients can be nested as many times as needed to compute higher-order derivatives.
+
+---
+class: middle
+
+Our loss function is of the type:
+
+$$ \hspace{-5em} L = \sum\_{i=1}^{n\_y} (y(x\_i^y;\theta) - y\_i)^2 $$
+
+$$ \hspace{3em} + \sum\_{i=1}^{n\_f} (y''(x\_i^f;\theta) - f\_i)^2 $$
+
+---
+class: middle
+
+```Python
+def loss(self, X, Y):
+    # data observation loss    
+    y = self(X[0]) # y(x)
+    # Physics loss        
+    _, _, phys = self.get_derivatives(X[1]) # y''(x)
+    return self.loss_fun(Y[0], y) + self.loss_fun(Y[1], phys) 
+```
+
+```
+self.loss_fun = tf.keras.losses.MeanSquaredError()
+```
+
+---
+class: middle
+
+`X[0]`: $x\_i^y$, location of $y_i$ data
+
+`Y[0]`: $y_i$ data
+
+`X[1]`: $x\_i^f$, location of $f_i = y''_i$ data
+
+`Y[1]`: $f_i = y''_i$ data
+
+---
+class: middle
+
+We train using the L-BFGS-B scipy optimizer.
+
+---
+class: middle
+
+.center[![:width 70%](piml_loss.png)]
+
+
+---
+class: middle
+
+.center[![:width 70%](piml_solution.png)]
+
+---
+class: middle
+
+This method can be extended to any type of differential equations:
+
+- PDEs with multiple input variables $(x_1,\dots,x_d)$
+- Non-linear PDEs
+- Time-dependent PDEs
+
+---
+class: middle
+
+# Example of a PDE in 2D
+
+`get_derivatives` function
+
+---
+class: middle
+
+```Python
+def get_derivatives(self, x):
+    x1 = tf.constant(x[:,0], dtype=tf.float64)
+    x2 = tf.constant(x[:,1], dtype=tf.float64)
+    with tf.GradientTape(persistent=True) as g:
+        g.watch(x1)
+        g.watch(x2)            
+        with tf.GradientTape() as gg:
+            gg.watch(x1)
+            gg.watch(x2)
+            x = tf.stack([x1, x2], 1)                
+            u = self(x, training=True)
+        [u_x, u_y] = gg.gradient(u,[x1,x2])
+    u_xx = g.gradient(u_x,x1)
+    u_yy = g.gradient(u_y,x2)
+    del g
+    return u, u_x, u_y, u_xx, u_yy
+```
+
+---
+class: middle
+
+# Final note
+
+PIML can be very useful to solve PDEs in high-dimension.
+
+---
+class: middle
+
+Consider our 1D finite-difference model:
+
+$$ -u''(x) = f(x), \quad x \in [0, 1] $$
+
+$$ u\_i \approx u(x\_i), \quad \frac{2u\_i - u\_{i+1} - u\_i}{h^2} = f\_i $$
+
+If $h = 1/n$, we have $n$ grid points $x_i$.
+
+---
+class: middle
+
+Poisson's equation in $\mathbb R^d$:
+
+$$ x = (x^1, \dots, x^d) $$
+
+$$ - \triangle u(x) = f(x), \quad x \in [0, 1]^d $$
+
+In dimension $d$, we need $n^d$ points for our finite-difference scheme.
+
+---
+class: middle
+
+This becomes quickly intractable even for moderate values of $d$.
+
+---
+class: middle
+
+However, PhysML does not require any grid. 
+
+It can evaluate
+
+$$ - \triangle u(x) $$
+
+directly using automatic differentiation.
+
+---
+class: middle
+
+Assuming enough data for $u$ and $f$ are provided it is possible to [solve high-dimensional PDEs](https://www.sciencedirect.com/science/article/pii/S0021999118305527).
+
+---
+class: middle
+
+A famous example is the [Black-Scholes equation](https://www.sciencedirect.com/science/article/pii/S0021999118305527):
+
+$$\hspace{-8em} 0 = \frac{\partial u}{\partial t} + \mu(x) \frac{\partial u}{\partial x} + $$
+
+$$\hspace{2em} + \frac{1}{2} \sum\_{i,j=1}^d \rho\_{ij} \sigma(x\_i) \sigma(x\_j) \frac{\partial^2 u}{\partial x\_i \partial x\_j} - r u(t,x) $$
+
+$$x \in \mathbb R^d$$
+
+---
+class: middle
+
+Black-Scholes is a mathematical model for the dynamics of a financial market containing derivative investment instruments.
+
+Derivative: a contract that derives its value from the performance of an underlying entity. Examples of underlying entities: asset, index, and interest rate.
+
+---
+class: middle
+
+Black-Scholes gives a theoretical estimate of the price of European-style options .
+
+The key idea behind the model is to hedge the option by buying and selling the underlying asset in just the right way and, as a consequence, to eliminate risk.
+
+---
+class: middle
+
+Other [examples](https://www.pnas.org/content/115/34/8505.short) of high-dimensional PDEs include:
+
+- Hamilton–Jacobi–Bellman equation
+- Allen–Cahn equation
