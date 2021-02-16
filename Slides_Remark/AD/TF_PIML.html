@@ -108,7 +108,7 @@ Our loss function is of the type:
 
 $$ \hspace{-5em} L = \sum\_{i=1}^{n\_y} (y(x\_i^y;\theta) - y\_i)^2 $$
 
-$$ \hspace{3em} + \sum\_{i=1}^{n\_f} (y''(x\_i^f;\theta) - f\_i)^2 $$
+$$ \hspace{2em} + \sum\_{i=1}^{n\_f} (y''(x\_i^f;\theta) - f\_i)^2 $$
 
 ---
 class: middle
@@ -212,17 +212,17 @@ class: middle
 ---
 class: middle
 
-Solving for $u(x,y)$ and $k(x,y)$.
-
  PDE: $ \nabla \cdot ( k \nabla u ) = f $
+
+Solving for $u(x,y)$ and $k(x,y)$. 
 
 Exact value for $u$: $u(x,y) = x^2 + y^2$
 
-Exact value of $k$: $k = 1 + x^2$
+Exact value of $k$: $k(x,y) = 1 + x^2$
 
-Exact value for $f = \nabla \cdot ( k \nabla u )$
+Exact value for $f(x,y) = \nabla \cdot ( k \nabla u )$
 
-$$f = 8x^2 + 4$$
+$$f(x,y) = 8x^2 + 4$$
 
 ---
 class: middle
@@ -350,7 +350,7 @@ Consider our 1D finite-difference model:
 
 $$ -u''(x) = f(x), \quad x \in [0, 1] $$
 
-$$ u\_i \approx u(x\_i), \quad \frac{2u\_i - u\_{i+1} - u\_i}{h^2} = f\_i $$
+$$ u\_i \approx u(x\_i), \quad \frac{2u\_i - u\_{i+1} - u\_{i-1}}{h^2} = f\_i $$
 
 If $h = 1/n$, we have $n$ grid points $x_i$.
 
