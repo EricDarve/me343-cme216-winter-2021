@@ -87,21 +87,31 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 
 - [Saddle point demo notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/Saddle%20points.ipynb)
 - [ADAGRAD notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/Adagrad.ipynb)
-- 3.11 Stochastic Gradient Descent; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3f76c7ec-a601-4d4a-8860-abb30137998c); [Slides](Slides/Deep_Learning/Stochastic_Gradient_Descent.pdf)
-- 3.12 Saddle points; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c1fda57c-2c84-454b-b5c6-abb3014bb0d3); [Slides](Slides/Deep_Learning/Saddle_points.pdf)
-- 3.13 Momentum; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ae3feaf2-5884-42c5-aa01-abb3016db5f9); [Slides](Slides/Deep_Learning/Momentum.pdf)
-- 3.14 Adagrad; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9c74557c-832b-41d7-8cfd-abb30189fc85); [Slides](Slides/Deep_Learning/Adagrad.pdf)
-- 3.15 RMSProp and Adam; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8986cd22-6e69-4733-976c-abb4000dc637); [Slides](Slides/Deep_Learning/RMSProp_and_Adam.pdf)
+- 3.11 Stochastic Gradient Descent; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3f76c7ec-a601-4d4a-8860-abb30137998c); [Slides](Slides/Deep_Learning/3_11_Stochastic_Gradient_Descent.pdf)
+- 3.12 Saddle points; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c1fda57c-2c84-454b-b5c6-abb3014bb0d3); [Slides](Slides/Deep_Learning/3_12_Saddle_points.pdf)
+- 3.13 Momentum; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ae3feaf2-5884-42c5-aa01-abb3016db5f9); [Slides](Slides/Deep_Learning/3_13_Momentum.pdf)
+- 3.14 Adagrad; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9c74557c-832b-41d7-8cfd-abb30189fc85); [Slides](Slides/Deep_Learning/3_14_Adagrad.pdf)
+- 3.15 RMSProp and Adam; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8986cd22-6e69-4733-976c-abb4000dc637); [Slides](Slides/Deep_Learning/3_15_RMSProp_and_Adam.pdf)
 - [Reading Assignment 5](Reading Assignments/optimization)
 - [Homework 3](Homework/HW3/HW3 Questions)
 
 *Module 3-Part 3*
 
-- 3.16 Trust region; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b1e21c0a-e691-4c37-b7d0-acc00185514a); [Slides](Slides/Deep_Learning/Trust_region.pdf)
-- 3.17 BFGS; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=36ab1ffb-32cb-4b2e-8ffb-acc1000e6e66); [Slides](Slides/Deep_Learning/BFGS.pdf)
-- 3.18 L-BFGS; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ff39ec4f-ad00-452e-ba18-acc1001b6554); [Slides](Slides/Deep_Learning/LBFGS.pdf)
+- 3.16 Trust region; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b1e21c0a-e691-4c37-b7d0-acc00185514a); [Slides](Slides/Deep_Learning/3_16_Trust_region.pdf)
+- 3.17 BFGS; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=36ab1ffb-32cb-4b2e-8ffb-acc1000e6e66); [Slides](Slides/Deep_Learning/3_17_BFGS.pdf)
+- 3.18 L-BFGS; [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ff39ec4f-ad00-452e-ba18-acc1001b6554); [Slides](Slides/Deep_Learning/3_18_LBFGS.pdf)
 - [Reading Assignment 6](Reading Assignments/second_order_optimization)
 - [Homework 4](Homework/HW4/HW4 Questions)
+
+### Physics Informed Machine Learning
+
+*Module 4*
+
+- [Automatic Differentiation in TensorFlow notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/TensorFlow%20AD.ipynb)
+- [Physics Informed Learning with TensorFlow notebook](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/PIML_advanced.ipynb)
+- 4.1 Physics Informed Machine Learning (PIML); [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d18be679-ed55-46eb-97f7-acd0013af907); [Slides](Slides/AD/4_1_PIML.pdf)
+- 4.2 TensorFlow Automatic Differentiation (TF_AD); [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a6199206-5d09-4a9b-97d0-acd0016624d8); [Slides](Slides/AD/4_2_TF_AD.pdf)
+- 4.3 Physics Informed ML using TensorFlow (TF_PIML); [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=12017b1f-243f-4915-ab91-acd1000fc63a); [Slides](Slides/AD/4_3_TF_PIML.pdf)
 
 ### Final project
 
