@@ -113,6 +113,7 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - 4.2 TensorFlow Automatic Differentiation (TF_AD); [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a6199206-5d09-4a9b-97d0-acd0016624d8); [Slides](Slides/AD/4_2_TF_AD.pdf)
 - 4.3 Physics Informed ML using TensorFlow (TF_PIML); [Video](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=12017b1f-243f-4915-ab91-acd1000fc63a); [Slides](Slides/AD/4_3_TF_PIML.pdf)
 - [Reading Assignment 7](Reading Assignments/PIML)
+- [Homework 5](Homework/HW5/HW5 Questions)
 
 ### Final project
 
