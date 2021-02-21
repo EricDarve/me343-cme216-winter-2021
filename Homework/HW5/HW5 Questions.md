@@ -11,13 +11,13 @@ In this homework, you will implement and train a neural network to solve an ordi
 
 $$ \frac{d}{dx} ( k(x) \frac{du}{dx} ) + a(x) \frac{du}{dx} + u(x) = f(x) $$
 
-where $u(x) = \cos(-x^2)$, $k(x) = 1 + x^2$, $a(x) = x$ and 
+where $u(x) = \cos(-x^2)$, $k(x) = 1 + x^2$, $a(x) = x$ and
 
 $$ f = (-8x^2 - 2)\sin(x^2) + (-4x^4 - 4x^2 + 1)\cos(x^2) $$
 
 Launch `PIML.ipynb` to get started. Same as in HW3, in this homework, to accelerate the training, we will use the optimizer [L-BFGS-B](https://docs.scipy.org/doc/scipy/reference/optimize.minimize-lbfgsb.html) from [SciPy](https://www.scipy.org/) to update the neural network.
 
-The code for data generation has been provided to you. Make sure you understand the function `generate_data`. 
+The code for data generation has been provided to you. Make sure you understand the function `generate_data`.
 
 Your task is to complete the class methods in the class `PI_NN`.
 
@@ -25,17 +25,17 @@ Your task is to complete the class methods in the class `PI_NN`.
 1. Complete the `__init__` method in `PI_NN`. You will initialize some TensorFlow Keras layers for the forward pass and define the [Mean Squared Error](https://www.tensorflow.org/api_docs/python/tf/keras/losses/MeanSquaredError) loss function. Check the following [code example](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/PIML_advanced.ipynb) for reference, e.g., the `__init__` method in the class `PI_Model_1D` used to solve the second order ODE $u'' = -\cos(x)$. Note that in the forward pass, you will compute $u$, $k$ and $a$. Therefore the size of the final layer is 3. Turn in your implementation.
 
 {:start="2"}
-2. Complete the `call` method in `PI_NN`. Use the layers defined in `__init__` for the forward pass. In the end, split the output from the final layer to $u(x)$, $k(x)$ and $a(x)$. An example code is provided in the notebook. Turn in your implementation.
+2. Complete the `call` method in `PI_NN`. Use the layers defined in `__init__` for the forward pass. The size of the output tensor from the `call` method is 3.
 
 {:start="3"}
-3. Complete the `get_derivatives` method in `PI_NN`. Given the `x_input`, you need to compute `u(x_input)`, `k(x_input)`, `a(x_input)` (hint: use the `call` function you just implemented), $\frac{du}{dx}$ and the right-hand-side (RHS) of the ODE, i.e. 
+3. Complete the `get_derivatives` method in `PI_NN`. Given the `x_input`, you need to compute `u(x_input)`, `k(x_input)`, `a(x_input)`, $\frac{du}{dx}$ and the right-hand-side (RHS) of the ODE, i.e.
 
 $$\frac{d}{dx} ( k(x) \frac{du}{dx} ) + a(x) \frac{du}{dx} + u(x)$$
 
-For reference, check the `get_derivatives` method of the class `PI_Model_1D` in [PIML_advanced.ipynb](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/PIML_advanced.ipynb). Turn in your implementation.
+To compute $u(x)$, $k(x)$ and $a(x)$, split the outputs from the `call` method. An example code is provided in the notebook. For reference, check the `get_derivatives` method of the class `PI_Model_1D` in [PIML_advanced.ipynb](https://github.com/EricDarve/me343-cme216-winter-2021/blob/main/Code/PIML_advanced.ipynb). Turn in your implementation.
 
 {:start="4"}
-4. Complete the `loss` method in `PI_NN`. The training loss is a weighted sum of losses in $u(x)$, $k(x)$ and $a(x)$ and the ODE (the difference between the RHS and LHS of the ODE): 
+4. Complete the `loss` method in `PI_NN`. The training loss is a weighted sum of losses in $u(x)$, $k(x)$ and $a(x)$ and the ODE (the difference between the RHS and LHS of the ODE):
 
 `loss = alpha_u*loss_u + alpha_k*loss_k + alpha_a*loss_a + alpha_ode*loss_ode`
 
