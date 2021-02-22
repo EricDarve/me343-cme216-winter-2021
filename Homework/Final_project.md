@@ -28,3 +28,11 @@ Submission instructions: there will be three assignments on gradescope:
 - Preliminary plan: 10 points
 - Final project code (upload a single file, e.g., Python notebook or Python code): 20 points
 - Final project written report (upload a single PDF file): 80 points
+
+If you wish, there is an option to work in teams on a project. I recommend teams of at most 2 students. 3 students is an option, but it is discouraged. 4 or more is not allowed. The amount of work you put into the project must be the same whether or not you are part of a team.
+
+For teams of 2 students, you should submit a 6-page report. Teams of 3 should submit an 8-page report.
+
+We will enable the group submission option on Gradescope, with which one member per group can make the submission and add the rest of the group. The submission process is the same as before, and the option to add group members will be available after you upload your files. No additional action is required if you are not adding group members. Besides making a group submission, please make sure to include a list of all the team members in the PDF, at the beginning.
+
+In addition, each member of the team must submit a short document that describes what each team member (including yourself) contributed to the project.
