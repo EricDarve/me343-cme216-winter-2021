@@ -5,7 +5,8 @@ title: Installation Guide For ADCME
 
 [Link back to Homework](./HW6 Questions.md)
 
-ADCME is tested and supported on Linux, macOS, and Windows (beta) systems. We have separate instructions for each operating systems.
+ADCME is tested and supported on Linux, macOS, and Windows systems. We have separate instructions for each operating systems.
+
 
 ![](assets/support_matrix.png){:width="40%"}
 
@@ -19,7 +20,7 @@ If you have some earlier version of Julia already installed with a version at le
 
 ## 1. Install Julia
 
-We will first install Julia binary and then configure the binary path so you can have easy access to Julia by typing `julia` in a terminal. But strictly speaking, configuring the path is unnecessary if your ADCME version $\geq 0.5.3$. 
+We will first install Julia binary and then configure the binary path so you can have easy access to Julia by typing `julia` in a terminal. But strictly speaking, configuring the path is unnecessary if you install the latest version (v0.7.0). 
 
 ### For Linux 
 
@@ -27,7 +28,7 @@ We will first install Julia binary and then configure the binary path so you can
 
 See below for instructions on _rice_.
 
-Download Julia 1.3 or 1.4 from the [official website](https://julialang.org/downloads/). Uncompress the tarball to any directory you want. There is a directory `bin` inside the Julia directory you just uncompressed. Add the absolute path of the `bin` directory to your `PATH` environment variable. 
+Download Julia 1.3, 1.4, or 1.5 from the [official website](https://julialang.org/downloads/). Uncompress the tarball to any directory you want. There is a directory `bin` inside the Julia directory you just uncompressed. Add the absolute path of the `bin` directory to your `PATH` environment variable. 
 
 Suppose the Julia `bin` path is `<LocalJuliaPath>` (e.g., `~/julia-1.4.1/bin`), execute the following command in your terminal:
 
@@ -53,9 +54,9 @@ The installation is very slow on _rice_. Please be prepare to wait for a long ti
 
 [Video with step-by-step instructions](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=027f5390-6cad-4190-ab91-abb70055cb3c)
 
-Due to an incompatibility issue with Julia 1.4 and TensorFlow 1.x, please download and install Julia 1.3 from the [official website](https://julialang.org/downloads/oldreleases/#v131_dec_30_2019). 
+Due to an incompatibility issue with Julia 1.4 and TensorFlow 1.x, please download and install Julia 1.3 or 1.5 from the [official website](https://julialang.org/downloads/oldreleases/#v131_dec_30_2019). 
 
-After installation, Julia-1.3 will appear in your `Application` folder. Open the Julia application and you will see the Julia prompt
+After installation, Julia-1.3 or Julia-1.5 will appear in your `Application` folder. Open the Julia application and you will see the Julia prompt
 
 ```julia
 julia> Sys.BINDIR
@@ -114,13 +115,8 @@ $ julia
 and type
 
 ```julia
-julia> using Pkg
-julia> Pkg.add("ADCME")
-julia> Pkg.add("DelimitedFiles")
-julia> Pkg.add("Conda")
-julia> Pkg.add("PyCall")
-julia> Pkg.add("PyPlot")
-julia> Pkg.build("PyPlot") # if you have ADCME≧0.5.3, this step is not necessary
+julia> ]
+(@v1.4) pkg> add ADCME PyCall PyPlot
 ```
 
 ## 3. Start using ADCME
@@ -165,13 +161,11 @@ In `2DCase`, you have two source files: `HeatEquation.h` and `HeatEquation.cpp`.
 
 ```julia
 julia> using ADCME
-julia> mkdir("build")
-julia> cd("build")
+julia> change_directory("cpp/build")
 julia> ADCME.cmake()
 julia> ADCME.make()
 ```
-
-The command [ADCME.cmake()](https://cmake.org/cmake/help/latest/guide/tutorial/index.html) will run commands in the file `CMakeLists.txt` and create the appropriate Makefile. Then the command [ADCME.make()](https://www.gnu.org/software/make/manual/make.html) will compile the source code `HeatEquation.h` and `HeatEquation.cpp` to create the shared library.
+The command `change_directory("cpp/build")` makes a directory `cpp/build` if it does not exist and changes the current path to `cpp/build`. The command [ADCME.cmake()](https://cmake.org/cmake/help/latest/guide/tutorial/index.html) will run commands in the file `CMakeLists.txt` and create the appropriate Makefile. Then the command [ADCME.make()](https://www.gnu.org/software/make/manual/make.html) will compile the source code `HeatEquation.h` and `HeatEquation.cpp` to create the shared library.
 
 After running this, you should see that there is a `libHeatEquation.so` (Linux), `libHeatEquation.dylib` (macOS), or `HeatEquation.dll` (Windows) in your `build` directory. 
 
