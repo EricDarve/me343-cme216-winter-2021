@@ -115,13 +115,19 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 - [Reading Assignment 7](Reading Assignments/PIML)
 - [Homework 5](Homework/HW5/HW5 Questions)
 
-*Module 5 and 6*
+*Module 5*
 
-_Automatic differentiation, physics informed learning using ADCME, inverse modeling_
+_Automatic differentiation, physics informed learning using ADCME_
 
-The slides are assembled into two PDF files. Each lecture video covers one section in one of these PDF files.
+The slides are assembled into a single PDF file. Each lecture video covers one section in the PDF.
 
 - Module 5, Automatic Differentiation for Computational Engineering; [Videos](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx?folderID=d9be6b74-6c53-4772-8eb3-acd8016c0c0b); [Slides](Slides/AD/5_AD.pdf)
+- [Reading Assignment 8](Reading Assignments/AD)
+
+*Module 6*
+
+_Inverse modeling using ADCME_
+
 - Module 6, Inverse Modeling using ADCME; [Videos](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx?folderID=f2279765-086a-402c-b5be-acd801850337); [Slides](Slides/AD/6_Inverse.pdf)
 
 ### Final project

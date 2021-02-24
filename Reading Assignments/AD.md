@@ -111,3 +111,122 @@ Consider the figure in slide [18](https://ericdarve.github.io/me343-cme216-winte
 {:start="7"}
 1. [5.2]. In the _one-to-many_ case, what is the computational cost of computing $\frac{\partial o_i}{\partial x_1}$ using _forward-mode_ AD, for all $i = 1, \dots, 5$?
 1. [5.2]. In the one-to-many case, what is the computational cost of computing $\frac{\partial o_i}{\partial x_1}$ using _reverse-mode_ AD, for all $i = 1, \dots, 5$?
+
+The next question refers to video "5.3 Forward Mode."
+
+In automatic differentiation (AD), at every step, we keep track of the result of the calculation up to that point, along with derivatives with respect to all the input variables.
+
+For example, let's consider the graph $G$ that takes as input two independent variables $(x_1,x_2)$. The first node is $y_1 = x_1^2$, the second node is $y_2 = 2 x_2$, and the third node $y_3 = y_1 + y_2$.
+
+In AD, we keep track of the numerical value of the node, along with the derivatives with respect to all the independent variables. This can be represented as a tuple of 3 values for each node. Assume that $x_1 = 1$ and $x_2 = -2$. For graph $G$:
+
+- Node $y_1(x_1)$: $(y_1,\partial y_1 / \partial x_1, \partial y_1 / \partial x_2) = (1, 2, 0)$.
+- Node $y_2(x_2)$: $(y_2,\partial y_2 / \partial x_1, \partial y_2 / \partial x_2) = (-4, 0, 2)$.
+- Node $y_3(y_1,y_2)$: $(y_3,\partial y_3 / \partial x_1, \partial y_3 / \partial x_2) = (-3, 2, 2)$.
+
+For example, the derivative $\partial y_3 / \partial x_1$ is evaluated using:
+
+$$ \frac{\partial y_3}{\partial x_1} = \frac{\partial y_3}{\partial y_1} \frac{\partial y_1}{\partial x_1} + \frac{\partial y_3}{\partial y_2} \frac{\partial y_2}{\partial x_1} = 1 \times 2 + 1 \times 0 = 2 $$
+
+Consider the following function:
+
+$$ y(x_1,x_2,x_3) = x_3^2 \log ( x_1 + 2 x_2 ) $$
+
+The computational graph $G_1$ to compute $y$ has 5 nodes, where $y = y_5$. Each node is one arithmetic operation or the calculation of log. Assume that $x_1 = e - 2$, $x_2 = 1$, $x_3 = 2$.
+
+{:start="9"}
+1. [5.3]. Using graph $G_1$, show the steps in forward-mode AD to compute the tuple for output node $y = y_5$:
+
+$$ \Big( y, \frac{\partial y}{\partial x_1}, \frac{\partial y}{\partial x_2}, \frac{\partial y}{\partial x_3} \Big) $$
+
+The next question refers to video "5.4 Reverse Mode."
+
+Reverse-mode AD performs similar calculations but starting from the end and moving towards the input of the graph. Take for example graph $G$. The steps are:
+
+- Step 1; node $y_3(y_1,y_2)$: $(y_3,\partial y_3 / \partial y_1, \partial y_3 / \partial y_2) = (-3, 1, 1)$.
+- Step 2; node $y_2(x_2)$: $(y_2,\partial y_3 / \partial y_1, \partial y_3 / \partial x_2) = (-4, 1, 2)$.
+- Step 3; node $y_1(x_1)$: $(y_1,\partial y_3 / \partial x_1, \partial y_3 / \partial x_2) = (1, 2, 2)$.
+
+Reverse-mode requires that we have first traversed the graph in the forward direction to compute the derivatives of all the node values with respect to their inputs. This is called the forward pass. The derivatives of the output with respect to all the inputs are then computed using the backpropagation formula. For example, at Step 3 above, we used:
+
+$$ \frac{\partial y_3}{\partial x_1} = \frac{\partial y_3}{\partial y_1} \frac{\partial y_1}{\partial x_1} = 1 \times 2 = 2 $$
+
+$\partial y_3 / \partial y_1$ is from Step 2; $\partial y_1 / \partial x_1$ (node derivative) was computed during the forward pass.
+
+The general rule is as follows. Assume we are at step $s$. At step $s+1$, we add node $y_j(y_{i_1},\dots, y_{i_k})$. For step $s+1$, we keep all the derivatives from step $s$ except $\partial y / \partial y_j$. This derivative is removed and replaced by all the derivatives $\partial y / \partial y_{i_l}$, $1 \le l \le k$, which are computed using
+
+$$ \frac{\partial y}{\partial y_{i_l}} = \frac{\partial y}{\partial y_j} \frac{\partial y_j}{\partial y_{i_l}} $$
+
+If the derivative $\partial y / \partial y_{i_l}$ was already present at step $s$, we add the new contribution
+
+$$ \frac{\partial y}{\partial y_{i_l}} \leftarrow \frac{\partial y}{\partial y_{i_l}} + \frac{\partial y}{\partial y_j} \frac{\partial y_j}{\partial y_{i_l}} $$
+
+Go back to the example above to make sure you understand how the process works.
+
+If you return to the slides for the backpropagation algorithm for DNN, you will see that we followed exactly these steps, but specialized for sequential DNNs. There was a forward pass, followed by the backpropagation.
+
+{:start="10"}
+1. [5.4]. Return to the example with graph $G_1$. Redo the differentiation using reverse-mode. You should start from $y_5=y$, then go to $y_4$, &hellip;, $y_1$. For each $y_k$, list all the derivatives that are needed at that step, and their value. At the end of this process you should find the expression for $\partial y / \partial x_i$, $i=1,2,3.$ It should match your answer using forward mode. The intermediate steps however will be different from the forward-mode.
+
+The next question refers to video "5.5 AD for Physical Simulations."
+
+The discretization of the PDE is based on the idea of approximating a derivative using
+
+$$ \frac{\partial u}{\partial x} \approx \frac{u(x+h) - u(x-h)}{2h} $$
+
+If we use a uniform grid with spacing $\Delta x$, we get
+
+$$ \frac{\partial u}{\partial x} \Big\lvert_i \approx \frac{u_{i+1} - u_{i-1}}{2 \Delta x} $$
+
+To evaluate a second-order derivative like 
+
+$$\triangle u = \frac{\partial^2 u}{\partial x^2}$$
+
+we can use
+
+$$ \triangle u(x_i) \approx \frac{u'(x + \Delta x / 2) - u'(x - \Delta x / 2)}{\Delta x} $$
+
+where $u'$ is the derivative.
+
+{:start="11"}
+1. [5.5]. Use the approximation of the derivative and the previous equation to show that:
+
+$$ \triangle u(x_i) \approx \frac{u_{i+1} - 2 u_i + u_{i-1}}{\Delta x^2} $$
+
+{:start="12"}
+1. [5.5]. Using the equation on Slide [36](https://ericdarve.github.io/me343-cme216-winter-2021/Slides/AD/5_AD.pdf#page=40), show that row $i$ of $A(a,b)$ (slide [37](https://ericdarve.github.io/me343-cme216-winter-2021/Slides/AD/5_AD.pdf#page=41)) is of the form (where $i$ is different from 1 and $n$):
+
+$$ [ \cdots \; 0, \; -\lambda_i, \; 2 \lambda_i + 1, \; - \lambda_i, \; 0, \; \cdots] $$
+
+with $\lambda_i = \kappa_i \frac{\Delta t}{\Delta x^2}$.
+
+Consider the boundary condition on the right:
+
+$$ u_{n+1} = 0 $$
+
+{:start="13"}
+1. [5.5]. Using this boundary condition, show that the last row of matrix $A(a,b)$ is 
+
+$$ [ \cdots \; 0, \; -\lambda_n, \; 2 \lambda_n + 1] $$
+
+Assume now that $\partial u / \partial x = 0$ at node $i = 1$ on the left. For this specific problem, we can prove that this condition implies that the solution $u(x)$ can be extended and made even about $x=0$. This is done by formulating an equivalent PDE problem on the interval $[-1,1]$ with Dirichlet BC at $x=-1$ and $x=1$. At $x=0$, we recover $\partial u / \partial x = 0$. This solution $u$ formulated over the interval $[-1,1]$ is even and matches the solution $u$ to our problem on $[0,1]$.
+
+With our numbering we have that $x_1 = 0$ and $x_2 = \Delta x$. We introduce the point $x_0 = -\Delta x$. Since $u$ is even (a consequence of the $\partial u / \partial x = 0$ condition as discussed above), we get:
+
+$$ \frac{u_2 - u_0}{2 \Delta x} \approx \frac{\partial u}{\partial x} \Big\rvert_{x=0} = 0, \text{ or } u_0 = u_2$$
+
+{:start="14"}
+1. [5.5]. Using this result, show that row 1 of matrix $A(a,b)$ is 
+
+$$ [ 2 \lambda_1 + 1, \; - 2 \lambda_1, \; 0, \; \cdots ] $$
+
+Note the difference with row $n$ and the factor of 2.
+
+The next question covers video "5.6 AD for Implicit Solvers" and "5.7 Conclusion."
+
+Assume that we have computed a solution $(x_0,y_0)$ of this equation:
+
+$$ x^2 + \frac{y^2}{2} + \exp(x) = 3 $$ 
+
+{:start="15"}
+1. [5.6]. Calculate $dy/dx$ at $x=x_0$ using implicit differentiation. Give your result in terms of $(x_0,y_0)$.
