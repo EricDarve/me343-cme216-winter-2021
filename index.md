@@ -117,7 +117,7 @@ See [Gradescope](https://www.gradescope.com/courses/222525) for all the current 
 
 *Module 5 and 6*
 
-_Automatic differentiation, Physics informed learning using ADCME, inverse modeling_
+_Automatic differentiation, physics informed learning using ADCME, inverse modeling_
 
 The slides are assembled into two PDF files. Each lecture video covers one section in one of these PDF files.
 
