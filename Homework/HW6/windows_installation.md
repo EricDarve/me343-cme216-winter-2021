@@ -3,8 +3,8 @@ layout: page
 title: ADCME installation on Windows
 ---
 
-[Back to Homework](./HW6 Questions.md)<br/>
-[Back to the installation guide for ADCME](./ADCME_setup.html#for-windows)
+[Back to the installation guide for ADCME](./ADCME_setup.html#for-windows)<br/>
+[Back to Homework](./HW6 Questions.md)
 
 # Install ADCME on Windows
 
