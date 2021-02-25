@@ -5,11 +5,13 @@ title: Programming Homework 6
 
 **Submission instructions**: Please use your Python notebook for your programming and written answers. You can do that by including “text cells” or “markdown cells” in your Python notebook. You can just type in your answers in these cells as text. At the end, you will have one document (the notebook) with all your answers. To submit, save the notebook as PDF and submit this PDF as your answer. We will also accept other formats for your submission if this does not work for you.
 
+[Starter code](./starter_code.zip)
+
 Kailai prepared a complete set of videos for this homework. Please go to the folder [Homework 6](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx?folderID=c9d36ce3-e747-4a50-a866-acd801729122) on Canvas. You will find 10 videos in that folder.
 
 ![](assets/hw_videos.png){:width="50%"}
 
-You should watch these videos before doing the homework. Each video covers different parts of the homework so you can start working on this homework after watching the first few videos.
+You should watch these videos before doing the homework. Each video covers different parts of the homework, so you can start working on this homework after watching the first few videos.
 
 For this homework, you will need to install Julia and ADCME. See this [installation guide](./ADCME_setup.md) for detail setup. The first three videos on [Canvas](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx?folderID=c9d36ce3-e747-4a50-a866-acd801729122) will give you a step-by-step demonstration.
 
@@ -38,7 +40,7 @@ The **thermal diffusivity** is the measure of the ease with which heat can diffu
 
 $$\frac{\partial u(\mathbf{x}, t)}{\partial t} = \kappa\Delta u(\mathbf{x}, t) + f(\mathbf{x}, t), \quad t\in (0,T), x\in \Omega \tag{1}$$
 
-Here $f$ is the heat source and $\Omega$ is the domain.
+Here $f$ is the heat source, and $\Omega$ is the domain.
 
 To make use of the heat equation, we need additional information. 
 
@@ -58,13 +60,13 @@ To make use of the heat equation, we need additional information.
 
   The boundaries $\Gamma_D$ and $\Gamma_N$ satisfy $\partial \Omega = \Gamma_D \cup \Gamma_N, \Gamma_D\cap \Gamma_N = \emptyset$.
 
-Assume that we want to experiment with a piece of new material. The thermal diffusivity coefficient of the material is an unknown function of the space. Our goal of the experiment is to find out the thermal diffusivity coefficient. To this end, we place some sensors in the domain or on the boundary. The measurements are sparse in the sense that only the temperature from those sensors---but nowhere else---are collected. Namely, let the sensors be located at $\\{\mathbf{x}\_i\\}\_{i=1}^M$, then we can observe $\\{\hat u(\mathbf{x}\_i, t)\\}\_{i=1}^M$, i.e., the measurements of $\\{ u(\mathbf{x}\_i, t) \\}\_{i=1}^M$. We also assume that the boundary conditions, initial conditions and the source terms are known. 
+Assume that we want to experiment with a piece of new material. The thermal diffusivity coefficient of the material is an unknown function of the space. Our goal of the experiment is to find out the thermal diffusivity coefficient. To this end, we place some sensors in the domain or on the boundary. The measurements are sparse in the sense that only the temperature from those sensors---but nowhere else---are collected. Namely, let the sensors be located at $\\{\mathbf{x}\_i\\}\_{i=1}^M$, then we can observe $\\{\hat u(\mathbf{x}\_i, t)\\}\_{i=1}^M$, i.e., the measurements of $\\{ u(\mathbf{x}\_i, t) \\}\_{i=1}^M$. We also assume that the boundary conditions, initial conditions, and the source terms are known. 
 
 ![](./assets/ex_figure.png) 
 
 ## Problem 1: Parameter Inverse Problem in 1D
 
-We first consider the 1D case. In this problem, the material is a rod $\Omega=[0,1]$. We consider a homogeneous (zero) fixed boundary condition on the right side, and an insulated boundary on the left side. The initial temperature is zero everywhere, i.e., $u(x, 0)=0$, $x\in [0,1]$. The source term is 
+We first consider the 1D case. In this problem, the material is a rod $\Omega=[0,1]$. We consider a homogeneous (zero) fixed boundary condition on the right side and an insulated boundary on the left side. The initial temperature is zero everywhere, i.e., $u(x, 0)=0$, $x\in [0,1]$. The source term is 
 
 $$f(x, t) = \exp(-50(x-0.5)^2)$$
 
@@ -230,7 +232,7 @@ $a = 1.5$, $b=1.0$, $c=2.0$.
 The data file `data.txt` is a $(N_T+1)\times 2$ matrix, where the first and the second columns are $u_1(t)$ and $u_2(t)$ respectively. 
 
 {:start="11"}
-1. Use these data to do inverse modeling and report the values $a, b$ and $c$. We do not provide a starter code intentionally, but the forward computation codes in `Case2D/starter.jl` and neural-network-based inverse modeling codes in `Case1D/starter3.jl` will be helpful. 
+1. Use these data to do inverse modeling and report the values $a, b$, and $c$. We do not provide a starter code intentionally, but the forward computation codes in `Case2D/starter.jl` and neural-network-based inverse modeling codes in `Case1D/starter3.jl` will be helpful. 
 
 Hint: 
 

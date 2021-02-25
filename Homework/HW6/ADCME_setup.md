@@ -1,12 +1,11 @@
 ---
-layout: full-width
+layout: page
 title: Installation Guide For ADCME 
 ---
 
-[Link back to Homework](./HW6 Questions.md)
+[Back to Homework](./HW6 Questions.md)
 
-ADCME is tested and supported on Linux, macOS, and Windows systems. We have separate instructions for each operating systems.
-
+ADCME is tested and supported on Linux, macOS, and Windows systems. We have separate instructions for each operating system.
 
 ![](assets/support_matrix.png){:width="40%"}
 
@@ -16,7 +15,7 @@ Please see the first three videos on [Canvas](https://stanford-pilot.hosted.pano
 
 # ADCME installation instructions
 
-If you have some earlier version of Julia already installed with a version at least 1.0, it should work and you can skip the steps below. Go straight to step 2 "Install Project Dependencies." For Windows platforms, you will also need Microsoft Visual Studio 2017 15 (see below for instructions).
+If you have some earlier version of Julia already installed with a version at least 1.0, it should work, and you can skip the steps below. Go straight to step 2 "Install Project Dependencies." For Windows platforms, you will also need Microsoft Visual Studio 2017 15 (see below for instructions).
 
 ## 1. Install Julia
 
@@ -48,7 +47,7 @@ $ module load julia/1.3.1
 
 This will load Julia 1.3.1.
 
-The installation is very slow on _rice_. Please be prepare to wait for a long time. The installation is on the order of one hour because the file system on _rice_ is very slow. Once everything is installed, running the code is relatively fast.
+The installation is very slow on _rice_. Please be prepared to wait for a long time. The installation is on the order of one hour because the file system on _rice_ is very slow. Once everything is installed, running the code is relatively fast.
 
 ### For macOS
 
@@ -56,7 +55,7 @@ The installation is very slow on _rice_. Please be prepare to wait for a long ti
 
 Due to an incompatibility issue with Julia 1.4 and TensorFlow 1.x, please download and install Julia 1.3 or 1.5 from the [official website](https://julialang.org/downloads/oldreleases/#v131_dec_30_2019). 
 
-After installation, Julia-1.3 or Julia-1.5 will appear in your `Application` folder. Open the Julia application and you will see the Julia prompt
+After installation, Julia-1.3 or Julia-1.5 will appear in your `Application` folder. Open the Julia application, and you will see the Julia prompt
 
 ```julia
 julia> Sys.BINDIR
@@ -80,21 +79,11 @@ On the most recent version of macOS, you need to replace `~/.bash_profile` by `~
 
 [Video with step-by-step instructions](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e17b2799-0590-405a-9536-abc20017a4d8)
 
-If you have a Windows OS, you will need to install Microsoft Visual Studio 2017 15.
-
-[Download and installation instructions](https://visualstudio.microsoft.com/vs/older-downloads/)
-
-![](assets/vs2017.png){:width="60%"}
-
-A free community version is available. Note that this is an older version of Visual Studio. It's not the one from 2019 but the previous version from 2017.
-
-Then you can install Julia following these [instructions](https://julialang.org/downloads/). Choose your version of Windows (32-bit or 64-bit).
-
-[Detailed instructions to install Julia on Windows](https://julialang.org/downloads/platform/#windows)
+If you have a Windows OS, you will need to install Microsoft Visual Studio 2017 15. This software provides the necessary compilers for custom operators. See [Windows Installation](./windows_installation.md) for a detailed installation instruction. 
 
 ---
 
-For Mac and Linux users, restart your shell to apply the new settings. Type `julia` in your terminal and you should see a Julia prompt (Julia REPL).
+For Mac and Linux users, restart your shell to apply the new settings. Type `julia` in your terminal, and you should see a Julia prompt (Julia REPL).
 
 ![](./assets/julia_prompt.png){:width="40%"}
 
@@ -151,13 +140,13 @@ julia> using ADCME
 julia> ADCME.precompile()
 ```
 
-If you encounter any compilation issue, you can report in Slack channel. 
+If you encounter any compilation issue, please report it on Slack.
 
 ### Compile the Custom Operator for 2D Case
 
 The final step explains how to compile the custom operator for the 2D Case. 
 
-In `2DCase`, you have two source files: `HeatEquation.h` and `HeatEquation.cpp`. You need to compile them into a shared library, which you can use in the inverse modeling. To do so, go into `2DCase` directory and open a Julia prompt in a terminal. 
+In `2DCase`, you have two source files: `HeatEquation.h` and `HeatEquation.cpp`. You need to compile them into a shared library, which you can use for the inverse modeling. To do so, go into `2DCase` directory and open a Julia prompt in a terminal. 
 
 ```julia
 julia> using ADCME
@@ -197,7 +186,7 @@ You will see the same output as above `run(sess, err) = 2.9971950130484027e-6` a
 
 You can rotate the figure in 3D using your mouse.
 
-On _rice_, you will not see the figure because you are connected remotely through `ssh` and you cannot see graphic windows but you won't need this for the homework.
+On _rice_, you will not see the figure because you are connected remotely through `ssh` and you cannot see graphic windows, but you won't need this for the homework.
 
 ## Troubleshooting
 
@@ -205,7 +194,7 @@ On some Mac systems, you may encounter the following warning when you run `using
 
 ---
 
-PyPlot is using tkagg backend, which is known to cause crashes on macOS (#410); use the MPLBACKEND environment variable to request a different backend.
+PyPlot is using `tkagg` backend, which is known to cause crashes on macOS (#410); use the MPLBACKEND environment variable to request a different backend.
 
 ---
 
