@@ -129,6 +129,7 @@ The slides are assembled into a single PDF file. Each lecture video covers one s
 _Inverse modeling using ADCME_
 
 - Module 6, Inverse Modeling using ADCME; [Videos](https://stanford-pilot.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx?folderID=f2279765-086a-402c-b5be-acd801850337); [Slides](Slides/AD/6_Inverse.pdf)
+- [Homework 6](Homework/HW6/HW6 Questions)
 
 ### Final project
 
