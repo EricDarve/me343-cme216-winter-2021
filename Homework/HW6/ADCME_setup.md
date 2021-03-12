@@ -198,11 +198,28 @@ PyPlot is using `tkagg` backend, which is known to cause crashes on macOS (#410)
 
 ---
 
-To fix this problem, run the following commands at a Julia prompt:
+To fix this problem, add the following line immediately after `using PyPlot`
 
 ```julia
-julia> using Conda
-julia> Conda.add("pyqt") # if you install ADCME v0.5.2, this should be Conda.add("pyqt", :ADCME)
-julia> using Pkg
-julia> Pkg.build("PyPlot")
+using PyPlot
+matplotlib.use("agg")
 ```
+
+The images may not show up but you can save the figure (`savefig("filename.png")`). 
+
+
+You may also encounter the following warning when you run `BFGS!`. 
+
+---
+
+Error #15: Initializing libiomp5.dylib, but found libiomp5.dylib already initialized OMP: Hint: This means that multiple copies of the OpenMP runtime have been linked into the program. That is dangerous, since it can degrade performance or cause incorrect results. The best thing to do is to ensure that only a single OpenMP runtime is linked into the process, e.g. by avoiding static linking of the OpenMP runtime in any library. As an unsafe, unsupported, undocumented workaround you can set the environment variable KMP_DUPLICATE_LIB_OK=TRUE to allow the program to continue to execute, but that may cause crashes or silently produce incorrect results. For more information, please see http://www.intel.com/software/products/support/.
+
+---
+
+To fix this problem, add the following line in the **very beginning** of your script (or run the command right after you enter a Julia prompt)
+
+---
+
+ENV["KMP_DUPLICATE_LIB_OK"] = true 
+
+---
