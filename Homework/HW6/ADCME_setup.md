@@ -190,7 +190,10 @@ On _rice_, you will not see the figure because you are connected remotely throug
 
 ## Troubleshooting
 
-On some Mac systems, you may encounter the following warning when you run `using PyPlot`.
+Here are some common problems you may encounter on a Mac computer:
+
+
+- You may encounter the following warning when you run `using PyPlot`.
 
 ---
 
@@ -208,7 +211,7 @@ matplotlib.use("agg")
 The images may not show up but you can save the figure (`savefig("filename.png")`). 
 
 
-You may also encounter the following warning when you run `BFGS!`. 
+- Your Julia program may crash when you run `BFGS!` and show the following error message.  
 
 ---
 
@@ -216,10 +219,31 @@ Error #15: Initializing libiomp5.dylib, but found libiomp5.dylib already initial
 
 ---
 
-To fix this problem, add the following line in the **very beginning** of your script (or run the command right after you enter a Julia prompt)
+This is because `matplotlib` (called by `PyPlot`) and `scipy` (called by `BFGS!`) simultaneously access OpenMP libraries in an unsafe way. To fix this problem, add the following line in the **very beginning** of your script (or run the command right after you enter a Julia prompt)
 
 ---
 
 ENV["KMP_DUPLICATE_LIB_OK"] = true 
 
 ---
+
+- You may see the following error message when you run `ADCME.precompile()`:
+
+---
+The C compiler
+ "/Users/<YourUsername>/.julia/adcme/bin/clang"
+is not able to compile a simple test program.
+It fails with the following output: ...
+---
+ 
+This is because your developer tools are not the one required by `ADCME`. To solve this problem, run the following commands in your terminal:
+
+```
+rm /Users/<YourUsername>/.julia/adcme/bin/clang
+rm /Users/<YourUsername>/.julia/adcme/bin/clang++
+ln -s /usr/bin/clang /Users/<YourUsername>/.julia/adcme/bin/clang
+ln -s /usr/bin/clang++ /Users/<YourUsername>/.julia/adcme/bin/clang++
+```
+
+Here `<YourUsername>` is your user name. 
+ 
