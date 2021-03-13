@@ -230,10 +230,12 @@ ENV["KMP_DUPLICATE_LIB_OK"] = true
 - You may see the following error message when you run `ADCME.precompile()`:
 
 ---
+
 The C compiler
  "/Users/<YourUsername>/.julia/adcme/bin/clang"
 is not able to compile a simple test program.
 It fails with the following output: ...
+
 ---
  
 This is because your developer tools are not the one required by `ADCME`. To solve this problem, run the following commands in your terminal:
